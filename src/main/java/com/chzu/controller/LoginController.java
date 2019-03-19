@@ -15,10 +15,10 @@ public class LoginController {
     @Autowired
     private UserDao dao;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping("/main")
     public String get() {
-        User user = new User(1223,"yuhao","123321");
-        dao.addUser(user);
+//        User user = new User(1223,"yuhao","123321");
+//        dao.addUser(user);
         return "login";
     }
 
