@@ -26,26 +26,25 @@ public class LoginRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-
         String username = (String) getAvailablePrincipal(principalCollection);
+        Role role = new Role();
+        role.setRolename("admin");
 
-        Role role = null;
+//        try {
+//            Userlogin userlogin = userloginService.findByName(username);
+//            //获取角色对象
+//            role = roleService.findByid(userlogin.getRole());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
-        try {
-            //Userlogin userlogin = userloginService.findByName(username);
-            //获取角色对象
-           // role = roleService.findByid(userlogin.getRole());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         //通过用户名从数据库获取权限/角色信息
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         Set<String> r = new HashSet<String>();
         if (role != null) {
-            //r.add(role.getRolename());
+            r.add(role.getRolename());
             info.setRoles(r);
         }
-
         return info;
     }
 
@@ -61,11 +60,11 @@ public class LoginRealm extends AuthorizingRealm {
         String password = new String((char[]) token.getCredentials());
 
         //Userlogin userlogin = null;
-        try {
-            //userlogin = userloginService.findByName(username);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            //userlogin = userloginService.findByName(username);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
 //        if (userlogin == null) {
 //            //没有该用户名
@@ -77,7 +76,6 @@ public class LoginRealm extends AuthorizingRealm {
 
         //身份验证通过,返回一个身份信息
         AuthenticationInfo aInfo = new SimpleAuthenticationInfo(username, password, getName());
-
         return aInfo;
     }
 }
