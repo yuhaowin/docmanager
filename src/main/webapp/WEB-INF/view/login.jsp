@@ -20,23 +20,10 @@
                 <button type="submit" id="login-button">Login</button>
             </form>
         </div>
-
-        <ul class="bg-bubbles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
     </div>
 </div>
 
-<script src="../jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="../js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script>
     $('#login-button').click(function (event) {
         event.preventDefault();
