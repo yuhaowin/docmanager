@@ -51,8 +51,10 @@
                 <prop key="hibernate.hbm2ddl.auto">
                     update
                 </prop>
+                <prop key="format_sql">true</prop>
             </props>
         </property>
+
         <property name="packagesToScan">
             <list>
                 <!-- 配置Hibernate实体的包扫描路径 -->

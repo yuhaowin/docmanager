@@ -11,8 +11,7 @@ public class User {
     private String password;
 
     @Id
-    @GeneratedValue(generator = "fendo_Generator")
-    @GenericGenerator(name = "fendo_Generator", strategy = "assigned")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }

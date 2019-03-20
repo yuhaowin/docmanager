@@ -4,18 +4,22 @@ package com.chzu.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="userlogin")
+@Table(name="user_login")
 public class UserLogin {
+
+    @Id
+    @Column(name="user_id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer userId;
 
+    @Column(name = "user_name")
     private String userName;
 
     private String password;
 
     private Integer role;
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+
     public Integer getUserId() {
         return userId;
     }
