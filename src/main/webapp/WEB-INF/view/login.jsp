@@ -14,10 +14,10 @@
     <div class="wrapper">
         <div class="container">
             <h1>Welcome</h1>
-            <form class="form">
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
-                <button type="submit" id="login-button">Login</button>
+            <form class="form" action="login" method="post">
+                <input type="text" name="userName" placeholder="请输入用户名">
+                <input type="password" name="passWord" placeholder="请输入密码">
+                <button type="submit" id="login-button">登陆</button>
             </form>
         </div>
     </div>
@@ -25,11 +25,11 @@
 
 <script src="../js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script>
-    $('#login-button').click(function (event) {
-        event.preventDefault();
-        $('form').fadeOut(500);
-        $('.wrapper').addClass('form-success');
-    });
+    // $('#login-button').click(function (event) {
+    //     event.preventDefault();
+    //     $('form').fadeOut(500);
+    //     $('.wrapper').addClass('form-success');
+    // });
 </script>
 
 <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#000000">

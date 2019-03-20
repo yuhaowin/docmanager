@@ -1,4 +1,6 @@
 package com.chzu.entity;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,7 +11,8 @@ public class User {
     private String password;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(generator = "fendo_Generator")
+    @GenericGenerator(name = "fendo_Generator", strategy = "assigned")
     public Integer getId() {
         return id;
     }
