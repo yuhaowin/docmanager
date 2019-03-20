@@ -1,8 +1,16 @@
-package com.chzu.realm;
+package com.chzu.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="role")
 public class Role {
+    @Id
+    @Column(name="role_id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer roleId;
 
+    @Column(name="role_name")
     private String roleName;
 
     private String permissions;
@@ -19,7 +27,7 @@ public class Role {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
+    public void setRoleName(String rolename) {
         this.roleName = roleName == null ? null : roleName.trim();
     }
 

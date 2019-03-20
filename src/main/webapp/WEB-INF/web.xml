@@ -60,7 +60,11 @@
     </filter>
     <filter-mapping>
         <filter-name>shiroFilter</filter-name>
-        <url-pattern>/login</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
 
 </web-app>
