@@ -38,7 +38,4 @@ public class UserLoginService {
     public Role getRole(Integer roleId){
         return roleDao.getRole(roleId);
     }
-
-
-
 }

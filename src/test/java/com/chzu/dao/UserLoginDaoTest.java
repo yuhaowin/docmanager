@@ -17,7 +17,7 @@ public class UserLoginDaoTest {
     private UserLoginDao userLoginDao;
     @Test
     public void login() {
-        UserLogin login = userLoginDao.login(1);
+        UserLogin login = userLoginDao.login("1");
         UserLogin userLogin = new UserLogin();
         userLogin.setUserName("33232");
         userLogin.setPassword("343443");
