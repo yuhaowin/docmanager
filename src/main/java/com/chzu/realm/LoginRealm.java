@@ -58,23 +58,21 @@ public class LoginRealm extends AuthorizingRealm {
         //密码
         String password = new String((char[]) token.getCredentials());
 
-        UserLogin userLogin = null;
+        UserLogin userlogin = null;
         try {
-            userLogin = userLoginService.login(username);
+            userlogin = userLoginService.login(username);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        if (userLogin == null) {
+        if (userlogin == null) {
             //没有该用户名
             throw new UnknownAccountException();
-        } else if (!password.equals(userLogin.getPassword())) {
+        } else if (!password.equals(userlogin.getPassword())) {
             //密码错误
             throw new IncorrectCredentialsException();
         }
-
         //身份验证通过,返回一个身份信息
-        AuthenticationInfo aInfo = new SimpleAuthenticationInfo(username, password, getName());
-        return aInfo;
+        AuthenticationInfo info = new SimpleAuthenticationInfo(username, password, getName());
+        return info;
     }
 }

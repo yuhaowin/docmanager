@@ -16,6 +16,11 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--全局错误信息处理器
+    只要实现HandlerExceptionResolver接口就是全局异常处理器
+    -->
+    <bean class="com.chzu.exception.GlobalexceptionResolver"/>
+
     <!-- 资源映射 -->
     <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
