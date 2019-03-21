@@ -3,10 +3,7 @@ package com.chzu.realm;
 import com.chzu.entity.Role;
 import com.chzu.entity.UserLogin;
 import com.chzu.service.UserLoginService;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -61,20 +58,20 @@ public class LoginRealm extends AuthorizingRealm {
         //密码
         String password = new String((char[]) token.getCredentials());
 
-        //UserLogin userlogin = null;
-//        try {
-//            //userlogin = userloginService.findByName(username);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        UserLogin userLogin = null;
+        try {
+            userLogin = userLoginService.login(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-//        if (userlogin == null) {
-//            //没有该用户名
-//            throw new UnknownAccountException();
-//        } else if (!password.equals(userlogin.getPassword())) {
-//            //密码错误
-//            throw new IncorrectCredentialsException();
-//        }
+        if (userLogin == null) {
+            //没有该用户名
+            throw new UnknownAccountException();
+        } else if (!password.equals(userLogin.getPassword())) {
+            //密码错误
+            throw new IncorrectCredentialsException();
+        }
 
         //身份验证通过,返回一个身份信息
         AuthenticationInfo aInfo = new SimpleAuthenticationInfo(username, password, getName());
