@@ -1,5 +1,6 @@
 package com.chzu.dao;
 
+import com.chzu.entity.Course;
 import com.chzu.entity.CourseCustom;
 import com.chzu.entity.PagingVO;
 import org.junit.Test;
@@ -9,8 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,14 +21,27 @@ public class CourseDaoTest {
 
     @Test
     public void count() {
+        Integer count = courseDao.count();
+        System.out.println(count);
     }
 
     @Test
     public void deleteByPrimaryKey() {
+        courseDao.deleteByPrimaryKey(1);
     }
 
     @Test
     public void insert() {
+        Course course = new  Course();
+        course.setCourseId(12);
+        course.setCourseName("测试课程1");
+        course.setTeacherId(11);
+        course.setClassRoom("教室1");
+        course.setCourseWeek(18);
+        course.setCourseType("必修课");
+        course.setCollegeId(1);
+        course.setScore(23);
+        courseDao.insert(course);
     }
 
     @Test

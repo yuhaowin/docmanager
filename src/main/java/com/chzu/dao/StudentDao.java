@@ -1,6 +1,7 @@
 package com.chzu.dao;
 
 import com.chzu.entity.Student;
+import com.chzu.entity.Teacher;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,8 +28,10 @@ public class StudentDao {
      *
      * @return
      */
-    public int count() {
-        return 1;
+    public Integer count() {
+        Session session = sessionFactory.openSession();
+        String count = (session.createSQLQuery("select count(*) from student").list().get(0).toString());
+        return Integer.parseInt(count);
     }
 
     /**
@@ -38,6 +41,10 @@ public class StudentDao {
      * @return
      */
     public int deleteById(Integer Id) {
+        Session session = sessionFactory.openSession();
+        Student student = new Student();
+        student.setUserId(Id);
+        session.delete(student);
         return 1;
     }
 
@@ -48,6 +55,8 @@ public class StudentDao {
      * @return
      */
     public int insert(Student student) {
+        Session session = sessionFactory.openSession();
+        session.save(student);
         return 1;
     }
 
@@ -58,7 +67,11 @@ public class StudentDao {
      * @return
      */
     public List<Student> selectByName(String name) {
-        return null;
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Student where user_name = ?");
+        query.setParameter(0, name);
+        List<Student> list = query.list();
+        return list;
     }
 
     /**
@@ -68,16 +81,19 @@ public class StudentDao {
      * @return
      */
     public Student selectById(Integer Id) {
-        return null;
+        Session session = sessionFactory.openSession();
+        return (Student) session.get(Student.class, Id);
     }
 
     /**
      * 更新
      *
-     * @param record
+     * @param student
      * @return
      */
-    public int update(Student record) {
+    public int update(Student student) {
+        Session session = sessionFactory.openSession();
+        session.update(student);
         return 1;
     }
 }

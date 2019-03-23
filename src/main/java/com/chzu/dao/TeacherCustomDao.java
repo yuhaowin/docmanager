@@ -21,7 +21,7 @@ public class TeacherCustomDao {
         String hql = "select teacher.*, college.college_name from teacher, college WHERE teacher.college_id = college.college_id" +
                 " limit ?, ?";
         Session session = sessionFactory.openSession();
-        Query query = session.createSQLQuery(hql);
+        Query query = session.createSQLQuery(hql).addEntity(TeacherCustom.class);
         query.setParameter(0, pagingVO.getTopageNo());
         query.setParameter(1, pagingVO.getPageSize());
         return query.list();

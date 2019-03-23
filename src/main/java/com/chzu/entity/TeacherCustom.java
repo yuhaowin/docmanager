@@ -1,8 +1,11 @@
 package com.chzu.entity;
 
+import javax.persistence.Entity;
+
 /**
  * teacher扩展类
  */
+@Entity
 public class TeacherCustom extends Teacher {
 
     /**

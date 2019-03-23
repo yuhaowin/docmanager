@@ -22,8 +22,8 @@ public class TeacherDao {
      */
     public int count() {
         Session session = sessionFactory.openSession();
-        Integer count = (Integer) session.createQuery("select count(*) from Teacher").uniqueResult();
-        return count;
+        String count = (session.createSQLQuery("select count(*) from teacher").list().get(0).toString());
+        return Integer.parseInt(count);
     }
 
     /**
