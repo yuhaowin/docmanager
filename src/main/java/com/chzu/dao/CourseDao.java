@@ -4,6 +4,7 @@ import com.chzu.entity.Course;
 import com.chzu.entity.CourseCustom;
 import com.chzu.entity.PagingVO;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
@@ -62,7 +63,7 @@ public class CourseDao {
             dc.add(Restrictions.eq("teacher_id", course.getTeacherId()));
         }
         if(course.getCourseName() != null){
-            dc.add(Restrictions.eq("teacher_id", "%" + course.getCourseName() + "%"));
+            dc.add(Restrictions.eq("course_name", "%" + course.getCourseName() + "%"));
         }
         Criteria c = dc.getExecutableCriteria(session);
         return c.list();
@@ -88,8 +89,18 @@ public class CourseDao {
         session.update(course);
     }
 
-    //分页查询学生信息
+    /**
+     * 分页查询学生信息
+     * @param pagingVO
+     * @return
+     */
     public  List<CourseCustom> findByPaging(PagingVO pagingVO){
-
+        String hql="select course.*, college.college_name from course, college WHERE course.college_id = college.college_id" +
+                " limit ?, ?";
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery(hql);
+        query.setParameter(0, pagingVO.getTopageNo());
+        query.setParameter(1,pagingVO.getPageSize());
+        return  query.list();
     }
 }

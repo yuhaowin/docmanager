@@ -17,7 +17,7 @@ public class RoleDao {
      * @param roleId
      * @return
      */
-    public Role getRole(Integer roleId){
+    public Role selectByPrimaryKey(Integer roleId){
         Session session = sessionFactory.openSession();
         return (Role) session.get(Role.class, roleId);
 
