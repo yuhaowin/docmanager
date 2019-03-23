@@ -1,9 +1,9 @@
 package com.chzu.service;
 
-import com.system.mapper.SelectedcourseMapper;
-import com.system.mapper.StudentMapper;
-import com.system.po.*;
-import com.system.service.SelectedCourseService;
+
+import com.chzu.entity.SelectedCourseCustom;
+import com.chzu.entity.Student;
+import com.chzu.entity.StudentCustom;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Vinci on 2017/6/29.
  */
 @Service
-public class SelectedCourseService implements SelectedCourseService {
+public class SelectedCourseService{
 
     @Autowired
     private SelectedcourseMapper selectedcourseMapper;

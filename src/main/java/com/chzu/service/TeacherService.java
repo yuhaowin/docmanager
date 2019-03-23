@@ -1,5 +1,6 @@
 package com.chzu.service;
 
+import com.chzu.entity.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import java.util.List;
  * Created by Vinci on 2017/6/29.
  */
 @Service
-public class TeacherService implements TeacherService {
+public class TeacherService {
 
     @Autowired
     private TeacherMapper teacherMapper;

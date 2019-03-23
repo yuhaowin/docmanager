@@ -1,9 +1,7 @@
 package com.chzu.service;
 
-import com.system.mapper.CollegeMapper;
-import com.system.po.College;
-import com.system.po.CollegeExample;
-import com.system.service.CollegeService;
+import com.chzu.entity.College;
+import com.chzu.entity.CollegeExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +11,7 @@ import java.util.List;
  * Created by Vinci on 2017/6/30.
  */
 @Service
-public class CollegeService implements CollegeService {
+public class CollegeService{
 
     @Autowired
     private CollegeMapper collegeMapper;

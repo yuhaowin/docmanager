@@ -1,6 +1,10 @@
 package com.chzu.service;
 
 
+import com.chzu.entity.College;
+import com.chzu.entity.Course;
+import com.chzu.entity.CourseCustom;
+import com.chzu.entity.PagingVO;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +16,7 @@ import java.util.List;
  * Created by Vinci on 2017/6/29.
  */
 @Service
-public class CourseService implements CourseService {
+public class CourseService{
 
     @Autowired
     private CourseMapper courseMapper;

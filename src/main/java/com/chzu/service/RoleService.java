@@ -1,8 +1,5 @@
 package com.chzu.service;
 
-import com.system.mapper.RoleMapper;
-import com.system.po.Role;
-import com.system.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +7,7 @@ import org.springframework.stereotype.Service;
  * Created by Vinci on 2017/6/29.
  */
 @Service
-public class RoleService implements RoleService {
+public class RoleService{
 
     @Autowired
     private RoleMapper roleMapper;
