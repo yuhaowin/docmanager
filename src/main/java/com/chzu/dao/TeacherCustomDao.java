@@ -18,7 +18,7 @@ public class TeacherCustomDao {
 
     //分页查询老师信息
     public List<TeacherCustom> findByPaging(PagingVO pagingVO) {
-        String hql = "select teacher.*, college.college_name from teacher, college WHERE teacher.college_id = college.college_id" +
+        String hql = "select teacher.*, college.college_name collegeName from teacher, college WHERE teacher.college_id = college.college_id" +
                 " limit ?, ?";
         Session session = sessionFactory.openSession();
         Query query = session.createSQLQuery(hql).addEntity(TeacherCustom.class);

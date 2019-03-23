@@ -92,7 +92,7 @@ public class TeacherService {
                 BeanUtils.copyProperties(t, teacherCustom);
                 //获取课程名
                 College college = collegeDao.selectByPrimaryKey(t.getCollegeId());
-                teacherCustom.setcollegeName(college.getCollegeName());
+                teacherCustom.setCollegeName(college.getCollegeName());
 
                 teacherCustomList.add(teacherCustom);
             }

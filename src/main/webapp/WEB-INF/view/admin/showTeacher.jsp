@@ -63,20 +63,20 @@
                     <tbody>
                     <c:forEach items="${teacherList}" var="item">
                         <tr>
-                            <td>${item.userid}</td>
+                            <td>${item.userId}</td>
                             <td>${item.userName}</td>
                             <td>${item.sex}</td>
-                            <td><fmt:formatDate value="${item.birthyear}" dateStyle="medium"/></td>
+                            <td><fmt:formatDate value="${item.birthYear}" dateStyle="medium"/></td>
                             <td>${item.degree}</td>
                             <td>${item.title}</td>
                             <td><fmt:formatDate value="${item.grade}" dateStyle="medium"/></td>
                             <td>${item.collegeName}</td>
                             <td>
                                 <button class="btn btn-default btn-xs btn-info"
-                                        onClick="location.href='/admin/editTeacher?id=${item.userid}'">修改
+                                        onClick="location.href='/admin/editTeacher?id=${item.userId}'">修改
                                 </button>
                                 <button class="btn btn-default btn-xs btn-danger btn-primary"
-                                        onClick="location.href='/admin/removeTeacher?id=${item.userid}'">删除
+                                        onClick="location.href='/admin/removeTeacher?id=${item.userId}'">删除
                                 </button>
                                 <!--弹出框-->
                             </td>

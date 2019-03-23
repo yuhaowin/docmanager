@@ -48,8 +48,6 @@ public class Teacher {
     @Column(name = "college_id")
     private Integer collegeId;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getUserId() {
         return userId;
     }

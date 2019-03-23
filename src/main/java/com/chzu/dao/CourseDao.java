@@ -111,7 +111,7 @@ public class CourseDao {
         String hql="select course.*, college.college_name collegeName from course, college WHERE course.college_id = college.college_id" +
                 " limit ?, ?";
         Session session = sessionFactory.openSession();
-        Query query = session.createSQLQuery(hql);
+        Query query = session.createSQLQuery(hql).addEntity(CourseCustom.class);
         query.setParameter(0, pagingVO.getTopageNo());
         query.setParameter(1,pagingVO.getPageSize());
         List<CourseCustom> courseCustoms = query.list();
