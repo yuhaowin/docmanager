@@ -27,9 +27,9 @@ public class SelectedCourseDao {
      */
     public Integer countById(Integer courseId){
         Session session = sessionFactory.openSession();
-        Query query = session.createSQLQuery("select count(*) from SelectedCourse where course_id = ?");
+        Query query = session.createSQLQuery("select count(*) from selected_course where course_id = ?");
         query.setParameter(0, courseId);
-        Integer count = (Integer) query.uniqueResult();
+        Integer count = Integer.parseInt(query.list().get(0).toString());
         return count;
     }
 
@@ -39,7 +39,7 @@ public class SelectedCourseDao {
      */
     public void delete(SelectedCourse selectedCourse){
         Session session = sessionFactory.openSession();
-        Query query = session.createSQLQuery("delete SelectedCourse where  course_id = ? and student_id = ？");
+        Query query = session.createSQLQuery("delete selected_course where  course_id = ? and student_id = ？");
         query.setParameter(0, selectedCourse.getCourseId());
         query.setParameter(1, selectedCourse.getStudentId());
         query.executeUpdate();
@@ -63,10 +63,10 @@ public class SelectedCourseDao {
         Session session = sessionFactory.openSession();
         DetachedCriteria dc = DetachedCriteria.forClass(Course.class);
         if(selectedCourse.getCourseId() != null){
-            dc.add(Restrictions.eq("course_id", selectedCourse.getCourseId() ));
+            dc.add(Restrictions.eq("courseId", selectedCourse.getCourseId() ));
         }
         if(selectedCourse.getStudentId()!= null){
-            dc.add(Restrictions.eq("student_id", selectedCourse.getStudentId()));
+            dc.add(Restrictions.eq("studentId", selectedCourse.getStudentId()));
         }
         Criteria c = dc.getExecutableCriteria(session);
         return c.list();

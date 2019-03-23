@@ -100,7 +100,7 @@ public class CourseDao {
      * @return
      */
     public  List<CourseCustom> findByPaging(PagingVO pagingVO){
-        String hql="select course.*, college.college_name from course, college WHERE course.college_id = college.college_id" +
+        String hql="select course.*, college.college_name collegeName from course, college WHERE course.college_id = college.college_id" +
                 " limit ?, ?";
         Session session = sessionFactory.openSession();
         Query query = session.createSQLQuery(hql);
