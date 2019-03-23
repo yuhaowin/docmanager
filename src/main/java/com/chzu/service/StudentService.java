@@ -19,7 +19,6 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    // 使用spring 自动注入
     @Autowired
     private StudentCustomDao studentCustomDao;
 

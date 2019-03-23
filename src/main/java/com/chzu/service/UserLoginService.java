@@ -1,59 +1,62 @@
 package com.chzu.service;
 
-
-import com.chzu.dao.RoleDao;
 import com.chzu.dao.UserLoginDao;
-import com.chzu.entity.Role;
 import com.chzu.entity.UserLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
- *
+ * 用户登录service
  */
 @Service
 public class UserLoginService {
 
-
     @Autowired
     private UserLoginDao userLoginDao;
 
-    @Autowired
-    private RoleDao roleDao;
-
     /**
-     * 获取用户登录信息
+     * 通过姓名查找
      *
-     * @param userName
+     * @param name
      * @return
      */
-    public UserLogin login(String userName) {
-        return userLoginDao.login(userName);
-    }
-
-    /**
-     * 获取角色权限信息
-     *
-     * @param roleId
-     * @return
-     */
-    public Role getRole(Integer roleId) {
-        return roleDao.selectByPrimaryKey(roleId);
-    }
-
-    public void save(UserLogin userlogin) {
-
-    }
-
-    public void removeByName(String name) {
-
-    }
-
     public UserLogin findByName(String name) {
-        return null;
+
+        List<UserLogin> list = userLoginDao.selectByName(name);
+
+        return list.get(0);
     }
 
-    public void updateByName(String name, UserLogin u) {
+
+    /**
+     * 保存用户信息
+     *
+     * @param userlogin
+     */
+    public void save(UserLogin userlogin) {
+        userLoginDao.insert(userlogin);
+    }
+
+    /**
+     * 通过名字删除
+     *
+     * @param name
+     */
+    public void removeByName(String name) {
+        userLoginDao.deleteByName(name);
+    }
+
+
+    /**
+     * 通过名字更新
+     *
+     * @param name
+     * @param userLogin
+     */
+    public void updateByName(String name, UserLogin userLogin) {
+        userLoginDao.updateByName(name, userLogin);
 
     }
 }
