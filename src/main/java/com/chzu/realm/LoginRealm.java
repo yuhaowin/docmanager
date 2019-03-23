@@ -32,9 +32,9 @@ public class LoginRealm extends AuthorizingRealm {
         Role role = new Role();
         //通过用户名从数据库获取权限/角色信息
         try {
-            UserLogin userLogin = userLoginService.login(username);
+            UserLogin userLogin = userLoginService.findByName(username);
             //获取角色对象
-            role = userLoginService.getRole(userLogin.getRole());
+            //role = userLoginService.(userLogin.getRoleId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,7 +60,7 @@ public class LoginRealm extends AuthorizingRealm {
 
         UserLogin userlogin = null;
         try {
-            userlogin = userLoginService.login(username);
+            //userlogin = userLoginService.login(username);
         } catch (Exception e) {
             e.printStackTrace();
         }

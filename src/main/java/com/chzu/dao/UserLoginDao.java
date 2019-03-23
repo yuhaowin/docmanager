@@ -1,13 +1,9 @@
 package com.chzu.dao;
 
-import com.chzu.entity.Course;
 import com.chzu.entity.UserLogin;
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,11 +15,6 @@ public class UserLoginDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void addUser(UserLogin user) {
-        Session session = sessionFactory.openSession();
-        session.save(user);
-    }
-
     /**
      * 按名字删除
      *
@@ -31,6 +22,10 @@ public class UserLoginDao {
      * @return
      */
     public int deleteByName(String name) {
+        Session session = sessionFactory.openSession();
+        UserLogin userLogin = new UserLogin();
+        userLogin.setUserName(name);
+        session.delete(userLogin);
         return 1;
     }
 
@@ -66,7 +61,10 @@ public class UserLoginDao {
      * @param userlogin
      * @return
      */
-    public int updateByName(String name, UserLogin userlogin) {
+    public int updateByName(UserLogin userlogin) {
+        Session session = sessionFactory.openSession();
+        session.update(userlogin);
+        session.close();
         return 1;
     }
 }

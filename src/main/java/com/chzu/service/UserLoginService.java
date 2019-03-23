@@ -56,7 +56,7 @@ public class UserLoginService {
      * @param userLogin
      */
     public void updateByName(String name, UserLogin userLogin) {
-        userLoginDao.updateByName(name, userLogin);
+        userLoginDao.updateByName(userLogin);
 
     }
 }

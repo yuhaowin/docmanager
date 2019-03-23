@@ -37,7 +37,7 @@ public class CourseDao {
      */
     public void deleteByPrimaryKey(Integer courseId){
         Course course = new Course();
-        course.setCourseIdd(courseId);
+        course.setCourseId(courseId);
         Session session = sessionFactory.openSession();
         session.delete(course);
     }
