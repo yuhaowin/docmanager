@@ -3,22 +3,29 @@ package com.chzu.entity;
 
 import javax.persistence.*;
 
+/**
+ * 用户登录表
+ */
 @Entity
-@Table(name="user_login")
+@Table(name = "user_login")
 public class UserLogin {
 
     @Id
-    @Column(name="user_id")
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
     @Column(name = "user_name")
     private String userName;
 
+    @Column(name = "password")
     private String password;
 
-    private Integer role;
-
+    /**
+     * 用户对应角色Id
+     */
+    @Column(name = "role_id")
+    private Integer roleId;
 
     public Integer getUserId() {
         return userId;
@@ -44,11 +51,11 @@ public class UserLogin {
         this.password = password;
     }
 
-    public Integer getRole() {
-        return role;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setRole(Integer role) {
-        this.role = role;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 }

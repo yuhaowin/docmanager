@@ -13,6 +13,6 @@ public class RoleService {
     private RoleDao roleDao;
 
     public Role findByid(Integer id) {
-        return roleDao.getRole(id);
+        return roleDao.selectByPrimaryKey(id);
     }
 }

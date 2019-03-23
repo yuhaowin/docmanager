@@ -120,7 +120,7 @@ public class TeacherService {
     }
 
     public int profileUpdate(Teacher teacher) {
-        System.out.println(teacher.getUsername());
+        System.out.println(teacher.getUserName());
         return teacherDao.update(teacher);
     }
 }

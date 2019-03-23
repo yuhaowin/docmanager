@@ -60,7 +60,7 @@
                     <c:forEach items="${studentList}" var="item">
                         <tr>
                             <td>${item.userid}</td>
-                            <td>${item.username}</td>
+                            <td>${item.userName}</td>
                             <td>${item.sex}</td>
                             <td><fmt:formatDate value="${item.birthyear}" dateStyle="medium"/></td>
                             <td><fmt:formatDate value="${item.grade}" dateStyle="medium"/></td>

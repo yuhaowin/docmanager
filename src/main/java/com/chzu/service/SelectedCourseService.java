@@ -26,7 +26,6 @@ public class SelectedCourseService{
 //    @Resource(name = "courseServiceImpl")
 //    private CourseService courseService;
 
-
     public List<SelectedCourseCustom> findByCourseID(Integer id) throws Exception {
 
         SelectedcourseExample example = new SelectedcourseExample();

@@ -40,8 +40,8 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">姓名</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputPassword3" name="username"
-                                       placeholder="请输入姓名" value="${teacher.username}">
+                                <input type="text" class="form-control" id="inputPassword3" name="userName"
+                                       placeholder="请输入姓名" value="${teacher.userName}">
                             </div>
                         </div>
                         <div class="form-group">

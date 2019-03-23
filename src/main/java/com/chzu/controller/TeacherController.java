@@ -102,7 +102,7 @@ public class TeacherController {
         String userid = (String) subject.getPrincipal();
         Teacher teacher = new Teacher();
         teacher.setUserId(Integer.parseInt(userid));
-        teacher.setUsername(username);
+        teacher.setUserName(username);
         teacher.setSex(sex);
         teacher.setDegree(degree);
         teacher.setTitle(title);

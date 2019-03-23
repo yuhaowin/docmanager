@@ -3,27 +3,53 @@ package com.chzu.entity;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * 教师实体类
+ */
 @Entity
-@Table(name="teacher")
+@Table(name = "teacher")
 public class Teacher {
+
+    @Id
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
-    private String username;
+    @Column(name = "user_name")
+    private String userName;
 
+    @Column(name = "sex")
     private String sex;
 
+    @Column(name = "birth_year")
     private Date birthYear;
 
+    /**
+     * 学历
+     */
+    @Column(name = "degree")
     private String degree;
 
+    /**
+     * 职称
+     */
+    @Column(name = "title")
     private String title;
 
+    /**
+     * 入职时间
+     */
+    @Column(name = "grade")
     private Date grade;
 
+    /**
+     * 所在院系对应的id
+     */
+    @Column(name = "college_id")
     private Integer collegeId;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getUserId() {
         return userId;
     }
@@ -32,12 +58,12 @@ public class Teacher {
         this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getSex() {
