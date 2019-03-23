@@ -43,10 +43,13 @@ public class StudentCustomDaoTest {
     @Test
     public void findByPaging() {
         PagingVO pagingVO = new PagingVO();
-        pagingVO.setPageSize(1);
+        pagingVO.setPageSize(5);
         pagingVO.setToPageNo(1);
-        studentCustomDao.findByPaging(pagingVO);
-        System.out.println();
+        List<StudentCustom> byPaging = studentCustomDao.findByPaging(pagingVO);
+        System.out.println(byPaging.size());
+        pagingVO.setToPageNo(2);
+        List<StudentCustom> byPaging1 = studentCustomDao.findByPaging(pagingVO);
+        System.out.println(byPaging1.size());
     }
 
     @Test

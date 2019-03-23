@@ -38,7 +38,6 @@ public class UserLoginDao {
     public int insert(UserLogin userLogin) {
         Session session = sessionFactory.openSession();
         session.save(userLogin);
-        session.close();
         return 1;
     }
 
@@ -64,7 +63,6 @@ public class UserLoginDao {
     public int updateByName(UserLogin userlogin) {
         Session session = sessionFactory.openSession();
         session.update(userlogin);
-        session.close();
         return 1;
     }
 }

@@ -91,7 +91,6 @@ public class TeacherDao {
     public int update(Teacher teacher) {
         Session session = sessionFactory.openSession();
         session.update(teacher);
-        session.close();
         return 1;
     }
 }
