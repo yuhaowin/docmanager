@@ -63,10 +63,10 @@ public class SelectedCourseDao {
         Session session = sessionFactory.openSession();
         DetachedCriteria dc = DetachedCriteria.forClass(Course.class);
         if(selectedCourse.getCourseId() != null){
-            dc.add(Restrictions.eq("course_id", selectedCourse.getCourseId() ));
+            dc.add(Restrictions.eq("courseId", selectedCourse.getCourseId() ));
         }
         if(selectedCourse.getStudentId()!= null){
-            dc.add(Restrictions.eq("student_id", selectedCourse.getStudentId()));
+            dc.add(Restrictions.eq("studentId", selectedCourse.getStudentId()));
         }
         Criteria c = dc.getExecutableCriteria(session);
         return c.list();
