@@ -9,10 +9,10 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入bootstrap -->
-    <link rel="stylesheet" type="text/css" href="/test/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <!-- 引入JQuery  bootstrap.js-->
-    <script src="/test/js/jquery-3.2.1.min.js"></script>
-    <script src="/test/js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
 
@@ -30,7 +30,7 @@
                     <div class="row">
                         <h1 class="col-md-5">学生名单管理</h1>
                         <form class="bs-example bs-example-form col-md-5" role="form" style="margin: 20px 0 10px 0;"
-                              action="/test/admin/selectStudent" id="form1" method="post">
+                              action="/admin/selectStudent" id="form1" method="post">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="请输入姓名" name="findByName">
                                 <span class="input-group-addon btn" id="sub">搜索</span>
@@ -59,18 +59,18 @@
                     <tbody>
                     <c:forEach items="${studentList}" var="item">
                         <tr>
-                            <td>${item.userid}</td>
+                            <td>${item.userId}</td>
                             <td>${item.userName}</td>
                             <td>${item.sex}</td>
-                            <td><fmt:formatDate value="${item.birthyear}" dateStyle="medium"/></td>
+                            <td><fmt:formatDate value="${item.birthYear}" dateStyle="medium"/></td>
                             <td><fmt:formatDate value="${item.grade}" dateStyle="medium"/></td>
                             <td>${item.collegeName}</td>
                             <td>
                                 <button class="btn btn-default btn-xs btn-info"
-                                        onClick="location.href='/admin/editStudent?id=${item.userid}'">修改
+                                        onClick="location.href='/admin/editStudent?id=${item.userId}'">修改
                                 </button>
                                 <button class="btn btn-default btn-xs btn-danger btn-primary"
-                                        onClick="location.href='/admin/removeStudent?id=${item.userid}'">删除
+                                        onClick="location.href='/admin/removeStudent?id=${item.userId}'">删除
                                 </button>
                                 <!--弹出框-->
                             </td>
@@ -82,29 +82,29 @@
                     <c:if test="${pagingVO != null}">
                         <nav style="text-align: center">
                             <ul class="pagination">
-                                <li><a href="/test/admin/showStudent?page=${pagingVO.upPageNo}">&laquo;上一页</a></li>
+                                <li><a href="/admin/showStudent?page=${pagingVO.upPageNo}">&laquo;上一页</a></li>
                                 <li class="active"><a href="">${pagingVO.curentPageNo}</a></li>
                                 <c:if test="${pagingVO.curentPageNo+1 <= pagingVO.totalCount}">
                                     <li>
-                                        <a href="/test/admin/showStudent?page=${pagingVO.curentPageNo+1}">${pagingVO.curentPageNo+1}</a>
+                                        <a href="/admin/showStudent?page=${pagingVO.curentPageNo+1}">${pagingVO.curentPageNo+1}</a>
                                     </li>
                                 </c:if>
                                 <c:if test="${pagingVO.curentPageNo+2 <= pagingVO.totalCount}">
                                     <li>
-                                        <a href="/test/admin/showStudent?page=${pagingVO.curentPageNo+2}">${pagingVO.curentPageNo+2}</a>
+                                        <a href="/admin/showStudent?page=${pagingVO.curentPageNo+2}">${pagingVO.curentPageNo+2}</a>
                                     </li>
                                 </c:if>
                                 <c:if test="${pagingVO.curentPageNo+3 <= pagingVO.totalCount}">
                                     <li>
-                                        <a href="/test/admin/showStudent?page=${pagingVO.curentPageNo+3}">${pagingVO.curentPageNo+3}</a>
+                                        <a href="/admin/showStudent?page=${pagingVO.curentPageNo+3}">${pagingVO.curentPageNo+3}</a>
                                     </li>
                                 </c:if>
                                 <c:if test="${pagingVO.curentPageNo+4 <= pagingVO.totalCount}">
                                     <li>
-                                        <a href="/test/admin/showStudent?page=${pagingVO.curentPageNo+4}">${pagingVO.curentPageNo+4}</a>
+                                        <a href="/admin/showStudent?page=${pagingVO.curentPageNo+4}">${pagingVO.curentPageNo+4}</a>
                                     </li>
                                 </c:if>
-                                <li><a href="/test/admin/showStudent?page=${pagingVO.totalCount}">最后一页&raquo;</a></li>
+                                <li><a href="/admin/showStudent?page=${pagingVO.totalCount}">最后一页&raquo;</a></li>
                             </ul>
                         </nav>
                     </c:if>

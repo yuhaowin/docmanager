@@ -1,7 +1,9 @@
 package com.chzu.realm;
 
+import com.chzu.dao.RoleDao;
 import com.chzu.entity.Role;
 import com.chzu.entity.UserLogin;
+import com.chzu.service.RoleService;
 import com.chzu.service.UserLoginService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -22,6 +24,9 @@ public class LoginRealm extends AuthorizingRealm {
     @Resource
     private UserLoginService userLoginService;
 
+    @Resource
+    private RoleService roleService;
+
     /**
      * 获取身份信息，我们可以在这个方法中，从数据库获取该用户的权限和角色信息
      * 当调用权限验证时，就会调用此方法
@@ -34,7 +39,7 @@ public class LoginRealm extends AuthorizingRealm {
         try {
             UserLogin userLogin = userLoginService.findByName(username);
             //获取角色对象
-            //role = userLoginService.(userLogin.getRoleId());
+            role = roleService.findByid(userLogin.getRoleId());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,7 +65,7 @@ public class LoginRealm extends AuthorizingRealm {
 
         UserLogin userlogin = null;
         try {
-            //userlogin = userLoginService.login(username);
+            userlogin = userLoginService.findByName(username);
         } catch (Exception e) {
             e.printStackTrace();
         }

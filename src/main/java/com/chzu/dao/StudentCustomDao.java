@@ -22,10 +22,10 @@ public class StudentCustomDao {
         String hql = "select student.*, college.college_name from student, college WHERE student.college_id = college.college_id" +
                 " limit ?, ?";
         Session session = sessionFactory.openSession();
-        Query query = session.createSQLQuery(hql);
+        Query query = session.createSQLQuery(hql).addEntity(StudentCustom.class);
         query.setParameter(0, pagingVO.getTopageNo());
         query.setParameter(1, pagingVO.getPageSize());
-        return query.list();
+        return (List<StudentCustom>)query.list();
     }
 
     //查询学生信息，和其选课信息
