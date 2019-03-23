@@ -35,7 +35,7 @@
                                 <input type="number" class="form-control" id="inputEmail3" name="userid"
                                        placeholder="请输入学号"
                                 <c:if test='${student!=null}'>
-                                       value="${student.userid}"
+                                       value="${student.userId}"
                                 </c:if>>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                             <div class="col-sm-10">
                                 <select class="form-control" name="collegeid">
                                     <c:forEach items="${collegeList}" var="item">
-                                        <option value="${item.collegeid}">${item.collegename}</option>
+                                        <option value="${item.collegeId}">${item.collegeName}</option>
                                     </c:forEach>
                                 </select>
                             </div>
