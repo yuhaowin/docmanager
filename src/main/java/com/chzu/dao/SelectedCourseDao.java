@@ -1,9 +1,13 @@
 package com.chzu.dao;
 
+import com.chzu.entity.Course;
 import com.chzu.entity.SelectedCourse;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -49,11 +53,32 @@ public class SelectedCourseDao {
         Session session = sessionFactory.openSession();
         session.save(selectedCourse);
     }
-    public  List<SelectedCourse> selectByExample(SelectedCourse selectedCourse){
 
+    /**
+     * 查询
+     * @param selectedCourse
+     * @return
+     */
+    public  List<SelectedCourse> selectByExample(SelectedCourse selectedCourse){
+        Session session = sessionFactory.openSession();
+        DetachedCriteria dc = DetachedCriteria.forClass(Course.class);
+        if(selectedCourse.getCourseId() != null){
+            dc.add(Restrictions.eq("course_id", selectedCourse.getCourseId() ));
+        }
+        if(selectedCourse.getStudentId()!= null){
+            dc.add(Restrictions.eq("student_id", selectedCourse.getStudentId()));
+        }
+        Criteria c = dc.getExecutableCriteria(session);
+        return c.list();
     }
 
-    public  int updateByExample(SelectedCourse selectedCourse){
-
+    public  void  updateByExample(SelectedCourse selectedCourse){
+        String hql = "update SelectedCourse set mark = ? where  course_id = ? and student_id =?";
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery(hql);
+        query.setParameter(0, selectedCourse.getMark());
+        query.setParameter(1, selectedCourse.getCourseId());
+        query.setParameter(2, selectedCourse.getStudentId());
+        query.executeUpdate();
     }
 }
