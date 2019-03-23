@@ -86,7 +86,7 @@ public class AdminController {
         UserLogin userlogin = new UserLogin();
         userlogin.setUserName(studentCustom.getUserId().toString());
         userlogin.setPassword("123");
-        userlogin.setRole(2);
+        userlogin.setRoleId(2);
         userloginService.save(userlogin);
 
         //重定向
@@ -197,7 +197,7 @@ public class AdminController {
         UserLogin userlogin = new UserLogin();
         userlogin.setUserName(teacherCustom.getUserId().toString());
         userlogin.setPassword("123");
-        userlogin.setRole(1);
+        userlogin.setRoleId(1);
         userloginService.save(userlogin);
 
 
@@ -337,7 +337,7 @@ public class AdminController {
     @RequestMapping(value = "/editCourse", method = {RequestMethod.POST})
     public String editCourse(CourseCustom courseCustom) throws Exception {
 
-        courseService.upadteById(courseCustom.getCollegeId(), courseCustom);
+        courseService.updateById(courseCustom.getCollegeId(), courseCustom);
 
         //重定向
         return "redirect:/admin/showCourse";
@@ -380,7 +380,7 @@ public class AdminController {
         UserLogin u = userloginService.findByName(userLogin.getUserName());
 
         if (u != null) {
-            if (u.getRole() == 0) {
+            if (u.getRoleId() == 0) {
                 throw new Globalexception("该账户为管理员账户，没法修改");
             }
             u.setPassword(userLogin.getPassword());

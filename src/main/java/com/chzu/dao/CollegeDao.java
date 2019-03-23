@@ -20,7 +20,8 @@ public class CollegeDao {
      * @return
      */
     public  List<College> selectByExample(CollegeExample example){
-        return null;
+        Session session = sessionFactory.openSession();
+        return session.createSQLQuery("from College").list();
     }
 
     /**

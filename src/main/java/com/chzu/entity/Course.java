@@ -1,30 +1,46 @@
 package com.chzu.entity;
 
-public class Course {
-    private Integer courseIdd;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="course")
+public class Course {
+    @Id
+    @Column(name="course_id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Integer courseId;
+
+    @Column(name="course_name")
     private String courseName;
 
+    @Column(name="teacher_id")
     private Integer teacherId;
 
+    @Column(name="course_time")
     private String courseTime;
 
+    @Column(name="course_room")
     private String classRoom;
 
+    @Column(name="course_week")
     private Integer courseWeek;
 
+    @Column(name="course_type")
     private String courseType;
 
+    @Column(name="college_id")
     private Integer collegeId;
 
     private Integer score;
 
-    public Integer getCourseIdd() {
-        return courseIdd;
+    public Integer getCourseId() {
+        return courseId;
     }
 
-    public void setCourseIdd(Integer courseIdd) {
-        this.courseIdd = courseIdd;
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
     }
 
     public String getCourseName() {

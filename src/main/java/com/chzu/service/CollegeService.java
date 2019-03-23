@@ -1,5 +1,6 @@
 package com.chzu.service;
 
+import com.chzu.dao.CollegeDao;
 import com.chzu.entity.College;
 import com.chzu.entity.CollegeExample;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.util.List;
 public class CollegeService{
 
     @Autowired
-    private CollegeMapper collegeMapper;
+    private CollegeDao collegeDao;
 
     public List<College> finAll() throws Exception {
         CollegeExample collegeExample = new CollegeExample();
@@ -23,6 +24,6 @@ public class CollegeService{
         criteria.andCollegeidIsNotNull();
 
 
-        return collegeMapper.selectByExample(collegeExample);
+        return collegeDao.selectByExample(collegeExample);
     }
 }

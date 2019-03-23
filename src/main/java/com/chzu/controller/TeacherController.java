@@ -18,10 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * Created by Vinci on 2017/7/6.
- */
-
 @Controller
 @RequestMapping(value = "/teacher")
 public class TeacherController {
@@ -74,7 +70,7 @@ public class TeacherController {
     @RequestMapping(value = "/mark", method = {RequestMethod.POST})
     public String mark(SelectedCourseCustom scc) throws Exception {
 
-        selectedCourseService.updataOne(scc);
+        selectedCourseService.updateOne(scc);
 
         return "redirect:/teacher/gradeCourse?id=" + scc.getCourseId();
     }
