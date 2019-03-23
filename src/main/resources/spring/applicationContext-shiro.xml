@@ -22,7 +22,7 @@
                 # /techer/** = authc, perms[document:read]
                 # 如果用户没有该角色，然后访问该 路径 会报 401错误
                 /admin/** = authc, roles[admin]
-                /techer/** = authc, roles[teacher]
+                /teacher/** = authc, roles[teacher]
                 /student/** = authc, roles[student]
                 # 当访问login时，不用进行认证（anon表示匿名）
                 /login = anon
