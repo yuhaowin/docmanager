@@ -1,16 +1,15 @@
 package com.chzu.entity;
 
-import java.util.List;
+import javax.persistence.Entity;
 
 /**
  * Student的扩展类
  */
+@Entity
 public class StudentCustom extends Student {
     //所属院系名
     private String collegeName;
 
-    //选课列表
-    private List<SelectedCourseCustom> selectedCourseList;
 
 
     public String getCollegeName() {
@@ -21,13 +20,6 @@ public class StudentCustom extends Student {
         this.collegeName = collegeName;
     }
 
-    public List<SelectedCourseCustom> getSelectedCourseList() {
-        return selectedCourseList;
-    }
-
-    public void setSelectedCourseList(List<SelectedCourseCustom> selectedCourseList) {
-        this.selectedCourseList = selectedCourseList;
-    }
 }
 
 

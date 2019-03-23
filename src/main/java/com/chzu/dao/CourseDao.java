@@ -26,7 +26,7 @@ public class CourseDao {
      */
     public Integer count(){
         Session session = sessionFactory.openSession();
-        Integer count = (Integer) session.createQuery("select count(*) from Course").uniqueResult();
+        Integer count = (Integer) session.createSQLQuery("select count(*) from Course").uniqueResult();
         return count;
     }
 

@@ -6,10 +6,10 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入bootstrap -->
-    <link rel="stylesheet" type="text/css" href="/test/css/bootstrap.min.css">
-    <!-- 引入JQuery  bootstrap.js-->
-    <script src="/test/js/jquery-3.2.1.min.js"></script>
-    <script src="/test/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <!-- 引入JQuery  bootstrap.min.js-->
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!-- 顶栏 -->
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" name="reset" role="form" action="/test/admin/userPasswordRest"
+                    <form class="form-horizontal" name="reset" role="form" action="/admin/userPasswordRest"
                           id="editfrom" method="post" onsubmit="return check()">
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">账号(非管理员账号)</label>

@@ -93,15 +93,15 @@ public class StudentService {
     public StudentCustom findStudentAndSelectCourseListByName(String name) {
 
         StudentCustom studentCustom = studentCustomDao.findStudentAndSelectCourseListById(Integer.parseInt(name));
-
-        List<SelectedCourseCustom> list = studentCustom.getSelectedCourseList();
-
-        // 判断该课程是否修完
-        for (SelectedCourseCustom s : list) {
-            if (s.getMark() != null) {
-                s.setOver(true);
-            }
-        }
+//
+//        List<SelectedCourseCustom> list = studentCustom.getSelectedCourseList();
+//
+//        // 判断该课程是否修完
+//        for (SelectedCourseCustom s : list) {
+//            if (s.getMark() != null) {
+//                s.setOver(true);
+//            }
+//        }
         return studentCustom;
     }
 
