@@ -1,6 +1,9 @@
 package com.chzu.service;
 
 
+import com.chzu.dao.CollegeDao;
+import com.chzu.dao.StudentCustomDao;
+import com.chzu.dao.StudentDao;
 import com.chzu.entity.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,76 +21,58 @@ public class StudentService {
 
     // 使用spring 自动注入
     @Autowired
-    private StudentMapperCustom studentMapperCustom;
+    private StudentCustomDao studentCustomDao;
 
     @Autowired
-    private StudentMapper studentMapper;
+    private StudentDao studentDao;
 
     @Autowired
-    private CollegeMapper collegeMapper;
+    private CollegeDao collegeDao;
 
-    public void updataById(Integer id, StudentCustom studentCustom) throws Exception {
-        studentMapper.updateByPrimaryKey(studentCustom);
+    public void updataById(Integer id, StudentCustom studentCustom) {
+        studentDao.update(studentCustom);
     }
 
-    public void removeById(Integer id) throws Exception {
-        studentMapper.deleteByPrimaryKey(id);
+    public void removeById(Integer id) {
+        studentDao.deleteById(id);
     }
 
-    public List<StudentCustom> findByPaging(Integer toPageNo) throws Exception {
+    public List<StudentCustom> findByPaging(Integer toPageNo) {
         PagingVO pagingVO = new PagingVO();
         pagingVO.setToPageNo(toPageNo);
-
-        List<StudentCustom> list = studentMapperCustom.findByPaging(pagingVO);
-
+        List<StudentCustom> list = studentCustomDao.findByPaging(pagingVO);
         return list;
     }
 
-    public Boolean save(StudentCustom studentCustoms) throws Exception {
-        Student stu = studentMapper.selectByPrimaryKey(studentCustoms.getUserid());
+    public Boolean save(StudentCustom studentCustoms) {
+        Student stu = studentDao.selectById(studentCustoms.getUserId());
         if (stu == null) {
-            studentMapper.insert(studentCustoms);
+            studentDao.insert(studentCustoms);
             return true;
         }
-
         return false;
     }
 
     //返回学生总数
-    public int getCountStudent() throws Exception {
-        //自定义查询对象
-        StudentExample studentExample = new StudentExample();
-        //通过criteria构造查询条件
-        StudentExample.Criteria criteria = studentExample.createCriteria();
-        criteria.andUseridIsNotNull();
-
-        return studentMapper.countByExample(studentExample);
+    public int getCountStudent() {
+        return studentDao.count();
     }
 
-    public StudentCustom findById(Integer id) throws Exception {
+    public StudentCustom findById(Integer id) {
 
-        Student student = studentMapper.selectByPrimaryKey(id);
+        Student student = studentDao.selectById(id);
         StudentCustom studentCustom = null;
         if (student != null) {
             studentCustom = new StudentCustom();
             //类拷贝
             BeanUtils.copyProperties(student, studentCustom);
         }
-
         return studentCustom;
     }
 
     //模糊查询
     public List<StudentCustom> findByName(String name) throws Exception {
-
-        StudentExample studentExample = new StudentExample();
-        //自定义查询条件
-        StudentExample.Criteria criteria = studentExample.createCriteria();
-
-        criteria.andUsernameLike("%" + name + "%");
-
-        List<Student> list = studentMapper.selectByExample(studentExample);
-
+        List<Student> list = studentDao.selectByName(name);
         List<StudentCustom> studentCustomList = null;
 
         if (list != null) {
@@ -97,9 +82,8 @@ public class StudentService {
                 //类拷贝
                 BeanUtils.copyProperties(s, studentCustom);
                 //获取课程名
-                College college = collegeMapper.selectByPrimaryKey(s.getCollegeid());
-                studentCustom.setcollegeName(college.getCollegename());
-
+                College college = collegeDao.selectByPrimaryKey(s.getCollegeId());
+                studentCustom.setCollegeName(college.getCollegeName());
                 studentCustomList.add(studentCustom);
             }
         }
@@ -107,10 +91,9 @@ public class StudentService {
         return studentCustomList;
     }
 
-    @Override
-    public StudentCustom findStudentAndSelectCourseListByName(String name) throws Exception {
+    public StudentCustom findStudentAndSelectCourseListByName(String name) {
 
-        StudentCustom studentCustom = studentMapperCustom.findStudentAndSelectCourseListById(Integer.parseInt(name));
+        StudentCustom studentCustom = studentCustomDao.findStudentAndSelectCourseListById(Integer.parseInt(name));
 
         List<SelectedCourseCustom> list = studentCustom.getSelectedCourseList();
 
@@ -123,11 +106,11 @@ public class StudentService {
         return studentCustom;
     }
 
-    public Student profile(int userid) throws Exception {
-        return studentMapper.selectByPrimaryKey(userid);
+    public Student profile(int userid) {
+        return studentDao.selectById(userid);
     }
 
-    public int profileUpdate(Student student) throws Exception {
-        return studentMapper.updateByPrimaryKeySelective(student);
+    public int profileUpdate(Student student) {
+        return studentDao.update(student);
     }
 }

@@ -11,12 +11,12 @@ import java.util.List;
 public class StudentCustomDao {
 
     //分页查询学生信息
-    List<StudentCustom> findByPaging(PagingVO pagingVO){
+    public List<StudentCustom> findByPaging(PagingVO pagingVO){
         return null;
     }
 
     //查询学生信息，和其选课信息
-    StudentCustom findStudentAndSelectCourseListById(Integer id){
+    public StudentCustom findStudentAndSelectCourseListById(Integer id){
         return null;
     }
 }

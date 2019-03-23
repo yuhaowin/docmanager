@@ -1,6 +1,11 @@
 package com.chzu.service;
 
+import com.chzu.dao.CollegeDao;
+import com.chzu.dao.CourseDao;
+import com.chzu.dao.TeacherCustomDao;
+import com.chzu.dao.TeacherDao;
 import com.chzu.entity.*;
+import com.chzu.exception.Globalexception;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,89 +14,73 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Vinci on 2017/6/29.
+ * teacherservice
  */
 @Service
 public class TeacherService {
 
     @Autowired
-    private TeacherMapper teacherMapper;
+    private TeacherDao teacherDao;
 
     @Autowired
-    private TeacherMapperCustom teacherMapperCustom;
+    private TeacherCustomDao teacherCustomDao;
 
     @Autowired
-    private CollegeMapper collegeMapper;
+    private CollegeDao collegeDao;
 
     @Autowired
-    private CourseMapper courseMapper;
+    private CourseDao courseDao;
 
     public void updateById(Integer id, TeacherCustom teacherCustom) throws Exception {
-        teacherMapper.updateByPrimaryKey(teacherCustom);
+        teacherDao.update(teacherCustom);
     }
 
-    public void removeById(Integer id) throws Exception {
-        CourseExample courseExample = new CourseExample();
-
-        CourseExample.Criteria criteria = courseExample.createCriteria();
-        criteria.andTeacheridEqualTo(id);
-        List<Course> list = courseMapper.selectByExample(courseExample);
-
+    public void removeById(Integer id) throws Globalexception {
+        //List<Course> list = courseDao.selectByExample(courseExample);
+        List<Course> list = null;
         if (list.size() != 0) {
-            throw new CustomException("请先删除该名老师所教授的课程");
+            throw new Globalexception("请先删除该名老师所教授的课程");
         }
 
-        teacherMapper.deleteByPrimaryKey(id);
+        teacherDao.deleteById(id);
     }
 
     public List<TeacherCustom> findByPaging(Integer toPageNo) throws Exception {
         PagingVO pagingVO = new PagingVO();
         pagingVO.setToPageNo(toPageNo);
 
-        List<TeacherCustom> list = teacherMapperCustom.findByPaging(pagingVO);
+        List<TeacherCustom> list = teacherCustomDao.findByPaging(pagingVO);
 
         return list;
     }
 
-    public Boolean save(TeacherCustom teacherCustom) throws Exception {
+    public Boolean save(TeacherCustom teacherCustom) {
 
-        Teacher tea = teacherMapper.selectByPrimaryKey(teacherCustom.getUserid());
+        Teacher tea = teacherDao.selectById(teacherCustom.getUserId());
         if (tea == null) {
-            teacherMapper.insert(teacherCustom);
+            teacherDao.insert(teacherCustom);
             return true;
         }
         return false;
     }
 
-    public int getCountTeacher() throws Exception {
-        //自定义查询对象
-        TeacherExample teacherExample = new TeacherExample();
-        //通过criteria构造查询条件
-        TeacherExample.Criteria criteria = teacherExample.createCriteria();
-        criteria.andUseridIsNotNull();
-
-        return teacherMapper.countByExample(teacherExample);
+    public int getCountTeacher() {
+        return teacherDao.count();
     }
 
-    public TeacherCustom findById(Integer id) throws Exception {
-        Teacher teacher = teacherMapper.selectByPrimaryKey(id);
+    public TeacherCustom findById(Integer id) {
+        Teacher teacher = teacherDao.selectById(id);
         TeacherCustom teacherCustom = null;
         if (teacher != null) {
             teacherCustom = new TeacherCustom();
             BeanUtils.copyProperties(teacher, teacherCustom);
         }
-
         return teacherCustom;
     }
 
-    public List<TeacherCustom> findByName(String name) throws Exception {
-        TeacherExample teacherExample = new TeacherExample();
-        //自定义查询条件
-        TeacherExample.Criteria criteria = teacherExample.createCriteria();
+    public List<TeacherCustom> findByName(String name) {
 
-        criteria.andUsernameLike("%" + name + "%");
-
-        List<Teacher> list = teacherMapper.selectByExample(teacherExample);
+        List<Teacher> list = teacherDao.selectByName(name);
 
         List<TeacherCustom> teacherCustomList = null;
 
@@ -102,8 +91,8 @@ public class TeacherService {
                 //类拷贝
                 BeanUtils.copyProperties(t, teacherCustom);
                 //获取课程名
-                College college = collegeMapper.selectByPrimaryKey(t.getCollegeid());
-                teacherCustom.setcollegeName(college.getCollegename());
+                College college = collegeDao.selectByPrimaryKey(t.getCollegeId());
+                teacherCustom.setcollegeName(college.getCollegeName());
 
                 teacherCustomList.add(teacherCustom);
             }
@@ -112,14 +101,8 @@ public class TeacherService {
         return teacherCustomList;
     }
 
-    public List<TeacherCustom> findAll() throws Exception {
-
-        TeacherExample teacherExample = new TeacherExample();
-        TeacherExample.Criteria criteria = teacherExample.createCriteria();
-
-        criteria.andUsernameIsNotNull();
-
-        List<Teacher> list = teacherMapper.selectByExample(teacherExample);
+    public List<TeacherCustom> findAll() {
+        List<Teacher> list = teacherDao.selectAll();
         List<TeacherCustom> teacherCustomsList = null;
         if (list != null) {
             teacherCustomsList = new ArrayList<TeacherCustom>();
@@ -132,12 +115,12 @@ public class TeacherService {
         return teacherCustomsList;
     }
 
-    public Teacher profile(int userid) throws Exception {
-        return teacherMapper.selectByPrimaryKey(userid);
+    public Teacher profile(int userid) {
+        return teacherDao.selectById(userid);
     }
 
-    public int profileUpdate(Teacher teacher) throws Exception {
+    public int profileUpdate(Teacher teacher) {
         System.out.println(teacher.getUsername());
-        return teacherMapper.updateByPrimaryKeySelective(teacher);
+        return teacherDao.update(teacher);
     }
 }
