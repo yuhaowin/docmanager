@@ -2,6 +2,7 @@ package com.chzu.dao;
 
 import com.chzu.entity.Course;
 import com.chzu.entity.SelectedCourse;
+import com.chzu.entity.SelectedCourseCustom;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -30,6 +31,7 @@ public class SelectedCourseDao {
         Query query = session.createSQLQuery("select count(*) from selected_course where course_id = ?");
         query.setParameter(0, courseId);
         Integer count = Integer.parseInt(query.list().get(0).toString());
+        session.close();
         return count;
     }
 
@@ -43,6 +45,7 @@ public class SelectedCourseDao {
         query.setParameter(0, selectedCourse.getCourseId());
         query.setParameter(1, selectedCourse.getStudentId());
         query.executeUpdate();
+        session.close();
     }
 
     /**
@@ -52,6 +55,7 @@ public class SelectedCourseDao {
     public void insert(SelectedCourse selectedCourse){
         Session session = sessionFactory.openSession();
         session.save(selectedCourse);
+        session.close();
     }
 
     /**
@@ -69,7 +73,9 @@ public class SelectedCourseDao {
             dc.add(Restrictions.eq("studentId", selectedCourse.getStudentId()));
         }
         Criteria c = dc.getExecutableCriteria(session);
-        return c.list();
+        List<SelectedCourse> selectedCourses = c.list();
+        session.close();
+        return selectedCourses;
     }
 
     public  void  updateByExample(SelectedCourse selectedCourse){
@@ -80,5 +86,6 @@ public class SelectedCourseDao {
         query.setParameter(1, selectedCourse.getCourseId());
         query.setParameter(2, selectedCourse.getStudentId());
         query.executeUpdate();
+        session.close();
     }
 }

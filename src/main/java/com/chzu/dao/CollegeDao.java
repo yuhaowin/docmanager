@@ -21,7 +21,9 @@ public class CollegeDao {
      */
     public  List<College> selectByExample(CollegeExample example){
         Session session = sessionFactory.openSession();
-        return session.createSQLQuery("from College").list();
+        List<College> colleges = session.createSQLQuery("from College").list();
+
+        return colleges;
     }
 
     /**
@@ -32,6 +34,7 @@ public class CollegeDao {
     public  College selectByPrimaryKey(Integer collegeId){
         Session session = sessionFactory.openSession();
         College college = (College) session.get(College.class, collegeId);
+        session.close();
         return college;
     }
 

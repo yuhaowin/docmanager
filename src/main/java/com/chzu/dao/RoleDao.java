@@ -19,7 +19,9 @@ public class RoleDao {
      */
     public Role selectByPrimaryKey(Integer roleId){
         Session session = sessionFactory.openSession();
-        return (Role) session.get(Role.class, roleId);
+        Role role = (Role) session.get(Role.class, roleId);
+        session.close();
+        return role;
 
     }
 

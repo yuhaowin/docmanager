@@ -25,7 +25,9 @@ public class StudentCustomDao {
         Query query = session.createSQLQuery(hql).addEntity(StudentCustom.class);
         query.setParameter(0, pagingVO.getTopageNo());
         query.setParameter(1, pagingVO.getPageSize());
-        return query.list();
+        List<StudentCustom> list = query.list();
+        session.close();
+        return list;
     }
 
     //查询学生信息，和其选课信息
@@ -35,6 +37,8 @@ public class StudentCustomDao {
         Session session = sessionFactory.openSession();
         Query query = session.createSQLQuery(hql);
         query.setParameter(0, id);
-        return (StudentCustom) query.list().get(0);
+        StudentCustom studentCustom = (StudentCustom) query.list().get(0);
+        session.close();
+        return studentCustom;
     }
 }

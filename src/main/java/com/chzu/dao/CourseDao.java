@@ -28,6 +28,7 @@ public class CourseDao {
 
         Session session = sessionFactory.openSession();
         String count = (session.createSQLQuery("select count(*) from course").list().get(0).toString());
+        session.close();
         return Integer.parseInt(count);
     }
 
@@ -43,6 +44,7 @@ public class CourseDao {
         session.beginTransaction();
         session.delete(course);
         session.getTransaction().commit();
+        session.close();
     }
 
     /**
@@ -52,6 +54,7 @@ public class CourseDao {
     public void insert(Course record){
         Session session = sessionFactory.openSession();
         session.save(record);
+        session.close();
     }
 
     /**
@@ -69,7 +72,9 @@ public class CourseDao {
             dc.add(Restrictions.eq("courseName", "%" + course.getCourseName() + "%"));
         }
         Criteria c = dc.getExecutableCriteria(session);
-        return c.list();
+        List<Course> courses = c.list();
+        session.close();
+        return courses;
     }
 
     /**
@@ -79,7 +84,9 @@ public class CourseDao {
      */
     public Course selectByPrimaryKey(Integer courseId){
         Session session = sessionFactory.openSession();
-        return (Course) session.get(Course.class, courseId);
+        Course course = (Course) session.get(Course.class, courseId);
+        session.close();
+        return course;
     }
 
     /**
@@ -92,6 +99,7 @@ public class CourseDao {
         session.beginTransaction();
         session.update(course);
         session.getTransaction().commit();
+        session.close();
     }
 
     /**
@@ -106,6 +114,8 @@ public class CourseDao {
         Query query = session.createSQLQuery(hql);
         query.setParameter(0, pagingVO.getTopageNo());
         query.setParameter(1,pagingVO.getPageSize());
-        return  query.list();
+        List<CourseCustom> courseCustoms = query.list();
+        session.close();
+        return  courseCustoms;
     }
 }

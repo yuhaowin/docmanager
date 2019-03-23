@@ -20,6 +20,7 @@ public class StudentDao {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Student where user_name = ?");
         query.setParameter(0, userName);
+        session.close();
         return null;
     }
 
@@ -31,6 +32,7 @@ public class StudentDao {
     public Integer count() {
         Session session = sessionFactory.openSession();
         String count = (session.createSQLQuery("select count(*) from student").list().get(0).toString());
+        session.close();
         return Integer.parseInt(count);
     }
 
@@ -45,6 +47,7 @@ public class StudentDao {
         Student student = new Student();
         student.setUserId(Id);
         session.delete(student);
+        session.close();
         return 1;
     }
 
@@ -57,6 +60,7 @@ public class StudentDao {
     public int insert(Student student) {
         Session session = sessionFactory.openSession();
         session.save(student);
+        session.close();
         return 1;
     }
 
@@ -71,6 +75,7 @@ public class StudentDao {
         Query query = session.createQuery("from Student where user_name = ?");
         query.setParameter(0, name);
         List<Student> list = query.list();
+        session.close();
         return list;
     }
 
@@ -82,7 +87,9 @@ public class StudentDao {
      */
     public Student selectById(Integer Id) {
         Session session = sessionFactory.openSession();
-        return (Student) session.get(Student.class, Id);
+        Student student = (Student) session.get(Student.class, Id);
+        session.close();
+        return student;
     }
 
     /**
@@ -94,6 +101,7 @@ public class StudentDao {
     public int update(Student student) {
         Session session = sessionFactory.openSession();
         session.update(student);
+        session.close();
         return 1;
     }
 }

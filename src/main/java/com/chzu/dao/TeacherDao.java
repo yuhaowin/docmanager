@@ -23,6 +23,7 @@ public class TeacherDao {
     public int count() {
         Session session = sessionFactory.openSession();
         String count = (session.createSQLQuery("select count(*) from teacher").list().get(0).toString());
+        session.close();
         return Integer.parseInt(count);
     }
 
@@ -37,6 +38,7 @@ public class TeacherDao {
         Teacher teacher = new Teacher();
         teacher.setUserId(Id);
         session.delete(teacher);
+        session.close();
         return 1;
     }
 
@@ -49,6 +51,7 @@ public class TeacherDao {
     public int insert(Teacher teacher) {
         Session session = sessionFactory.openSession();
         session.save(teacher);
+        session.close();
         return 1;
     }
 
@@ -63,6 +66,7 @@ public class TeacherDao {
         Query query = session.createQuery("from Teacher where user_name = ?");
         query.setParameter(0, name);
         List<Teacher> list = query.list();
+        session.close();
         return list;
     }
 
@@ -70,6 +74,7 @@ public class TeacherDao {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Teacher");
         List<Teacher> list = query.list();
+        session.close();
         return list;
     }
 
@@ -81,7 +86,9 @@ public class TeacherDao {
      */
     public Teacher selectById(Integer Id) {
         Session session = sessionFactory.openSession();
-        return (Teacher) session.get(Teacher.class, Id);
+        Teacher teacher = (Teacher) session.get(Teacher.class, Id);
+        session.close();
+        return teacher;
     }
 
     /**
@@ -91,6 +98,7 @@ public class TeacherDao {
     public int update(Teacher teacher) {
         Session session = sessionFactory.openSession();
         session.update(teacher);
+        session.close();
         return 1;
     }
 }

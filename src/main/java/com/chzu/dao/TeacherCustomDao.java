@@ -24,6 +24,8 @@ public class TeacherCustomDao {
         Query query = session.createSQLQuery(hql).addEntity(TeacherCustom.class);
         query.setParameter(0, pagingVO.getTopageNo());
         query.setParameter(1, pagingVO.getPageSize());
-        return query.list();
+        List<TeacherCustom> teacherCustoms = query.list();
+        session.close();
+        return teacherCustoms;
     }
 }

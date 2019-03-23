@@ -26,6 +26,7 @@ public class UserLoginDao {
         UserLogin userLogin = new UserLogin();
         userLogin.setUserName(name);
         session.delete(userLogin);
+        session.close();
         return 1;
     }
 
@@ -38,6 +39,7 @@ public class UserLoginDao {
     public int insert(UserLogin userLogin) {
         Session session = sessionFactory.openSession();
         session.save(userLogin);
+        session.close();
         return 1;
     }
 
@@ -51,6 +53,7 @@ public class UserLoginDao {
         Query query = session.createQuery("from UserLogin where user_name = ?");
         query.setParameter(0, name);
         List<UserLogin> list = query.list();
+        session.close();
         return list;
     }
 
@@ -63,6 +66,7 @@ public class UserLoginDao {
     public int updateByName(UserLogin userlogin) {
         Session session = sessionFactory.openSession();
         session.update(userlogin);
+        session.close();
         return 1;
     }
 }
