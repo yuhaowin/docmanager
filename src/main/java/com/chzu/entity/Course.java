@@ -21,7 +21,7 @@ public class Course {
     @Column(name="course_time")
     private String courseTime;
 
-    @Column(name="course_room")
+    @Column(name="class_room")
     private String classRoom;
 
     @Column(name="course_week")
