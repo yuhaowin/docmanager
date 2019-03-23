@@ -6,20 +6,25 @@ import java.util.Date;
 @Entity
 @Table(name="student")
 public class Student {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="user_id")
     private Integer userId;
 
-    private String username;
+    @Column(name="user_name")
+    private String userName;
 
     private String sex;
 
+    @Column(name="birth_year")
     private Date birthYear;
 
     private Date grade;
 
+    @Column(name="college_id")
     private Integer collegeId;
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+
     public Integer getUserId() {
         return userId;
     }
@@ -28,12 +33,12 @@ public class Student {
         this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getSex() {

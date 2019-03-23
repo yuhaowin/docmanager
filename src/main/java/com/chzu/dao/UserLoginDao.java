@@ -25,11 +25,7 @@ public class UserLoginDao {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from UserLogin where user_name = ?");
         query.setParameter(0, userName);
-        List<UserLogin> list = query.list();
-        if(list != null && list.size() > 0){
-            return list.get(0);
-        }
-        return null;
+        return (UserLogin) getOne(query.list());
     }
 
     public void addUser(UserLogin user) {
@@ -37,5 +33,12 @@ public class UserLoginDao {
         session.save(user);
     }
 
+
+    public <E> getOne(List<E> list){
+        if(list != null && list.size() > 0){
+            return list.get(0);
+        }
+        return null;
+    }
 
 }
