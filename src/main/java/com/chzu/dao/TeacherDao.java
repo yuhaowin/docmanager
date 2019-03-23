@@ -49,6 +49,10 @@ public class TeacherDao {
         return null;
     }
 
+    public List<Teacher> selectAll(){
+        return null;
+    }
+
     /**
      * 通过id查询
      * @param Id
