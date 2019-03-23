@@ -1,11 +1,6 @@
 package com.chzu.service;
 
-import com.system.mapper.CollegeMapper;
-import com.system.mapper.CourseMapper;
-import com.system.mapper.CourseMapperCustom;
-import com.system.mapper.SelectedcourseMapper;
-import com.system.po.*;
-import com.system.service.CourseService;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -3,7 +3,7 @@ package com.chzu.entity;
 /**
  * Created by Vinci on 2017/6/29.
  */
-public class SelectedCourseCustom extends Selectedcourse {
+public class SelectedCourseCustom extends SelectedCourse {
     //新增Student 对象字段
     private StudentCustom studentCustom;
 

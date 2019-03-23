@@ -38,4 +38,20 @@ public class UserLoginService {
     public Role getRole(Integer roleId){
         return roleDao.getRole(roleId);
     }
+
+    public void save(UserLogin userlogin){
+
+    }
+
+    public void removeByName(String name){
+
+    }
+
+    public UserLogin findByName(String name){
+        return null;
+    }
+
+    public void updateByName(String name, UserLogin u){
+
+    }
 }

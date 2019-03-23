@@ -13,12 +13,12 @@ public class StudentCustom extends Student {
     private List<SelectedCourseCustom> selectedCourseList;
 
 
-    public void setcollegeName(String collegeName) {
-        this.collegeName = collegeName;
+    public String getCollegeName() {
+        return collegeName;
     }
 
-    public String getcollegeName() {
-        return collegeName;
+    public void setCollegeName(String collegeName) {
+        this.collegeName = collegeName;
     }
 
     public List<SelectedCourseCustom> getSelectedCourseList() {
@@ -28,5 +28,6 @@ public class StudentCustom extends Student {
     public void setSelectedCourseList(List<SelectedCourseCustom> selectedCourseList) {
         this.selectedCourseList = selectedCourseList;
     }
-
 }
+
+

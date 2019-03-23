@@ -1,12 +1,5 @@
 package com.chzu.service;
 
-import com.system.exception.CustomException;
-import com.system.mapper.CollegeMapper;
-import com.system.mapper.CourseMapper;
-import com.system.mapper.TeacherMapper;
-import com.system.mapper.TeacherMapperCustom;
-import com.system.po.*;
-import com.system.service.TeacherService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

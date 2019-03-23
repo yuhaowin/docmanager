@@ -1,8 +1,9 @@
 package com.chzu.controller;
 
-import com.system.exception.CustomException;
-import com.system.po.Userlogin;
-import com.system.service.UserloginService;
+
+import com.chzu.entity.UserLogin;
+import com.chzu.exception.Globalexception;
+import com.chzu.service.UserLoginService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,8 @@ import javax.annotation.Resource;
 @Controller
 public class RestPasswordController {
 
-    @Resource(name = "userloginServiceImpl")
-    private UserloginService userloginService;
+    @Resource(name = "userLoginService")
+    private UserLoginService userLoginService;
 
     // 本账户密码重置
     @RequestMapping(value = "/passwordRest", method = {RequestMethod.POST})
@@ -26,13 +27,13 @@ public class RestPasswordController {
         Subject subject = SecurityUtils.getSubject();
         String username = (String) subject.getPrincipal();
 
-        Userlogin userlogin = userloginService.findByName(username);
+        UserLogin userLogin = userLoginService.findByName(username);
 
-        if (!oldPassword.equals(userlogin.getPassword())) {
-            throw new CustomException("旧密码不正确");
+        if (!oldPassword.equals(userLogin.getPassword())) {
+            throw new Globalexception("旧密码不正确");
         } else {
-            userlogin.setPassword(password1);
-            userloginService.updateByName(username, userlogin);
+            userLogin.setPassword(password1);
+            userLoginService.updateByName(username, userLogin);
         }
 
         return "redirect:/logout";

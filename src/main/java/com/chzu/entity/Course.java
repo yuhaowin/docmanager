@@ -1,86 +1,86 @@
 package com.chzu.entity;
 
 public class Course {
-    private Integer courseid;
+    private Integer courseIdd;
 
-    private String coursename;
+    private String courseName;
 
-    private Integer teacherid;
+    private Integer teacherId;
 
-    private String coursetime;
+    private String courseTime;
 
-    private String classroom;
+    private String classRoom;
 
-    private Integer courseweek;
+    private Integer courseWeek;
 
-    private String coursetype;
+    private String courseType;
 
-    private Integer collegeid;
+    private Integer collegeId;
 
     private Integer score;
 
-    public Integer getCourseid() {
-        return courseid;
+    public Integer getCourseIdd() {
+        return courseIdd;
     }
 
-    public void setCourseid(Integer courseid) {
-        this.courseid = courseid;
+    public void setCourseIdd(Integer courseIdd) {
+        this.courseIdd = courseIdd;
     }
 
-    public String getCoursename() {
-        return coursename;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setCoursename(String coursename) {
-        this.coursename = coursename == null ? null : coursename.trim();
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
-    public Integer getTeacherid() {
-        return teacherid;
+    public Integer getTeacherId() {
+        return teacherId;
     }
 
-    public void setTeacherid(Integer teacherid) {
-        this.teacherid = teacherid;
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 
-    public String getCoursetime() {
-        return coursetime;
+    public String getCourseTime() {
+        return courseTime;
     }
 
-    public void setCoursetime(String coursetime) {
-        this.coursetime = coursetime == null ? null : coursetime.trim();
+    public void setCourseTime(String courseTime) {
+        this.courseTime = courseTime;
     }
 
-    public String getClassroom() {
-        return classroom;
+    public String getClassRoom() {
+        return classRoom;
     }
 
-    public void setClassroom(String classroom) {
-        this.classroom = classroom == null ? null : classroom.trim();
+    public void setClassRoom(String classRoom) {
+        this.classRoom = classRoom;
     }
 
-    public Integer getCourseweek() {
-        return courseweek;
+    public Integer getCourseWeek() {
+        return courseWeek;
     }
 
-    public void setCourseweek(Integer courseweek) {
-        this.courseweek = courseweek;
+    public void setCourseWeek(Integer courseWeek) {
+        this.courseWeek = courseWeek;
     }
 
-    public String getCoursetype() {
-        return coursetype;
+    public String getCourseType() {
+        return courseType;
     }
 
-    public void setCoursetype(String coursetype) {
-        this.coursetype = coursetype == null ? null : coursetype.trim();
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
     }
 
-    public Integer getCollegeid() {
-        return collegeid;
+    public Integer getCollegeId() {
+        return collegeId;
     }
 
-    public void setCollegeid(Integer collegeid) {
-        this.collegeid = collegeid;
+    public void setCollegeId(Integer collegeId) {
+        this.collegeId = collegeId;
     }
 
     public Integer getScore() {

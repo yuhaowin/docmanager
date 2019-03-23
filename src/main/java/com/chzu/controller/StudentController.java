@@ -1,10 +1,11 @@
 package com.chzu.controller;
 
-import com.system.exception.CustomException;
-import com.system.po.*;
-import com.system.service.CourseService;
-import com.system.service.SelectedCourseService;
-import com.system.service.StudentService;
+
+import com.chzu.entity.*;
+import com.chzu.exception.Globalexception;
+import com.chzu.service.CourseService;
+import com.chzu.service.SelectedCourseService;
+import com.chzu.service.StudentService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -61,15 +62,15 @@ public class StudentController {
         String username = (String) subject.getPrincipal();
 
         SelectedCourseCustom selectedCourseCustom = new SelectedCourseCustom();
-        selectedCourseCustom.setCourseid(id);
-        selectedCourseCustom.setStudentid(Integer.parseInt(username));
+        selectedCourseCustom.setCourseId(id);
+        selectedCourseCustom.setStudentId(Integer.parseInt(username));
 
         SelectedCourseCustom s = selectedCourseService.findOne(selectedCourseCustom);
 
         if (s == null) {
             selectedCourseService.save(selectedCourseCustom);
         } else {
-            throw new CustomException("该门课程你已经选了，不能再选");
+            throw new Globalexception("该门课程你已经选了，不能再选");
         }
 
         return "redirect:/student/selectedCourse";
@@ -82,8 +83,8 @@ public class StudentController {
         String username = (String) subject.getPrincipal();
 
         SelectedCourseCustom selectedCourseCustom = new SelectedCourseCustom();
-        selectedCourseCustom.setCourseid(id);
-        selectedCourseCustom.setStudentid(Integer.parseInt(username));
+        selectedCourseCustom.setCourseId(id);
+        selectedCourseCustom.setStudentId(Integer.parseInt(username));
 
         selectedCourseService.remove(selectedCourseCustom);
 
@@ -141,10 +142,10 @@ public class StudentController {
         Subject subject = SecurityUtils.getSubject();
         String userid = (String) subject.getPrincipal();
         Student student = new Student();
-        student.setUserid(Integer.parseInt(userid));
-        student.setUsername(username);
+        student.setUserId(Integer.parseInt(userid));
+        student.setUserName(username);
         student.setSex(sex);
-        student.setCollegeid(collegeid);
+        student.setCollegeId(collegeid);
         int result = studentService.profileUpdate(student);
         System.out.println(result);
         return profile(model);

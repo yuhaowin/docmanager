@@ -1,11 +1,12 @@
 package com.chzu.controller;
 
-import com.system.po.CourseCustom;
-import com.system.po.SelectedCourseCustom;
-import com.system.po.Teacher;
-import com.system.service.CourseService;
-import com.system.service.SelectedCourseService;
-import com.system.service.TeacherService;
+
+import com.chzu.entity.CourseCustom;
+import com.chzu.entity.SelectedCourseCustom;
+import com.chzu.entity.Teacher;
+import com.chzu.service.CourseService;
+import com.chzu.service.SelectedCourseService;
+import com.chzu.service.TeacherService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -75,7 +76,7 @@ public class TeacherController {
 
         selectedCourseService.updataOne(scc);
 
-        return "redirect:/teacher/gradeCourse?id=" + scc.getCourseid();
+        return "redirect:/teacher/gradeCourse?id=" + scc.getCourseId();
     }
 
     //修改密码
@@ -100,12 +101,12 @@ public class TeacherController {
         Subject subject = SecurityUtils.getSubject();
         String userid = (String) subject.getPrincipal();
         Teacher teacher = new Teacher();
-        teacher.setUserid(Integer.parseInt(userid));
+        teacher.setUserId(Integer.parseInt(userid));
         teacher.setUsername(username);
         teacher.setSex(sex);
         teacher.setDegree(degree);
         teacher.setTitle(title);
-        teacher.setCollegeid(collegeid);
+        teacher.setCollegeId(collegeid);
         int result = teacherService.profileUpdate(teacher);
         System.out.println(result);
         return profile(model);

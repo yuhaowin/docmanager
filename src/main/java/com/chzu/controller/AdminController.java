@@ -1,12 +1,9 @@
 package com.chzu.controller;
 
 
-import com.chzu.entity.PagingVO;
-import com.chzu.entity.Student;
-import com.chzu.service.CollegeService;
-import com.chzu.service.CourseService;
-import com.chzu.service.StudentService;
-import com.chzu.service.TeacherService;
+import com.chzu.entity.*;
+import com.chzu.exception.Globalexception;
+import com.chzu.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +32,8 @@ public class AdminController {
     @Resource(name = "collegeService")
     private CollegeService collegeService;
 
-    @Resource(name = "userloginServiceImpl")
-    private UserloginService userloginService;
+    @Resource(name = "userLoginService")
+    private UserLoginService userloginService;
 
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<学生操作>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
@@ -44,7 +41,7 @@ public class AdminController {
     @RequestMapping("/showStudent")
     public String showStudent(Model model, Integer page) throws Exception {
 
-        List<Student> list = null;
+        List<StudentCustom> list = null;
         //页码对象
         PagingVO pagingVO = new PagingVO();
         //设置总页数
@@ -86,8 +83,8 @@ public class AdminController {
             return "error";
         }
         //添加成功后，也添加到登录表
-        Userlogin userlogin = new Userlogin();
-        userlogin.setUsername(studentCustom.getUserid().toString());
+        UserLogin userlogin = new UserLogin();
+        userlogin.setUserName(studentCustom.getUserId().toString());
         userlogin.setPassword("123");
         userlogin.setRole(2);
         userloginService.save(userlogin);
@@ -105,7 +102,7 @@ public class AdminController {
         }
         StudentCustom studentCustom = studentService.findById(id);
         if (studentCustom == null) {
-            throw new CustomException("未找到该名学生");
+            throw new Globalexception("未找到该名学生");
         }
         List<College> list = collegeService.finAll();
 
@@ -120,7 +117,7 @@ public class AdminController {
     @RequestMapping(value = "/editStudent", method = {RequestMethod.POST})
     public String editStudent(StudentCustom studentCustom) throws Exception {
 
-        studentService.updataById(studentCustom.getUserid(), studentCustom);
+        studentService.updataById(studentCustom.getUserId(), studentCustom);
 
         //重定向
         return "redirect:/admin/showStudent";
@@ -197,11 +194,12 @@ public class AdminController {
             return "error";
         }
         //添加成功后，也添加到登录表
-        Userlogin userlogin = new Userlogin();
-        userlogin.setUsername(teacherCustom.getUserid().toString());
+        UserLogin userlogin = new UserLogin();
+        userlogin.setUserName(teacherCustom.getUserId().toString());
         userlogin.setPassword("123");
         userlogin.setRole(1);
         userloginService.save(userlogin);
+
 
         //重定向
         return "redirect:/admin/showTeacher";
@@ -215,7 +213,7 @@ public class AdminController {
         }
         TeacherCustom teacherCustom = teacherService.findById(id);
         if (teacherCustom == null) {
-            throw new CustomException("未找到该名学生");
+            throw new Globalexception("未找到该名学生");
         }
         List<College> list = collegeService.finAll();
 
@@ -230,7 +228,7 @@ public class AdminController {
     @RequestMapping(value = "/editTeacher", method = {RequestMethod.POST})
     public String editTeacher(TeacherCustom teacherCustom) throws Exception {
 
-        teacherService.updateById(teacherCustom.getUserid(), teacherCustom);
+        teacherService.updateById(teacherCustom.getUserId(), teacherCustom);
 
         //重定向
         return "redirect:/admin/showTeacher";
@@ -322,7 +320,7 @@ public class AdminController {
         }
         CourseCustom courseCustom = courseService.findById(id);
         if (courseCustom == null) {
-            throw new CustomException("未找到该课程");
+            throw new Globalexception("未找到该课程");
         }
         List<TeacherCustom> list = teacherService.findAll();
         List<College> collegeList = collegeService.finAll();
@@ -339,7 +337,7 @@ public class AdminController {
     @RequestMapping(value = "/editCourse", method = {RequestMethod.POST})
     public String editCourse(CourseCustom courseCustom) throws Exception {
 
-        courseService.upadteById(courseCustom.getCourseid(), courseCustom);
+        courseService.upadteById(courseCustom.getCourseId(), courseCustom);
 
         //重定向
         return "redirect:/admin/showCourse";
@@ -377,18 +375,18 @@ public class AdminController {
 
     // 普通用户账号密码重置处理
     @RequestMapping(value = "/userPasswordRest", method = {RequestMethod.POST})
-    public String userPasswordRest(Userlogin userlogin) throws Exception {
+    public String userPasswordRest(UserLogin userLogin) throws Exception {
 
-        Userlogin u = userloginService.findByName(userlogin.getUsername());
+        UserLogin u = userloginService.findByName(userLogin.getUserName());
 
         if (u != null) {
             if (u.getRole() == 0) {
-                throw new CustomException("该账户为管理员账户，没法修改");
+                throw new Globalexception("该账户为管理员账户，没法修改");
             }
-            u.setPassword(userlogin.getPassword());
-            userloginService.updateByName(userlogin.getUsername(), u);
+            u.setPassword(userLogin.getPassword());
+            userloginService.updateByName(userLogin.getUserName(), u);
         } else {
-            throw new CustomException("没找到该用户");
+            throw new Globalexception("没找到该用户");
         }
 
         return "admin/userPasswordRest";
