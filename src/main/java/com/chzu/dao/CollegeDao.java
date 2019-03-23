@@ -22,7 +22,7 @@ public class CollegeDao {
     public  List<College> selectByExample(CollegeExample example){
         Session session = sessionFactory.openSession();
         List<College> colleges = session.createSQLQuery("from College").list();
-
+        session.close();
         return colleges;
     }
 
