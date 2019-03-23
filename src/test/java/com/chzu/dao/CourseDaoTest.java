@@ -27,7 +27,7 @@ public class CourseDaoTest {
 
     @Test
     public void deleteByPrimaryKey() {
-        courseDao.deleteByPrimaryKey(1);
+        courseDao.deleteByPrimaryKey(7);
     }
 
     @Test
@@ -41,19 +41,46 @@ public class CourseDaoTest {
         course.setCourseType("必修课");
         course.setCollegeId(1);
         course.setScore(23);
+        course.setCourseTime("周五");
         courseDao.insert(course);
     }
 
     @Test
     public void selectByExample() {
+        Course course = new  Course();
+        course.setCourseId(12);
+        //course.setCourseName("测试课程1");
+        course.setTeacherId(11);
+        course.setClassRoom("教室1");
+        course.setCourseWeek(18);
+        course.setCourseType("必修课");
+        course.setCollegeId(1);
+        course.setScore(23);
+        course.setCourseTime("周五");
+        List<Course> courses = courseDao.selectByExample(course);
+        System.out.println(courses.size());
     }
 
     @Test
     public void selectByPrimaryKey() {
+        courseDao.selectByPrimaryKey(6);
+        System.out.println(courseDao.toString());
     }
 
     @Test
     public void updateByPrimaryKey() {
+        Course course = new  Course();
+        course.setCourseId(9);
+        course.setCourseName("测试课程333");
+        course.setTeacherId(11);
+        course.setClassRoom("教室1");
+        course.setCourseWeek(18);
+        course.setCourseType("必修课");
+        course.setCollegeId(1);
+        course.setScore(23);
+        course.setCourseTime("周五");
+        courseDao.updateByPrimaryKey(course);
+
     }
 
     @Test

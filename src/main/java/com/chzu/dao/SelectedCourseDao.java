@@ -73,9 +73,9 @@ public class SelectedCourseDao {
     }
 
     public  void  updateByExample(SelectedCourse selectedCourse){
-        String hql = "update SelectedCourse set mark = ? where  course_id = ? and student_id =?";
+        String hql = "update selected_course set mark = ? where  course_id = ? and student_id =?";
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery(hql);
+        Query query = session.createSQLQuery(hql);
         query.setParameter(0, selectedCourse.getMark());
         query.setParameter(1, selectedCourse.getCourseId());
         query.setParameter(2, selectedCourse.getStudentId());

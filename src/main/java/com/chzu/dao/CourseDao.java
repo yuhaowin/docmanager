@@ -40,7 +40,9 @@ public class CourseDao {
         Course course = new Course();
         course.setCourseId(courseId);
         Session session = sessionFactory.openSession();
+        session.beginTransaction();
         session.delete(course);
+        session.getTransaction().commit();
     }
 
     /**
@@ -61,10 +63,10 @@ public class CourseDao {
         Session session = sessionFactory.openSession();
         DetachedCriteria dc = DetachedCriteria.forClass(Course.class);
         if(course.getTeacherId() != null){
-            dc.add(Restrictions.eq("teacher_id", course.getTeacherId()));
+            dc.add(Restrictions.eq("teacherId", course.getTeacherId()));
         }
         if(course.getCourseName() != null){
-            dc.add(Restrictions.eq("course_name", "%" + course.getCourseName() + "%"));
+            dc.add(Restrictions.eq("courseName", "%" + course.getCourseName() + "%"));
         }
         Criteria c = dc.getExecutableCriteria(session);
         return c.list();
@@ -87,7 +89,9 @@ public class CourseDao {
      */
     public void updateByPrimaryKey(Course course){
         Session session = sessionFactory.openSession();
+        session.beginTransaction();
         session.update(course);
+        session.getTransaction().commit();
     }
 
     /**
