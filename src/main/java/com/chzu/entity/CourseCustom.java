@@ -1,8 +1,11 @@
 package com.chzu.entity;
 
+import javax.persistence.Entity;
+
 /**
  * Course扩展类    课程
  */
+@Entity
 public class CourseCustom extends Course {
 
     //所属院系名

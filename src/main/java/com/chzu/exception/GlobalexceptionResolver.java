@@ -35,6 +35,7 @@ public class GlobalexceptionResolver implements HandlerExceptionResolver {
             modelAndView.setViewName("error");
             return modelAndView;
         } else {
+            e.printStackTrace();
             globalexception = new Globalexception("未知错误");
         }
 
