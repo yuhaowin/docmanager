@@ -30,14 +30,14 @@
                           method="post" onsubmit="return check()">
                         <div class="form-group">
                             <div class="col-sm-10">
-                                <input readonly="readonly" type="hidden" class="form-control" name="courseid"
+                                <input readonly="readonly" type="hidden" class="form-control" name="courseId"
                                        id="inputEmail3" value="${selectedCourse.courseId}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">学号</label>
                             <div class="col-sm-10">
-                                <input readonly="readonly" type="text" class="form-control" name="studentid"
+                                <input readonly="readonly" type="text" class="form-control" name="studentId"
                                        id="inputEmail3" value="${selectedCourse.studentId}">
                             </div>
                         </div>

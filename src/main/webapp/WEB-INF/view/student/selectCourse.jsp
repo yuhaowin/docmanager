@@ -49,25 +49,24 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${selectedCourseList}" var="item">
-                        <%--输出还没修完的课程--%>
-                        <c:if test="${!item.over}">
+
                             <tr>
-                                <td>${item.couseCustom.courseId}</td>
-                                <td>${item.couseCustom.courseName}</td>
-                                <td>${item.couseCustom.teacherId}</td>
-                                <td>${item.couseCustom.courseTime}</td>
-                                <td>${item.couseCustom.classRoom}</td>
-                                <td>${item.couseCustom.courseWeek}</td>
-                                <td>${item.couseCustom.courseType}</td>
-                                <td>${item.couseCustom.score}</td>
+                                <td>${item.courseId}</td>
+                                <td>${item.courseName}</td>
+                                <td>${item.teacherId}</td>
+                                <td>${item.courseTime}</td>
+                                <td>${item.classRoom}</td>
+                                <td>${item.courseWeek}</td>
+                                <td>${item.courseType}</td>
+                                <td>${item.score}</td>
                                 <td>
                                     <button class="btn btn-default btn-xs btn-info"
-                                            onClick="location.href='/student/outCourse?id=${item.courseid}'">退课
+                                            onClick="location.href='/student/outCourse?id=${item.courseId}'">退课
                                     </button>
                                     <!--弹出框-->
                                 </td>
                             </tr>
-                        </c:if>
+
                     </c:forEach>
                     </tbody>
                 </table>

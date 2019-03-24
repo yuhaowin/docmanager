@@ -7,6 +7,7 @@ import com.chzu.entity.SelectedCourse;
 import com.chzu.entity.SelectedCourseCustom;
 import com.chzu.entity.Student;
 import com.chzu.entity.StudentCustom;
+import com.chzu.exception.Globalexception;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,10 @@ public class SelectedCourseService{
         SelectedCourse selectedCourse = new SelectedCourse();
         selectedCourse.setCourseId(id);
         List<SelectedCourse> list = selectedCourseDao.selectByExample(selectedCourse);
+
+        if(list == null && list.size() < 1){
+            throw new Globalexception("暂未学生选该课程");
+        }
         List<SelectedCourseCustom> secList = new ArrayList<SelectedCourseCustom>();
         for (SelectedCourse s : list) {
             SelectedCourseCustom sec = new SelectedCourseCustom();
@@ -37,9 +42,15 @@ public class SelectedCourseService{
             }
             Student student = studentDao.selectById(sec.getStudentId());
             StudentCustom studentCustom = new StudentCustom();
-            BeanUtils.copyProperties(student, studentCustom);
-            sec.setStudentCustom(studentCustom);
-            secList.add(sec);
+            try {
+                BeanUtils.copyProperties(student, studentCustom);
+                sec.setStudentCustom(studentCustom);
+                secList.add(sec);
+            }catch (Exception e){
+
+            }
+
+
         }
         return secList;
     }

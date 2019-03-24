@@ -33,8 +33,8 @@
                         <div class="form-group">
                             <label for="userID" class="col-sm-2 control-label">用户ID</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="userID" id="userID"
-                                       value="${teacher.userId}" disabled>
+                                <input type="text" class="form-control" name="userId" id="userID"
+                                       value="${teacher.userId}" readonly>
                             </div>
                         </div>
 
@@ -58,7 +58,7 @@
                             <label for="birthYear" class="col-sm-2 control-label">出生日期</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="birthYear" id="birthYear"
-                                       placeholder="请输入出生日期" value="${teacher.birthYear}" disabled>
+                                       placeholder="请输入出生日期" value="${teacher.birthYear}" readonly>
                             </div>
                         </div>
 
@@ -82,14 +82,14 @@
                             <label for="grade" class="col-sm-2 control-label">入职时间</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="grade" id="grade"
-                                       placeholder="请输入入职时间" value="${teacher.grade}" disabled>
+                                       placeholder="请输入入职时间" value="${teacher.grade}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="collegeID" class="col-sm-2 control-label">所属学院代码</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="collegeID" id="collegeID"
+                                <input type="text" class="form-control" name="collegeId" id="collegeID"
                                        placeholder="请输入所属学院代码" value="${teacher.collegeId}">
                             </div>
                         </div>

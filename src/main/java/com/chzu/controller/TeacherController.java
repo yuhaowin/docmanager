@@ -94,16 +94,12 @@ public class TeacherController {
 
     //更新个人信息
     @RequestMapping(value = "/profile_update")
-    public String profileUpdate(Model model, @RequestParam("userName") String username, @RequestParam("sex") String sex, @RequestParam("degree") String degree, @RequestParam("title") String title, @RequestParam("collegeID") int collegeid) throws Exception {
+    public String profileUpdate(Model model, Teacher teacher) throws Exception {
         Subject subject = SecurityUtils.getSubject();
         String userid = (String) subject.getPrincipal();
-        Teacher teacher = new Teacher();
+
         teacher.setUserId(Integer.parseInt(userid));
-        teacher.setUserName(username);
-        teacher.setSex(sex);
-        teacher.setDegree(degree);
-        teacher.setTitle(title);
-        teacher.setCollegeId(collegeid);
+
         int result = teacherService.profileUpdate(teacher);
         System.out.println(result);
         return profile(model);

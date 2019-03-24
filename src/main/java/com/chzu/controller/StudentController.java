@@ -11,7 +11,6 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -106,20 +105,7 @@ public class StudentController {
         return "student/selectCourse";
     }
 
-    // 已修课程
-    @RequestMapping(value = "/overCourse")
-    public String overCourse(Model model) throws Exception {
 
-        //获取当前用户名
-        Subject subject = SecurityUtils.getSubject();
-        StudentCustom studentCustom = studentService.findStudentAndSelectCourseListByName((String) subject.getPrincipal());
-
-//        List<SelectedCourseCustom> list = studentCustom.getSelectedCourseList();
-
-//        model.addAttribute("selectedCourseList", list);
-
-        return "student/overCourse";
-    }
 
     //修改密码
     @RequestMapping(value = "/passwordRest")

@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -38,7 +39,7 @@ public class SelectedCourseDao {
      */
     public void delete(SelectedCourse selectedCourse){
         Session session = sessionFactory.openSession();
-        Query query = session.createSQLQuery("delete selected_course where  course_id = ? and student_id = ？");
+        Query query = session.createSQLQuery("delete from selected_course where  course_id = ? and student_id = ? ");
         query.setParameter(0, selectedCourse.getCourseId());
         query.setParameter(1, selectedCourse.getStudentId());
         query.executeUpdate();
@@ -91,6 +92,9 @@ public class SelectedCourseDao {
     public List<Integer> getByStudentId(Integer studentId){
         Session session = sessionFactory.openSession();
         Query query = session.createSQLQuery("select course_id from selected_course where student_id = ?");
+
+        DetachedCriteria dc = DetachedCriteria.forClass(SelectedCourse.class);
+        dc.add(Restrictions.eq("studentId", studentId));
         query.setParameter(0, studentId);
         List<Integer> list = query.list();
         session.close();
