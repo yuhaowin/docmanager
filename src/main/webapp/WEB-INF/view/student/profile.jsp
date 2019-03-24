@@ -97,7 +97,7 @@
 </div>
 </body>
 <script>
-    $("#nav li:nth-child(5)").addClass("active")
+    $("#nav li:nth-child(4)").addClass("active")
 
     function check() {
         if (reset.oldPassword.value == "" || reset.oldPassword.value == null) {
