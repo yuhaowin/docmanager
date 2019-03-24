@@ -1,6 +1,5 @@
 package com.chzu.realm;
 
-import com.chzu.dao.RoleDao;
 import com.chzu.entity.Role;
 import com.chzu.entity.UserLogin;
 import com.chzu.service.RoleService;

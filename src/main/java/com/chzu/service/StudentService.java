@@ -1,6 +1,5 @@
 package com.chzu.service;
 
-
 import com.chzu.dao.*;
 import com.chzu.entity.*;
 import org.springframework.beans.BeanUtils;
@@ -117,7 +116,7 @@ public class StudentService {
         return studentDao.update(student);
     }
 
-    public List<Course> studentCourseList(Integer studentId){
+    public List<Course> studentCourseList(Integer studentId) {
         List<Integer> list = selectedCourseDao.getByStudentId(studentId);
         List<Course> courses = courseDao.getByList(list);
         return courses;

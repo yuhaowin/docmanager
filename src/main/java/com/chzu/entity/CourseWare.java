@@ -8,10 +8,10 @@ import java.util.Date;
 public class CourseWare {
 
     @Id
-    @Column(name="file_id")
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "file_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer fileId;
-    @Column(name="teacher_id")
+    @Column(name = "teacher_id")
     private Integer teacherId;
     @Column(name = "course_id")
     private Integer courseId;

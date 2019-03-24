@@ -7,16 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by Vinci on 2017/6/30.
- */
 @Service
-public class CollegeService{
+public class CollegeService {
 
     @Autowired
     private CollegeDao collegeDao;
 
-    public List<College> finAll(){
+    public List<College> finAll() {
         return collegeDao.selectByExample();
     }
 }

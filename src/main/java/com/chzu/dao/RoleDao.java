@@ -14,10 +14,11 @@ public class RoleDao {
 
     /**
      * 获取用户权限
+     *
      * @param roleId
      * @return
      */
-    public Role selectByPrimaryKey(Integer roleId){
+    public Role selectByPrimaryKey(Integer roleId) {
         Session session = sessionFactory.openSession();
         Role role = (Role) session.get(Role.class, roleId);
         session.close();

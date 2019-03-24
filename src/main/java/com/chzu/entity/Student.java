@@ -4,24 +4,24 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="student")
+@Table(name = "student")
 public class Student {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name="user_name")
+    @Column(name = "user_name")
     private String userName;
 
     private String sex;
 
-    @Column(name="birth_year")
+    @Column(name = "birth_year")
     private Date birthYear;
 
     private Date grade;
 
-    @Column(name="college_id")
+    @Column(name = "college_id")
     private Integer collegeId;
 
 

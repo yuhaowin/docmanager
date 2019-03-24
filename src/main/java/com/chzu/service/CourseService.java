@@ -12,15 +12,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Vinci on 2017/6/29.
- */
 @Service
-public class CourseService{
+public class CourseService {
 
     @Autowired
     private CourseDao courseDao;
-
 
 
     @Autowired
@@ -29,7 +25,7 @@ public class CourseService{
     @Autowired
     private SelectedCourseDao selectedCourseDao;
 
-    public void updateById(Course course){
+    public void updateById(Course course) {
         courseDao.updateByPrimaryKey(course);
     }
 

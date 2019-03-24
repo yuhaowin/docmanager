@@ -22,16 +22,7 @@
         </div>
     </div>
 </div>
-
 <script src="../js/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script>
-    // $('#login-button').click(function (event) {
-    //     event.preventDefault();
-    //     $('form').fadeOut(500);
-    //     $('.wrapper').addClass('form-success');
-    // });
-</script>
-
 <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#000000">
     <h1>管理系统</h1>
 </div>

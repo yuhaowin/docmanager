@@ -12,7 +12,8 @@
     <script src="/js/fileinput_locale_zh.js" type="text/javascript"></script>
 </head>
 <body>
-
+<!-- 顶栏 -->
+<jsp:include page="top.jsp"></jsp:include>
 <div class="container kv-main">
     <form enctype="multipart/form-data">
         <div class="form-group">

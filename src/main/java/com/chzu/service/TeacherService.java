@@ -31,7 +31,7 @@ public class TeacherService {
     @Autowired
     private CourseDao courseDao;
 
-    public void updateById(Teacher teacher){
+    public void updateById(Teacher teacher) {
         teacherDao.updateTeacher(teacher);
     }
 

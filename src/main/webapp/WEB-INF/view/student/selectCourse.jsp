@@ -6,16 +6,10 @@
 <html>
 <head>
     <title>课程信息显示</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 引入bootstrap -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <!-- 引入JQuery  bootstrap.js-->
     <script src="/js/jquery-3.2.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-
-    <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
-
 </head>
 <body>
 <!-- 顶栏 -->
@@ -50,22 +44,22 @@
                     <tbody>
                     <c:forEach items="${selectedCourseList}" var="item">
 
-                            <tr>
-                                <td>${item.courseId}</td>
-                                <td>${item.courseName}</td>
-                                <td>${item.teacherId}</td>
-                                <td>${item.courseTime}</td>
-                                <td>${item.classRoom}</td>
-                                <td>${item.courseWeek}</td>
-                                <td>${item.courseType}</td>
-                                <td>${item.score}</td>
-                                <td>
-                                    <button class="btn btn-default btn-xs btn-info"
-                                            onClick="location.href='/student/outCourse?id=${item.courseId}'">退课
-                                    </button>
-                                    <!--弹出框-->
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>${item.courseId}</td>
+                            <td>${item.courseName}</td>
+                            <td>${item.teacherId}</td>
+                            <td>${item.courseTime}</td>
+                            <td>${item.classRoom}</td>
+                            <td>${item.courseWeek}</td>
+                            <td>${item.courseType}</td>
+                            <td>${item.score}</td>
+                            <td>
+                                <button class="btn btn-default btn-xs btn-info"
+                                        onClick="location.href='/student/outCourse?id=${item.courseId}'">退课
+                                </button>
+                                <!--弹出框-->
+                            </td>
+                        </tr>
 
                     </c:forEach>
                     </tbody>

@@ -1,11 +1,5 @@
 package com.chzu.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-
-/**
- * Created by Vinci on 2017/6/29.
- */
 public class SelectedCourseCustom {
 
     private Integer courseId;

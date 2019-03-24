@@ -3,14 +3,14 @@ package com.chzu.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="role")
+@Table(name = "role")
 public class Role {
     @Id
-    @Column(name="role_id")
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "role_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer roleId;
 
-    @Column(name="role_name")
+    @Column(name = "role_name")
     private String roleName;
 
     private String permissions;

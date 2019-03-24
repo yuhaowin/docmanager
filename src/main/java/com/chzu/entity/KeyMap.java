@@ -2,7 +2,7 @@ package com.chzu.entity;
 
 import java.io.Serializable;
 
-public class KeyMap  implements Serializable {
+public class KeyMap implements Serializable {
 
     private static final long serialVersionUID = 3176972128965536016L;
 
@@ -10,7 +10,7 @@ public class KeyMap  implements Serializable {
 
     private Integer studentId;
 
-    public KeyMap(){
+    public KeyMap() {
 
     }
 
@@ -21,10 +21,10 @@ public class KeyMap  implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null) return false;
-        KeyMap objKey = (KeyMap)o;
-        if(courseId.equals(objKey.courseId) &&
+        if (this == o) return true;
+        if (o == null) return false;
+        KeyMap objKey = (KeyMap) o;
+        if (courseId.equals(objKey.courseId) &&
                 studentId.equals(objKey.studentId)) {
             return true;
         }

@@ -5,32 +5,32 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="course")
+@Table(name = "course")
 public class Course {
     @Id
-    @Column(name="course_id")
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "course_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer courseId;
 
-    @Column(name="course_name")
+    @Column(name = "course_name")
     private String courseName;
 
-    @Column(name="teacher_id")
+    @Column(name = "teacher_id")
     private Integer teacherId;
 
-    @Column(name="course_time")
+    @Column(name = "course_time")
     private String courseTime;
 
-    @Column(name="class_room")
+    @Column(name = "class_room")
     private String classRoom;
 
-    @Column(name="course_week")
+    @Column(name = "course_week")
     private Integer courseWeek;
 
-    @Column(name="course_type")
+    @Column(name = "course_type")
     private String courseType;
 
-    @Column(name="college_id")
+    @Column(name = "college_id")
     private Integer collegeId;
 
     private Integer score;

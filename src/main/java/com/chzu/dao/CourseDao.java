@@ -19,9 +19,10 @@ public class CourseDao {
 
     /**
      * 获取所有记录
+     *
      * @return
      */
-    public Integer count(){
+    public Integer count() {
 
         Session session = sessionFactory.openSession();
         String count = (session.createSQLQuery("select count(*) from course").list().get(0).toString());
@@ -31,10 +32,11 @@ public class CourseDao {
 
     /**
      * 根据 courseId 进行删除
+     *
      * @param courseId
      * @return
      */
-    public void deleteByPrimaryKey(Integer courseId){
+    public void deleteByPrimaryKey(Integer courseId) {
         Course course = new Course();
         course.setCourseId(courseId);
         Session session = sessionFactory.openSession();
@@ -46,9 +48,10 @@ public class CourseDao {
 
     /**
      * 插入
+     *
      * @param record
      */
-    public void insert(Course record){
+    public void insert(Course record) {
         Session session = sessionFactory.openSession();
         session.save(record);
         session.close();
@@ -56,16 +59,17 @@ public class CourseDao {
 
     /**
      * 根据条件查询
+     *
      * @param course
      * @return
      */
-    public List<Course> selectByExample(Course course){
+    public List<Course> selectByExample(Course course) {
         Session session = sessionFactory.openSession();
         DetachedCriteria dc = DetachedCriteria.forClass(Course.class);
-        if(course.getTeacherId() != null){
+        if (course.getTeacherId() != null) {
             dc.add(Restrictions.eq("teacherId", course.getTeacherId()));
         }
-        if(course.getCourseName() != null){
+        if (course.getCourseName() != null) {
             dc.add(Restrictions.like("courseName", "%" + course.getCourseName() + "%"));
         }
         // 开启事务
@@ -79,10 +83,11 @@ public class CourseDao {
 
     /**
      * 通过tecaherId查找所有课程
+     *
      * @param tecaherId
      * @return
      */
-    public List<Course> selectCoursesByTeacherId(Integer tecaherId){
+    public List<Course> selectCoursesByTeacherId(Integer tecaherId) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Course WHERE teacherId = ?");
         query.setParameter(0, tecaherId);
@@ -93,10 +98,11 @@ public class CourseDao {
 
     /**
      * 根据 courseId 查询
+     *
      * @param courseId
      * @return
      */
-    public Course selectByPrimaryKey(Integer courseId){
+    public Course selectByPrimaryKey(Integer courseId) {
         Session session = sessionFactory.openSession();
         Course course = (Course) session.get(Course.class, courseId);
         session.close();
@@ -105,10 +111,11 @@ public class CourseDao {
 
     /**
      * 更新 course
+     *
      * @param course
      * @return
      */
-    public void updateByPrimaryKey(Course course){
+    public void updateByPrimaryKey(Course course) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(course);
@@ -118,22 +125,23 @@ public class CourseDao {
 
     /**
      * 分页查询学生信息
+     *
      * @param pagingVO
      * @return
      */
-    public  List<CourseCustom> findByPaging(PagingVO pagingVO){
-        String hql="select course.*, college.college_name collegeName from course, college WHERE course.college_id = college.college_id" +
+    public List<CourseCustom> findByPaging(PagingVO pagingVO) {
+        String hql = "select course.*, college.college_name collegeName from course, college WHERE course.college_id = college.college_id" +
                 " limit ?, ?";
         Session session = sessionFactory.openSession();
         Query query = session.createSQLQuery(hql).addEntity(CourseCustom.class);
         query.setParameter(0, pagingVO.getTopageNo());
-        query.setParameter(1,pagingVO.getPageSize());
+        query.setParameter(1, pagingVO.getPageSize());
         List<CourseCustom> courseCustoms = query.list();
         session.close();
-        return  courseCustoms;
+        return courseCustoms;
     }
 
-    public List<Course> getByList(List<Integer> courseIds){
+    public List<Course> getByList(List<Integer> courseIds) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Course where courseId in (:ids)").setParameterList("ids", courseIds);
         List<Course> list = query.list();

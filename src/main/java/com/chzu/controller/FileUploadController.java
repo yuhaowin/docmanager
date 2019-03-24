@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 public class FileUploadController {
 
 
-	@RequestMapping("/upload")
+    @RequestMapping("/upload")
     @ResponseBody
-    public String fileUpload(@RequestParam MultipartFile file, HttpServletRequest request){
-        String basePath = request.getSession().getServletContext().getRealPath("/")+ "WEB-INF/files/";
+    public String fileUpload(@RequestParam MultipartFile file, HttpServletRequest request) {
+        String basePath = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/files/";
         System.out.println("当前项目路径: " + basePath);
 
         String oldName = file.getOriginalFilename();
@@ -32,7 +32,7 @@ public class FileUploadController {
     }
 
     @RequestMapping("/index")
-    public String showFileUploadIndex(){
-	    return "teacher/upload";
+    public String showFileUploadIndex() {
+        return "teacher/upload";
     }
 }

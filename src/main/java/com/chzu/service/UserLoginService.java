@@ -26,7 +26,7 @@ public class UserLoginService {
     public UserLogin findByName(String name) throws Exception {
 
         List<UserLogin> list = userLoginDao.selectByName(name);
-        if(list.size() == 0){
+        if (list.size() == 0) {
             throw new Globalexception("未查到该用户");
         }
         return list.get(0);

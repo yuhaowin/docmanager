@@ -15,9 +15,10 @@ public class CollegeDao {
 
     /**
      * 查询课程
+     *
      * @return
      */
-    public  List<College> selectByExample(){
+    public List<College> selectByExample() {
         Session session = sessionFactory.openSession();
         List<College> colleges = session.createQuery("from College").list();
         session.close();
@@ -26,20 +27,16 @@ public class CollegeDao {
 
     /**
      * 根据 collegeId 进行查询
+     *
      * @param collegeId
      * @return
      */
-    public  College selectByPrimaryKey(Integer collegeId){
+    public College selectByPrimaryKey(Integer collegeId) {
         Session session = sessionFactory.openSession();
         College college = (College) session.get(College.class, collegeId);
         session.close();
         return college;
     }
-
-
-
-
-
 
 
 }

@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 
-/**
- * Created by Vinci on 2017/7/6.
- */
 @Controller
 public class RestPasswordController {
 
@@ -23,6 +20,7 @@ public class RestPasswordController {
 
     /**
      * 本账户密码重置
+     *
      * @param oldPassword
      * @param password1
      * @return

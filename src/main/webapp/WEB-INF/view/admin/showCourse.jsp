@@ -6,16 +6,10 @@
 <html>
 <head>
     <title>课程信息显示</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 引入bootstrap -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <!-- 引入JQuery  bootstrap.min.js-->
     <script src="/js/jquery-3.2.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-
-    <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
-
 </head>
 <body>
 <!-- 顶栏 -->

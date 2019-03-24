@@ -33,6 +33,7 @@ public class TeacherController {
 
     /**
      * 显示我的课程
+     *
      * @param model
      * @return
      * @throws Exception
@@ -50,6 +51,7 @@ public class TeacherController {
 
     /**
      * 显示成绩
+     *
      * @param id
      * @param model
      * @return
@@ -67,6 +69,7 @@ public class TeacherController {
 
     /**
      * 打分页面
+     *
      * @param scc
      * @param model
      * @return
@@ -84,6 +87,7 @@ public class TeacherController {
 
     /**
      * 打分
+     *
      * @param scc
      * @return
      * @throws Exception
@@ -98,6 +102,7 @@ public class TeacherController {
 
     /**
      * 修改密码
+     *
      * @return
      * @throws Exception
      */
@@ -108,6 +113,7 @@ public class TeacherController {
 
     /**
      * 个人信息
+     *
      * @param model
      * @return
      * @throws Exception
@@ -123,6 +129,7 @@ public class TeacherController {
 
     /**
      * 更新个人信息
+     *
      * @param model
      * @param teacher
      * @return

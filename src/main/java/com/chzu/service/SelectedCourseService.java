@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SelectedCourseService{
+public class SelectedCourseService {
 
     @Autowired
     private SelectedCourseDao selectedCourseDao;
@@ -29,7 +29,7 @@ public class SelectedCourseService{
         selectedCourse.setCourseId(id);
         List<SelectedCourse> list = selectedCourseDao.selectByExample(selectedCourse);
 
-        if(list == null && list.size() < 1){
+        if (list == null && list.size() < 1) {
             throw new Globalexception("暂未学生选该课程");
         }
         List<SelectedCourseCustom> secList = new ArrayList<SelectedCourseCustom>();
@@ -46,7 +46,7 @@ public class SelectedCourseService{
                 BeanUtils.copyProperties(student, studentCustom);
                 sec.setStudentCustom(studentCustom);
                 secList.add(sec);
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
 
@@ -61,6 +61,7 @@ public class SelectedCourseService{
 
     /**
      * 获取该课程学生数
+     *
      * @param id
      * @return
      * @throws Exception
@@ -71,11 +72,12 @@ public class SelectedCourseService{
 
     /**
      * 查询指定学生成绩
+     *
      * @param selectedCourse
      * @return
      * @throws Exception
      */
-    public SelectedCourseCustom findOne(SelectedCourse  selectedCourse) throws Exception {
+    public SelectedCourseCustom findOne(SelectedCourse selectedCourse) throws Exception {
         List<SelectedCourse> list = selectedCourseDao.selectByExample(selectedCourse);
         if (list.size() > 0) {
             SelectedCourseCustom sc = new SelectedCourseCustom();
@@ -91,6 +93,7 @@ public class SelectedCourseService{
 
     /**
      * 更新
+     *
      * @param selectedCourse
      * @throws Exception
      */
@@ -100,6 +103,7 @@ public class SelectedCourseService{
 
     /**
      * 保存
+     *
      * @param selectedCourseCustom
      * @throws Exception
      */
@@ -118,6 +122,7 @@ public class SelectedCourseService{
 
     /**
      * 删除
+     *
      * @param selectedCourse
      * @throws Exception
      */
