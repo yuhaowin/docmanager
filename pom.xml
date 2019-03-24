@@ -12,6 +12,7 @@
     <spring.version>4.2.6.RELEASE</spring.version>
     <hibernate.version>4.3.8.Final</hibernate.version>
     <mysql.version>5.1.47</mysql.version>
+    <shiro.version>1.2.3</shiro.version>
 </properties>
 
 <dependencies>
@@ -122,23 +123,31 @@
     <dependency>
         <groupId>org.apache.shiro</groupId>
         <artifactId>shiro-all</artifactId>
-        <version>1.2.3</version>
+        <version>${shiro.version}</version>
     </dependency>
     <dependency>
         <groupId>org.apache.shiro</groupId>
         <artifactId>shiro-core</artifactId>
-        <version>1.2.3</version>
+        <version>${shiro.version}</version>
     </dependency>
     <dependency>
         <groupId>org.apache.shiro</groupId>
         <artifactId>shiro-web</artifactId>
-        <version>1.2.3</version>
+        <version>${shiro.version}</version>
     </dependency>
     <dependency>
         <groupId>org.apache.shiro</groupId>
         <artifactId>shiro-spring</artifactId>
-        <version>1.2.3</version>
+        <version>${shiro.version}</version>
     </dependency>
+
+    <!--工具类-->
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.7</version>
+    </dependency>
+
 </dependencies>
 <build>
     <!-- 配置插件 -->
@@ -153,6 +162,14 @@
                 <!--<url>http://123.206.16.17:8080/manager/text</url>-->
                 <!--<username>tomcat</username>-->
                 <!--<password>tomcat1617</password>-->
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>8</source>
+                <target>8</target>
             </configuration>
         </plugin>
     </plugins>
