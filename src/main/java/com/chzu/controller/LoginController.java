@@ -11,10 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 
+    /**
+     * 用户登录操作
+     *
+     * @param userName
+     * @param passWord
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(String userName, String passWord){
+    public String login(String userName, String passWord) {
         //Shiro实现登录
-        UsernamePasswordToken token = new UsernamePasswordToken(userName,passWord);
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, passWord);
         Subject subject = SecurityUtils.getSubject();
         //如果用户名获取不到则登录失败，然后直接抛出异常
         subject.login(token);

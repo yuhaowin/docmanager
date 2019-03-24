@@ -31,6 +31,14 @@ public class StudentController {
     @Resource(name = "selectedCourseService")
     private SelectedCourseService selectedCourseService;
 
+    /**
+     * 查看课程
+     *
+     * @param model
+     * @param page
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/showCourse")
     public String stuCourseShow(Model model, Integer page) throws Exception {
 
@@ -53,7 +61,13 @@ public class StudentController {
         return "student/showCourse";
     }
 
-    // 选课操作
+    /**
+     * 选课操作
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/stuSelectedCourse")
     public String stuSelectedCourse(int id) throws Exception {
         //获取当前用户名
@@ -79,7 +93,13 @@ public class StudentController {
         return "redirect:/student/selectedCourse";
     }
 
-    // 退课操作
+    /**
+     * 退课操作
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/outCourse")
     public String outCourse(int id) throws Exception {
         Subject subject = SecurityUtils.getSubject();
@@ -94,7 +114,13 @@ public class StudentController {
         return "redirect:/student/selectedCourse";
     }
 
-    // 已选课程
+    /**
+     * 已选课程
+     *
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/selectedCourse")
     public String selectedCourse(Model model) throws Exception {
         //获取当前用户名
@@ -106,14 +132,24 @@ public class StudentController {
     }
 
 
-
-    //修改密码
+    /**
+     * 修改密码
+     *
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/passwordRest")
     public String passwordRest() throws Exception {
         return "student/passwordRest";
     }
 
-    //个人信息
+    /**
+     * 个人信息
+     *
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/profile")
     public String profile(Model model) throws Exception {
         Subject subject = SecurityUtils.getSubject();
@@ -123,7 +159,14 @@ public class StudentController {
         return "student/profile";
     }
 
-    //更新个人信息
+    /**
+     * 更新个人信息
+     *
+     * @param model
+     * @param student
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/profile_update")
     public String profileUpdate(Model model, Student student) throws Exception {
         Subject subject = SecurityUtils.getSubject();
