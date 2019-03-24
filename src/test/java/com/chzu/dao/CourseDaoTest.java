@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -96,11 +95,7 @@ public class CourseDaoTest {
 
     @Test
     public void getByList(){
-//        List<Object> objects = Arrays.asList({1});
-
-        List<Integer> list = new ArrayList<Integer>();
-        list.add(1);
-        list.add(2);
+        List<Integer> list = Arrays.asList(1, 2);
         List<Course> byList = courseDao.getByList(list);
         System.out.println(byList.size());
     }

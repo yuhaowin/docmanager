@@ -9,8 +9,9 @@ import java.util.Date;
 /**
  * 参数绑定 字符串日期转换器
  */
-public class CustomDateConverter implements Converter<String, Date> {
+public class DateConverter implements Converter<String, Date> {
 
+    @Override
     public Date convert(String s) {
         //实现 将日期串转成日期类型(格式是yyyy-MM-dd)
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
