@@ -1,8 +1,15 @@
 package com.chzu.entity;
 
-public class SelectedCourse {
-    private Integer courseId;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="selected_course")
+public class SelectedCourse {
+    @Column(name="course_id")
+    private Integer courseId;
+    @Column(name="student_id")
     private Integer studentId;
 
     private Integer mark;
