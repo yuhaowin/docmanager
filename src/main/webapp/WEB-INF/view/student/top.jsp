@@ -16,7 +16,7 @@
             <div class="navbar navbar-default" role="navigation">
                 　
                 <div class="navbar-header">
-                    　 <a href="##" class="navbar-brand">NIIT教务信息管理系统(学生端)</a>
+                    　 <a href="##" class="navbar-brand">实践教学材料提交系统(学生端)</a>
                     　
                 </div>
                 <form action="##" class="navbar-form navbar-right" rol="search">

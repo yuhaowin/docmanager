@@ -5,6 +5,7 @@ import com.chzu.entity.CourseCustom;
 import com.chzu.entity.SelectedCourse;
 import com.chzu.entity.SelectedCourseCustom;
 import com.chzu.entity.Teacher;
+import com.chzu.exception.Globalexception;
 import com.chzu.service.CourseService;
 import com.chzu.service.SelectedCourseService;
 import com.chzu.service.TeacherService;
@@ -41,7 +42,6 @@ public class TeacherController {
 
         List<CourseCustom> list = courseService.findByTeacherID(Integer.parseInt(username));
         model.addAttribute("courseList", list);
-
         return "teacher/showCourse";
     }
 
