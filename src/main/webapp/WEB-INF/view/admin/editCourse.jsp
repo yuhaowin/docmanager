@@ -33,22 +33,22 @@
                             <label for="inputEmail3" class="col-sm-2 control-label">课程号</label>
                             <div class="col-sm-10">
                                 <input readonly="readonly" type="number" class="form-control" id="inputEmail3"
-                                       value="${course.courseid}" name="courseid" placeholder="请输入课程号">
+                                       value="${course.courseId}" name="courseId" placeholder="请输入课程号">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">课程名称</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputPassword3" name="coursename"
-                                       value="${course.coursename}" placeholder="请输入课程名称">
+                                <input type="text" class="form-control" id="inputPassword3" name="courseName"
+                                       value="${course.courseName}" placeholder="请输入课程名称">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label" name="grade">授课老师编号</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="teacherid" id="teacherid">
+                                <select class="form-control" name="teacherId" id="teacherId">
                                     <c:forEach items="${teacherList}" var="item">
-                                        <option value="${item.userid}">${item.userName}</option>
+                                        <option value="${item.userId}">${item.userName}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -56,28 +56,28 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">上课时间</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="coursetime" value="${course.coursetime}"
+                                <input type="text" class="form-control" name="courseTime" value="${course.courseTime}"
                                        placeholder="请输入上课时间">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">上课地点</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="classroom" value="${course.classroom}"
+                                <input type="text" class="form-control" name="classRoom" value="${course.classRoom}"
                                        placeholder="上课地点">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">周数</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" name="courseweek" value="${course.courseweek}"
+                                <input type="number" class="form-control" name="courseWeek" value="${course.courseWeek}"
                                        placeholder="请输入周数">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label" name="coursetype">课程的类型：</label>
+                            <label for="inputPassword3" class="col-sm-2 control-label" name="courseType">课程的类型：</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="coursetype" id="coursetype">
+                                <select class="form-control" name="courseType" id="courseType">
                                     <option value="必修课">必修课</option>
                                     <option value="选修课">选修课</option>
                                     <option value="公共课">公共课</option>
@@ -87,9 +87,9 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label" name="grade">所属院系</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="collegeid">
+                                <select class="form-control" name="collegeId">
                                     <c:forEach items="${collegeList}" var="item">
-                                        <option value="${item.collegeid}">${item.collegename}</option>
+                                        <option value="${item.collegeId}">${item.collegeName}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -124,21 +124,21 @@
 
     var collegeSelect = $("#college option");
     for (var i = 0; i < collegeSelect.length; i++) {
-        if (collegeSelect[i].value == '${course.collegeid}') {
+        if (collegeSelect[i].value == '${course.collegeId}') {
             collegeSelect[i].selected = true;
         }
     }
 
-    var degreeSelect = $("#coursetype option");
+    var degreeSelect = $("#courseType option");
     for (var i = 0; i < coursetypeSelect.length; i++) {
-        if (coursetypeSelect[i].value == '${course.coursetype}') {
+        if (coursetypeSelect[i].value == '${course.courseType}') {
             coursetypeSelect[i].selected = true;
         }
     }
 
-    var teacheridSelect = $("#teacherid option");
+    var teacheridSelect = $("#teacherId option");
     for (var i = 0; i < teacheridSelect.length; i++) {
-        if (teacheridSelect[i].value == '${course.teacherid}') {
+        if (teacheridSelect[i].value == '${course.teacherId}') {
             teacheridSelect[i].selected = true;
         }
     }

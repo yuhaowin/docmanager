@@ -29,8 +29,8 @@ public class CourseService{
     @Autowired
     private SelectedCourseDao selectedCourseDao;
 
-    public void updateById(Integer id, CourseCustom courseCustom) throws Exception {
-        courseDao.updateByPrimaryKey(courseCustom);
+    public void updateById(Course course){
+        courseDao.updateByPrimaryKey(course);
     }
 
     public Boolean removeById(Integer id) throws Exception {
@@ -39,7 +39,7 @@ public class CourseService{
         selectedCourse.setCourseId(id);
         List<SelectedCourse> list = selectedCourseDao.selectByExample(selectedCourse);
 
-        if (list.size() == 0) {
+        if (list.size() != 0) {
             courseDao.deleteByPrimaryKey(id);
             return true;
         }

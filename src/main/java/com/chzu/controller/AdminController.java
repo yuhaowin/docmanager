@@ -336,9 +336,9 @@ public class AdminController {
 
     // 修改教师信息页面处理
     @RequestMapping(value = "/editCourse", method = {RequestMethod.POST})
-    public String editCourse(CourseCustom courseCustom) throws Exception {
+    public String editCourse(Course course) throws Exception {
 
-        courseService.updateById(courseCustom.getCollegeId(), courseCustom);
+        courseService.updateById(course);
 
         //重定向
         return "redirect:/admin/showCourse";

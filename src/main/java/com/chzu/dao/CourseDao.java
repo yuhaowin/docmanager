@@ -94,7 +94,7 @@ public class CourseDao {
      * @param course
      * @return
      */
-    public void updateByPrimaryKey(CourseCustom course){
+    public void updateByPrimaryKey(Course course){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(course);
