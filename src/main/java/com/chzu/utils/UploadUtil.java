@@ -12,20 +12,27 @@ import java.util.Random;
 
 public class UploadUtil {
 
-    public static Boolean uploadPicture(MultipartFile uploadFile, String imageBaseUrl) {
+    /**
+     * 上传文件
+     *
+     * @param uploadFile
+     * @param basePath
+     * @return 返回文件存放的相对路径
+     */
+    public static String uploadFile(MultipartFile uploadFile, String basePath) {
         //取源文件名,以取得后缀名
         String oldName = uploadFile.getOriginalFilename();
         //生成新的文件名
-        String newName = genImageName();
+        String newName = genFileName();
         newName += oldName.substring(oldName.lastIndexOf("."));
         //图片上传
-        if (!imageBaseUrl.endsWith("/")) {
-            imageBaseUrl += "/";
+        if (!basePath.endsWith("/")) {
+            basePath += "/";
         }
-        String format = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        String imagePath = imageBaseUrl + format;
-        Boolean result = uploadPicture(uploadFile, imagePath, newName);
-        return result;
+        String relativePath = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        String absolutePath = basePath + relativePath;
+        uploadPicture(uploadFile, absolutePath, newName);
+        return relativePath + "/" + newName;
     }
 
 
@@ -33,17 +40,17 @@ public class UploadUtil {
      * 文件上传
      *
      * @param uploadFile 上传文件
-     * @param imagePath  上传路径
-     * @param imageName  文件名称
+     * @param filePath   上传路径
+     * @param fileName   文件名称
      * @return 成功返回 true  失败返回 false
      */
-    public static Boolean uploadPicture(MultipartFile uploadFile, String imagePath, String imageName) {
-        if (!imagePath.endsWith("/")) {
-            imagePath += "/";
+    public static Boolean uploadPicture(MultipartFile uploadFile, String filePath, String fileName) {
+        if (!filePath.endsWith("/")) {
+            filePath += "/";
         }
-        createFile(imagePath);
+        createFile(filePath);
         try {
-            uploadFile.transferTo(new File(imagePath + imageName));
+            uploadFile.transferTo(new File(filePath + fileName));
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -71,7 +78,7 @@ public class UploadUtil {
      *
      * @return
      */
-    public static String genImageName() {
+    public static String genFileName() {
         //取当前时间的长整形值包含毫秒
         long millis = System.currentTimeMillis();
         //加上4位随机数
@@ -82,9 +89,14 @@ public class UploadUtil {
         return imageName;
     }
 
+    /**
+     * 测试函数
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         for (int i = 0; i < 100; i++) {
-            System.out.println(genImageName());
+            System.out.println(genFileName());
         }
     }
 
