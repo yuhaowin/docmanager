@@ -1,15 +1,16 @@
 package com.chzu.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="selected_course")
+@Table(name = "selected_course")
+@IdClass(KeyMap.class)
 public class SelectedCourse {
-    @Column(name="course_id")
+    @Id
+    @Column(name = "course_id")
     private Integer courseId;
-    @Column(name="student_id")
+    @Id
+    @Column(name = "student_id")
     private Integer studentId;
 
     private Integer mark;
