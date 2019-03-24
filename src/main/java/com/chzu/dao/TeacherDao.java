@@ -4,8 +4,10 @@ import com.chzu.entity.Teacher;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,9 +37,11 @@ public class TeacherDao {
      */
     public int deleteById(Integer Id) {
         Session session = sessionFactory.openSession();
+        Transaction tr = session.beginTransaction();
         Teacher teacher = new Teacher();
         teacher.setUserId(Id);
         session.delete(teacher);
+        tr.commit();
         session.close();
         return 1;
     }
@@ -63,7 +67,7 @@ public class TeacherDao {
      */
     public List<Teacher> selectByName(String name) {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from Teacher where user_name = ?");
+        Query query = session.createQuery("from Teacher where userName = ?");
         query.setParameter(0, name);
         List<Teacher> list = query.list();
         session.close();
@@ -95,9 +99,11 @@ public class TeacherDao {
      * @param teacher
      * @return
      */
-    public int update(Teacher teacher) {
+    public int updateTeacher(Teacher teacher) {
         Session session = sessionFactory.openSession();
+        session.beginTransaction();
         session.update(teacher);
+        session.getTransaction().commit();
         session.close();
         return 1;
     }

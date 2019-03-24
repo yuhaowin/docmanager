@@ -78,6 +78,20 @@ public class CourseDao {
     }
 
     /**
+     * 通过tecaherId查找所有课程
+     * @param tecaherId
+     * @return
+     */
+    public List<Course> selectCoursesByTeacherId(Integer tecaherId){
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Course WHERE teacherId = ?");
+        query.setParameter(0, tecaherId);
+        List<Course> list = query.list();
+        session.close();
+        return list;
+    }
+
+    /**
      * 根据 courseId 查询
      * @param courseId
      * @return

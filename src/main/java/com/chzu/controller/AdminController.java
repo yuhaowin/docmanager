@@ -175,7 +175,7 @@ public class AdminController {
 
     // 添加教师信息
     @RequestMapping(value = "/addTeacher", method = {RequestMethod.GET})
-    public String addTeacherUI(Model model) throws Exception {
+    public String addTeacherUI(Model model){
 
         List<College> list = collegeService.finAll();
 

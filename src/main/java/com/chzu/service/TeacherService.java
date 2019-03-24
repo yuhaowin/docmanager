@@ -32,16 +32,14 @@ public class TeacherService {
     private CourseDao courseDao;
 
     public void updateById(Teacher teacher){
-        teacherDao.update(teacher);
+        teacherDao.updateTeacher(teacher);
     }
 
     public void removeById(Integer id) throws Globalexception {
-        //List<Course> list = courseDao.selectByExample(courseExample);
-        List<Course> list = null;
+        List<Course> list = courseDao.selectCoursesByTeacherId(id);
         if (list.size() != 0) {
             throw new Globalexception("请先删除该名老师所教授的课程");
         }
-
         teacherDao.deleteById(id);
     }
 
@@ -121,6 +119,6 @@ public class TeacherService {
 
     public int profileUpdate(Teacher teacher) {
         System.out.println(teacher.getUserName());
-        return teacherDao.update(teacher);
+        return teacherDao.updateTeacher(teacher);
     }
 }

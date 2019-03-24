@@ -32,8 +32,8 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">工号</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="inputEmail3" name="userid"
-                                       placeholder="请输入学号">
+                                <input type="number" class="form-control" id="inputEmail3" name="userId"
+                                       placeholder="请输入工号">
                             </div>
                         </div>
                         <div class="form-group">
@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">出生年份</label>
                             <div class="col-sm-10">
-                                <input type="date" value="1996-09-02" name="birthyear"/>
+                                <input type="date" value="1996-09-02" name="birthYear"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -85,15 +85,15 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label" name="grade">入职时间</label>
                             <div class="col-sm-10">
-                                <input type="date" value="2015-09-02" name="grade"/>
+                                <input type="date" value="2019-04-02" name="grade"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label" name="grade">所属院系</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="collegeid">
+                                <select class="form-control" name="collegeId">
                                     <c:forEach items="${collegeList}" var="item">
-                                        <option value="${item.collegeid}">${item.collegename}</option>
+                                        <option value="${item.collegeId}">${item.collegeName}</option>
                                     </c:forEach>
                                 </select>
                             </div>
