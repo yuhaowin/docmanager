@@ -1,7 +1,6 @@
 package com.chzu.dao;
 
 import com.chzu.entity.College;
-import com.chzu.entity.CollegeExample;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +15,9 @@ public class CollegeDao {
 
     /**
      * 查询课程
-     * @param example
      * @return
      */
-    public  List<College> selectByExample(CollegeExample example){
+    public  List<College> selectByExample(){
         Session session = sessionFactory.openSession();
         List<College> colleges = session.createQuery("from College").list();
         session.close();

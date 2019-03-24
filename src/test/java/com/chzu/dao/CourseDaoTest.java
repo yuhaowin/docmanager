@@ -69,7 +69,7 @@ public class CourseDaoTest {
 
     @Test
     public void updateByPrimaryKey() {
-        Course course = new  Course();
+        CourseCustom course = new  CourseCustom();
         course.setCourseId(9);
         course.setCourseName("测试课程333");
         course.setTeacherId(11);

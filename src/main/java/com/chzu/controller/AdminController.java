@@ -74,9 +74,9 @@ public class AdminController {
 
     // 添加学生信息操作
     @RequestMapping(value = "/addStudent", method = {RequestMethod.POST})
-    public String addStudent(StudentCustom studentCustom, Model model) throws Exception {
+    public String addStudent(Student student, Model model) throws Exception {
 
-        Boolean result = studentService.save(studentCustom);
+        Boolean result = studentService.save(student);
 
         if (!result) {
             model.addAttribute("message", "学号重复");
@@ -84,7 +84,7 @@ public class AdminController {
         }
         //添加成功后，也添加到登录表
         UserLogin userlogin = new UserLogin();
-        userlogin.setUserName(studentCustom.getUserId().toString());
+        userlogin.setUserName(student.getUserId().toString());
         userlogin.setPassword("123");
         userlogin.setRoleId(2);
         userloginService.save(userlogin);
@@ -115,9 +115,9 @@ public class AdminController {
 
     // 修改学生信息处理
     @RequestMapping(value = "/editStudent", method = {RequestMethod.POST})
-    public String editStudent(StudentCustom studentCustom) throws Exception {
+    public String editStudent(Student student) {
 
-        studentService.updataById(studentCustom.getUserId(), studentCustom);
+        studentService.updataById(student);
 
         //重定向
         return "redirect:/admin/showStudent";
@@ -185,9 +185,9 @@ public class AdminController {
 
     // 添加教师信息处理
     @RequestMapping(value = "/addTeacher", method = {RequestMethod.POST})
-    public String addTeacher(TeacherCustom teacherCustom, Model model) throws Exception {
+    public String addTeacher(Teacher teacher, Model model) throws Exception {
 
-        Boolean result = teacherService.save(teacherCustom);
+        Boolean result = teacherService.save(teacher);
 
         if (!result) {
             model.addAttribute("message", "工号重复");
@@ -195,7 +195,7 @@ public class AdminController {
         }
         //添加成功后，也添加到登录表
         UserLogin userlogin = new UserLogin();
-        userlogin.setUserName(teacherCustom.getUserId().toString());
+        userlogin.setUserName(teacher.getUserId().toString());
         userlogin.setPassword("123");
         userlogin.setRoleId(1);
         userloginService.save(userlogin);
@@ -226,9 +226,9 @@ public class AdminController {
 
     // 修改教师信息页面处理
     @RequestMapping(value = "/editTeacher", method = {RequestMethod.POST})
-    public String editTeacher(TeacherCustom teacherCustom) throws Exception {
+    public String editTeacher(Teacher teacher){
 
-        teacherService.updateById(teacherCustom.getUserId(), teacherCustom);
+        teacherService.updateById(teacher);
 
         //重定向
         return "redirect:/admin/showTeacher";
@@ -298,7 +298,7 @@ public class AdminController {
 
     // 添加课程信息处理
     @RequestMapping(value = "/addCourse", method = {RequestMethod.POST})
-    public String addCourse(CourseCustom courseCustom, Model model) throws Exception {
+    public String addCourse(Course courseCustom, Model model) throws Exception {
 
         Boolean result = courseService.save(courseCustom);
 

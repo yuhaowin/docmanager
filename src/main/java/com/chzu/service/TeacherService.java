@@ -31,8 +31,8 @@ public class TeacherService {
     @Autowired
     private CourseDao courseDao;
 
-    public void updateById(Integer id, TeacherCustom teacherCustom) throws Exception {
-        teacherDao.update(teacherCustom);
+    public void updateById(Teacher teacher){
+        teacherDao.update(teacher);
     }
 
     public void removeById(Integer id) throws Globalexception {
@@ -54,11 +54,11 @@ public class TeacherService {
         return list;
     }
 
-    public Boolean save(TeacherCustom teacherCustom) {
+    public Boolean save(Teacher teacher) {
 
-        Teacher tea = teacherDao.selectById(teacherCustom.getUserId());
+        Teacher tea = teacherDao.selectById(teacher.getUserId());
         if (tea == null) {
-            teacherDao.insert(teacherCustom);
+            teacherDao.insert(teacher);
             return true;
         }
         return false;

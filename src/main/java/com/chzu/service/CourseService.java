@@ -55,10 +55,10 @@ public class CourseService{
         return list;
     }
 
-    public Boolean save(CourseCustom couseCustom) throws Exception {
-        Course course = courseDao.selectByPrimaryKey(couseCustom.getCourseId());
-        if (course == null) {
-            courseDao.insert(couseCustom);
+    public Boolean save(Course course) throws Exception {
+        Course courseOld = courseDao.selectByPrimaryKey(course.getCourseId());
+        if (courseOld == null) {
+            courseDao.insert(course);
             return true;
         }
         return false;

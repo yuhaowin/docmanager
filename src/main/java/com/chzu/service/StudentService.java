@@ -28,8 +28,8 @@ public class StudentService {
     @Autowired
     private CollegeDao collegeDao;
 
-    public void updataById(Integer id, StudentCustom studentCustom) {
-        studentDao.update(studentCustom);
+    public void updataById(Student student) {
+        studentDao.update(student);
     }
 
     public void removeById(Integer id) {
@@ -43,10 +43,10 @@ public class StudentService {
         return list;
     }
 
-    public Boolean save(StudentCustom studentCustoms) {
-        Student stu = studentDao.selectById(studentCustoms.getUserId());
+    public Boolean save(Student student) {
+        Student stu = studentDao.selectById(student.getUserId());
         if (stu == null) {
-            studentDao.insert(studentCustoms);
+            studentDao.insert(student);
             return true;
         }
         return false;
