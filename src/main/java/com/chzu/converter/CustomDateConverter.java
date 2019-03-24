@@ -14,8 +14,6 @@ public class CustomDateConverter implements Converter<String, Date> {
     public Date convert(String s) {
         //实现 将日期串转成日期类型(格式是yyyy-MM-dd)
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println("测速*******" + s);
-
         try {
             //转成直接返回
             return simpleDateFormat.parse(s);

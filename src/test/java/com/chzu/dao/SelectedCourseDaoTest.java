@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring/applicationContext-dao.xml"})
 public class SelectedCourseDaoTest {
@@ -21,6 +23,11 @@ public class SelectedCourseDaoTest {
 
     @Test
     public void delete() {
+        SelectedCourse selectedCourse = new SelectedCourse();
+        selectedCourse.setCourseId(3);
+        selectedCourse.setStudentId(10001);
+        selectedCourseDao.delete(selectedCourse);
+        System.out.println("2222");
     }
 
     @Test
@@ -38,5 +45,11 @@ public class SelectedCourseDaoTest {
         selectedCourse.setStudentId(123);
         selectedCourse.setMark(1);
         selectedCourseDao.updateByExample(selectedCourse);
+    }
+
+    @Test
+    public void getByStudentId(){
+        List<Integer> list = selectedCourseDao.getByStudentId(10006);
+        System.out.println(list.size());
     }
 }
