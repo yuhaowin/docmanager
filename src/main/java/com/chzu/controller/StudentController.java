@@ -65,7 +65,11 @@ public class StudentController {
         selectedCourseCustom.setCourseId(id);
         selectedCourseCustom.setStudentId(Integer.parseInt(username));
 
-        SelectedCourseCustom s = selectedCourseService.findOne(selectedCourseCustom);
+        SelectedCourse selectedCourse = new SelectedCourse();
+        selectedCourse.setCourseId(id);
+        selectedCourse.setStudentId(selectedCourseCustom.getStudentId());
+
+        SelectedCourseCustom s = selectedCourseService.findOne(selectedCourse);
 
         if (s == null) {
             selectedCourseService.save(selectedCourseCustom);
@@ -82,11 +86,11 @@ public class StudentController {
         Subject subject = SecurityUtils.getSubject();
         String username = (String) subject.getPrincipal();
 
-        SelectedCourseCustom selectedCourseCustom = new SelectedCourseCustom();
-        selectedCourseCustom.setCourseId(id);
-        selectedCourseCustom.setStudentId(Integer.parseInt(username));
+        SelectedCourse selectedCourse = new SelectedCourse();
+        selectedCourse.setCourseId(id);
+        selectedCourse.setStudentId(Integer.parseInt(username));
 
-        selectedCourseService.remove(selectedCourseCustom);
+        selectedCourseService.remove(selectedCourse);
 
         return "redirect:/student/selectedCourse";
     }
@@ -96,12 +100,9 @@ public class StudentController {
     public String selectedCourse(Model model) throws Exception {
         //获取当前用户名
         Subject subject = SecurityUtils.getSubject();
-        StudentCustom studentCustom = studentService.findStudentAndSelectCourseListByName((String) subject.getPrincipal());
-//
-//        List<SelectedCourseCustom> list = studentCustom.getSelectedCourseList();
-//
-//        model.addAttribute("selectedCourseList", list);
-
+        String username = (String) subject.getPrincipal();
+        List<Course> list = studentService.studentCourseList(Integer.parseInt(username));
+        model.addAttribute("selectedCourseList", list);
         return "student/selectCourse";
     }
 
@@ -138,16 +139,15 @@ public class StudentController {
 
     //更新个人信息
     @RequestMapping(value = "/profile_update")
-    public String profileUpdate(Model model, @RequestParam("userName") String username, @RequestParam("sex") String sex, @RequestParam("collegeID") int collegeid) throws Exception {
+    public String profileUpdate(Model model, Student student) throws Exception {
         Subject subject = SecurityUtils.getSubject();
-        String userid = (String) subject.getPrincipal();
-        Student student = new Student();
-        student.setUserId(Integer.parseInt(userid));
-        student.setUserName(username);
-        student.setSex(sex);
-        student.setCollegeId(collegeid);
+        Integer userId = Integer.parseInt(subject.getPrincipal().toString());
+        student.setUserId(userId);
+        StudentCustom studentOld = studentService.findById(userId);
+        student.setBirthYear(studentOld.getBirthYear());
+        student.setGrade(studentOld.getGrade());
+        student.setCollegeId(studentOld.getCollegeId());
         int result = studentService.profileUpdate(student);
-        System.out.println(result);
         return profile(model);
     }
 

@@ -60,16 +60,16 @@ public class SelectedCourseService{
 
     /**
      * 查询指定学生成绩
-     * @param selectedCourseCustom
+     * @param selectedCourse
      * @return
      * @throws Exception
      */
-    public SelectedCourseCustom findOne(SelectedCourseCustom selectedCourseCustom) throws Exception {
-        List<SelectedCourse> list = selectedCourseDao.selectByExample(selectedCourseCustom);
+    public SelectedCourseCustom findOne(SelectedCourse  selectedCourse) throws Exception {
+        List<SelectedCourse> list = selectedCourseDao.selectByExample(selectedCourse);
         if (list.size() > 0) {
             SelectedCourseCustom sc = new SelectedCourseCustom();
             BeanUtils.copyProperties(list.get(0), sc);
-            Student student = studentDao.selectById(selectedCourseCustom.getStudentId());
+            Student student = studentDao.selectById(selectedCourse.getStudentId());
             StudentCustom studentCustom = new StudentCustom();
             BeanUtils.copyProperties(student, studentCustom);
             sc.setStudentCustom(studentCustom);
@@ -80,11 +80,11 @@ public class SelectedCourseService{
 
     /**
      * 更新
-     * @param selectedCourseCustom
+     * @param selectedCourse
      * @throws Exception
      */
-    public void updateOne(SelectedCourseCustom selectedCourseCustom) throws Exception {
-        selectedCourseDao.updateByExample(selectedCourseCustom);
+    public void updateOne(SelectedCourse selectedCourse) throws Exception {
+        selectedCourseDao.updateByExample(selectedCourse);
     }
 
     /**
@@ -93,7 +93,11 @@ public class SelectedCourseService{
      * @throws Exception
      */
     public void save(SelectedCourseCustom selectedCourseCustom) throws Exception {
-        selectedCourseDao.insert(selectedCourseCustom);
+        SelectedCourse selectedCourse = new SelectedCourse();
+        selectedCourse.setCourseId(selectedCourseCustom.getCourseId());
+        selectedCourse.setMark(selectedCourseCustom.getMark());
+        selectedCourse.setStudentId(selectedCourseCustom.getStudentId());
+        selectedCourseDao.insert(selectedCourse);
     }
 
 
@@ -103,11 +107,12 @@ public class SelectedCourseService{
 
     /**
      * 删除
-     * @param selectedCourseCustom
+     * @param selectedCourse
      * @throws Exception
      */
-    public void remove(SelectedCourseCustom selectedCourseCustom) throws Exception {
-        selectedCourseDao.delete(selectedCourseCustom);
+    public void remove(SelectedCourse selectedCourse) throws Exception {
+        selectedCourseDao.delete(selectedCourse);
     }
+
 
 }

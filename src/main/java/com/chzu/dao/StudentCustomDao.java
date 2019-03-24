@@ -32,10 +32,9 @@ public class StudentCustomDao {
 
     //查询学生信息，和其选课信息
     public StudentCustom findStudentAndSelectCourseListById(Integer id) {
-        String hql = "select student.*,selected_course.*,course.* from student,selected_course,course WHERE student.user_id =? " +
-                " AND student.user_id = selected_course.student_id AND selected_course.course_id = course.course_id";
+        String hql = "select student.*, college.college_name collegeName from student, college WHERE student.college_id = college.college_id and student.user_id = ?";
         Session session = sessionFactory.openSession();
-        Query query = session.createSQLQuery(hql);
+        Query query = session.createSQLQuery(hql).addEntity(StudentCustom.class);
         query.setParameter(0, id);
         StudentCustom studentCustom = (StudentCustom) query.list().get(0);
         session.close();

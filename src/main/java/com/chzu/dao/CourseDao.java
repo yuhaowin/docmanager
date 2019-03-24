@@ -132,4 +132,12 @@ public class CourseDao {
         session.close();
         return  courseCustoms;
     }
+
+    public List<Course> getByList(List<Integer> courseIds){
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Course where courseId in (:ids)").setParameterList("ids", courseIds);
+        List<Course> list = query.list();
+        session.close();
+        return list;
+    }
 }

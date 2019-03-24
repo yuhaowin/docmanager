@@ -3,10 +3,7 @@ package com.chzu.dao;
 import com.chzu.entity.Course;
 import com.chzu.entity.SelectedCourse;
 import com.chzu.entity.SelectedCourseCustom;
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +51,9 @@ public class SelectedCourseDao {
      */
     public void insert(SelectedCourse selectedCourse){
         Session session = sessionFactory.openSession();
+        session.beginTransaction();
         session.save(selectedCourse);
+        session.getTransaction().commit();
         session.close();
     }
 
@@ -65,7 +64,7 @@ public class SelectedCourseDao {
      */
     public  List<SelectedCourse> selectByExample(SelectedCourse selectedCourse){
         Session session = sessionFactory.openSession();
-        DetachedCriteria dc = DetachedCriteria.forClass(Course.class);
+        DetachedCriteria dc = DetachedCriteria.forClass(SelectedCourse.class);
         if(selectedCourse.getCourseId() != null){
             dc.add(Restrictions.eq("courseId", selectedCourse.getCourseId() ));
         }
@@ -87,5 +86,14 @@ public class SelectedCourseDao {
         query.setParameter(2, selectedCourse.getStudentId());
         query.executeUpdate();
         session.close();
+    }
+
+    public List<Integer> getByStudentId(Integer studentId){
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery("select course_id from selected_course where student_id = ?");
+        query.setParameter(0, studentId);
+        List<Integer> list = query.list();
+        session.close();
+        return list;
     }
 }

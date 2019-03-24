@@ -1,9 +1,7 @@
 package com.chzu.service;
 
 
-import com.chzu.dao.CollegeDao;
-import com.chzu.dao.StudentCustomDao;
-import com.chzu.dao.StudentDao;
+import com.chzu.dao.*;
 import com.chzu.entity.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,12 @@ public class StudentService {
 
     @Autowired
     private CollegeDao collegeDao;
+
+    @Autowired
+    private CourseDao courseDao;
+
+    @Autowired
+    private SelectedCourseDao selectedCourseDao;
 
     public void updataById(Student student) {
         studentDao.update(student);
@@ -111,5 +115,12 @@ public class StudentService {
 
     public int profileUpdate(Student student) {
         return studentDao.update(student);
+    }
+
+    public List<Course> studentCourseList(Integer studentId){
+        List<Integer> list = selectedCourseDao.getByStudentId(studentId);
+        List<Course> courses = courseDao.getByList(list);
+        return courses;
+
     }
 }

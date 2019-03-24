@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label for="userID" class="col-sm-2 control-label">学号</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="userID" id="userID"
+                                <input type="text" class="form-control" name="userId" id="userID"
                                        value="${student.userId}" disabled>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                             <label for="birthYear" class="col-sm-2 control-label">出生日期</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="birthYear" id="birthYear"
-                                       placeholder="请输入出生日期" value="${student.birthYear}" disabled>
+                                       placeholder="请输入出生日期" value="${student.birthYear}">
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label for="collegeID" class="col-sm-2 control-label">所属学院代码</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="collegeID" id="collegeID"
+                                <input type="text" class="form-control" name="collegeId" id="collegeID"
                                        placeholder="请输入所属学院代码" value="${student.collegeId}">
                             </div>
                         </div>

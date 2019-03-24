@@ -2,6 +2,7 @@ package com.chzu.controller;
 
 
 import com.chzu.entity.CourseCustom;
+import com.chzu.entity.SelectedCourse;
 import com.chzu.entity.SelectedCourseCustom;
 import com.chzu.entity.Teacher;
 import com.chzu.service.CourseService;
@@ -57,7 +58,7 @@ public class TeacherController {
 
     // 打分
     @RequestMapping(value = "/mark", method = {RequestMethod.GET})
-    public String markUI(SelectedCourseCustom scc, Model model) throws Exception {
+    public String markUI(SelectedCourse scc, Model model) throws Exception {
 
         SelectedCourseCustom selectedCourseCustom = selectedCourseService.findOne(scc);
 
@@ -68,7 +69,7 @@ public class TeacherController {
 
     // 打分
     @RequestMapping(value = "/mark", method = {RequestMethod.POST})
-    public String mark(SelectedCourseCustom scc) throws Exception {
+    public String mark(SelectedCourse scc) throws Exception {
 
         selectedCourseService.updateOne(scc);
 
