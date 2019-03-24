@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">账号(非管理员账号)</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="username" id="inputEmail3"
+                                <input type="text" class="form-control" name="userName" id="inputEmail3"
                                        placeholder="请输入用户名">
                             </div>
                         </div>

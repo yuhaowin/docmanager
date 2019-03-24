@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">学号</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="inputEmail3" name="userid"
+                                <input type="number" class="form-control" id="inputEmail3" name="userId"
                                        placeholder="请输入学号"
                                 <c:if test='${student!=null}'>
                                        value="${student.userId}"
@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">出生年份</label>
                             <div class="col-sm-10">
-                                <input type="date" value="1996-09-02" name="birthyear"/>
+                                <input type="date" value="1996-09-02" name="birthYear"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -75,7 +75,7 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label" name="grade">所属院系</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="collegeid">
+                                <select class="form-control" name="collegeId">
                                     <c:forEach items="${collegeList}" var="item">
                                         <option value="${item.collegeId}">${item.collegeName}</option>
                                     </c:forEach>

@@ -378,7 +378,10 @@ public class AdminController {
     @RequestMapping(value = "/userPasswordRest", method = {RequestMethod.POST})
     public String userPasswordRest(UserLogin userLogin) throws Exception {
 
+
         UserLogin u = userloginService.findByName(userLogin.getUserName());
+
+
 
         if (u != null) {
             if (u.getRoleId() == 0) {

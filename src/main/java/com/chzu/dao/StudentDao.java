@@ -46,7 +46,9 @@ public class StudentDao {
         Session session = sessionFactory.openSession();
         Student student = new Student();
         student.setUserId(Id);
+        session.beginTransaction();
         session.delete(student);
+        session.getTransaction().commit();
         session.close();
         return 1;
     }
@@ -100,7 +102,9 @@ public class StudentDao {
      */
     public int update(Student student) {
         Session session = sessionFactory.openSession();
+        session.beginTransaction();
         session.update(student);
+        session.getTransaction().commit();
         session.close();
         return 1;
     }
