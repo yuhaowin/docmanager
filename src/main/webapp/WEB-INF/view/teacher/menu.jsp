@@ -15,7 +15,7 @@
             <a href="/logout">退出系统<sapn class="glyphicon glyphicon-log-out pull-right"/></a>
         </li>
         <li class="disabled">
-            <a href="##">QDU-NIIT</a>
+            <a href="##">实践教学材料提交系统</a>
         </li>
     </ul>
 </div>

@@ -9,12 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
-/**
- * 文件上传下载工具类
- *
- * @author Eric_余浩
- * @version 1.0
- */
+
 public class UploadUtil {
 
     public static Boolean uploadPicture(MultipartFile uploadFile, String imageBaseUrl) {
