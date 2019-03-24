@@ -3,10 +3,7 @@ package com.chzu.dao;
 import com.chzu.entity.Course;
 import com.chzu.entity.CourseCustom;
 import com.chzu.entity.PagingVO;
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,10 +66,13 @@ public class CourseDao {
             dc.add(Restrictions.eq("teacherId", course.getTeacherId()));
         }
         if(course.getCourseName() != null){
-            dc.add(Restrictions.eq("courseName", "%" + course.getCourseName() + "%"));
+            dc.add(Restrictions.like("courseName", "%" + course.getCourseName() + "%"));
         }
+        // 开启事务
+        Transaction txn = session.beginTransaction();
         Criteria c = dc.getExecutableCriteria(session);
         List<Course> courses = c.list();
+        txn.commit();
         session.close();
         return courses;
     }
