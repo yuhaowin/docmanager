@@ -34,7 +34,7 @@
                             <label for="inputEmail3" class="col-sm-2 control-label">工号</label>
                             <div class="col-sm-10">
                                 <input readonly="readonly" type="number" class="form-control" id="inputEmail3"
-                                       name="userid" placeholder="请输入工号" value="${teacher.userid}">
+                                       name="userId" placeholder="请输入工号" value="${teacher.userId}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -59,8 +59,8 @@
                             <label for="inputPassword3" class="col-sm-2 control-label">出生年份</label>
                             <div class="col-sm-10">
                                 <input type="date"
-                                       value="<fmt:formatDate value="${teacher.birthyear}" dateStyle="medium" pattern="yyyy-MM-dd" />"
-                                       name="birthyear"/>
+                                       value="<fmt:formatDate value="${teacher.birthYear}" dateStyle="medium" pattern="yyyy-MM-dd" />"
+                                       name="birthYear"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -96,9 +96,9 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label" name="grade">所属院系</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="collegeid" id="college">
+                                <select class="form-control" name="collegeId" id="college">
                                     <c:forEach items="${collegeList}" var="item">
-                                        <option value="${item.collegeid}">${item.collegename}</option>
+                                        <option value="${item.collegeId}">${item.collegeName}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -126,7 +126,7 @@
 
     var collegeSelect = $("#college option");
     for (var i = 0; i < collegeSelect.length; i++) {
-        if (collegeSelect[i].value == '${teacher.collegeid}') {
+        if (collegeSelect[i].value == '${teacher.collegeId}') {
             collegeSelect[i].selected = true;
         }
     }
