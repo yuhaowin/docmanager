@@ -64,7 +64,7 @@
                             <div class="col-sm-10">
                                 <input type="date"
                                        value="<fmt:formatDate value="${student.birthYear}" dateStyle="medium" pattern="yyyy-MM-dd" />"
-                                       name="birthyear"/>
+                                       name="birthYear"/>
                             </div>
                         </div>
                         <div class="form-group">

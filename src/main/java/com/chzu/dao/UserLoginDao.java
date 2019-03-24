@@ -65,7 +65,9 @@ public class UserLoginDao {
      */
     public int updateByName(UserLogin userlogin) {
         Session session = sessionFactory.openSession();
+        session.beginTransaction();
         session.update(userlogin);
+        session.getTransaction().commit();
         session.close();
         return 1;
     }

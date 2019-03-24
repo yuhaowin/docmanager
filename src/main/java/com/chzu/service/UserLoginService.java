@@ -2,6 +2,7 @@ package com.chzu.service;
 
 import com.chzu.dao.UserLoginDao;
 import com.chzu.entity.UserLogin;
+import com.chzu.exception.Globalexception;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +23,12 @@ public class UserLoginService {
      * @param name
      * @return
      */
-    public UserLogin findByName(String name) {
+    public UserLogin findByName(String name) throws Exception {
 
         List<UserLogin> list = userLoginDao.selectByName(name);
-
+        if(list.size() == 0){
+            throw new Globalexception("未查到该用户");
+        }
         return list.get(0);
     }
 
