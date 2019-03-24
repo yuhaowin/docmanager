@@ -5,7 +5,6 @@ import com.chzu.entity.CourseCustom;
 import com.chzu.entity.SelectedCourse;
 import com.chzu.entity.SelectedCourseCustom;
 import com.chzu.entity.Teacher;
-import com.chzu.exception.Globalexception;
 import com.chzu.service.CourseService;
 import com.chzu.service.SelectedCourseService;
 import com.chzu.service.TeacherService;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -33,7 +31,12 @@ public class TeacherController {
     @Resource(name = "selectedCourseService")
     private SelectedCourseService selectedCourseService;
 
-    // 显示我的课程
+    /**
+     * 显示我的课程
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/showCourse")
     public String stuCourseShow(Model model) throws Exception {
 
@@ -45,7 +48,13 @@ public class TeacherController {
         return "teacher/showCourse";
     }
 
-    // 显示成绩
+    /**
+     * 显示成绩
+     * @param id
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/gradeCourse")
     public String gradeCourse(Integer id, Model model) throws Exception {
         if (id == null) {
@@ -56,7 +65,13 @@ public class TeacherController {
         return "teacher/showGrade";
     }
 
-    // 打分
+    /**
+     * 打分页面
+     * @param scc
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/mark", method = {RequestMethod.GET})
     public String markUI(SelectedCourse scc, Model model) throws Exception {
 
@@ -67,7 +82,12 @@ public class TeacherController {
         return "teacher/mark";
     }
 
-    // 打分
+    /**
+     * 打分
+     * @param scc
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/mark", method = {RequestMethod.POST})
     public String mark(SelectedCourse scc) throws Exception {
 
@@ -76,13 +96,22 @@ public class TeacherController {
         return "redirect:/teacher/gradeCourse?id=" + scc.getCourseId();
     }
 
-    //修改密码
+    /**
+     * 修改密码
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/passwordRest")
     public String passwordRest() throws Exception {
         return "teacher/passwordRest";
     }
 
-    //个人信息
+    /**
+     * 个人信息
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/profile")
     public String profile(Model model) throws Exception {
         Subject subject = SecurityUtils.getSubject();
@@ -92,7 +121,13 @@ public class TeacherController {
         return "teacher/profile";
     }
 
-    //更新个人信息
+    /**
+     * 更新个人信息
+     * @param model
+     * @param teacher
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/profile_update")
     public String profileUpdate(Model model, Teacher teacher) throws Exception {
         Subject subject = SecurityUtils.getSubject();

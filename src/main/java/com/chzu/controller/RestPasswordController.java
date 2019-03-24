@@ -21,7 +21,13 @@ public class RestPasswordController {
     @Resource(name = "userLoginService")
     private UserLoginService userLoginService;
 
-    // 本账户密码重置
+    /**
+     * 本账户密码重置
+     * @param oldPassword
+     * @param password1
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/passwordRest", method = {RequestMethod.POST})
     public String passwordRest(String oldPassword, String password1) throws Exception {
         Subject subject = SecurityUtils.getSubject();

@@ -38,7 +38,14 @@ public class AdminController {
 
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<学生操作>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-    //  学生信息显示
+    /**
+     * 学生信息显示
+     *
+     * @param model
+     * @param page
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/showStudent")
     public String showStudent(Model model, Integer page) throws Exception {
 
@@ -62,7 +69,13 @@ public class AdminController {
 
     }
 
-    //  添加学生信息页面显示
+    /**
+     * 添加学生信息页面显示
+     *
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/addStudent", method = {RequestMethod.GET})
     public String addStudentUI(Model model) throws Exception {
 
@@ -73,7 +86,14 @@ public class AdminController {
         return "admin/addStudent";
     }
 
-    // 添加学生信息操作
+    /**
+     * 添加学生信息操作
+     *
+     * @param student
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/addStudent", method = {RequestMethod.POST})
     public String addStudent(Student student, Model model) throws Exception {
 
@@ -94,7 +114,14 @@ public class AdminController {
         return "redirect:/admin/showStudent";
     }
 
-    // 修改学生信息页面显示
+    /**
+     * 修改学生信息页面显示
+     *
+     * @param id
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/editStudent", method = {RequestMethod.GET})
     public String editStudentUI(Integer id, Model model) throws Exception {
         if (id == null) {
@@ -114,7 +141,12 @@ public class AdminController {
         return "admin/editStudent";
     }
 
-    // 修改学生信息处理
+    /**
+     * 修改学生信息处理
+     *
+     * @param student
+     * @return
+     */
     @RequestMapping(value = "/editStudent", method = {RequestMethod.POST})
     public String editStudent(Student student) {
 
@@ -124,7 +156,13 @@ public class AdminController {
         return "redirect:/admin/showStudent";
     }
 
-    // 删除学生
+    /**
+     * 删除学生
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/removeStudent", method = {RequestMethod.GET})
     private String removeStudent(Integer id) throws Exception {
         if (id == null) {
@@ -137,7 +175,14 @@ public class AdminController {
         return "redirect:/admin/showStudent";
     }
 
-    // 搜索学生
+    /**
+     * 搜索学生
+     *
+     * @param findByName
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "selectStudent", method = {RequestMethod.POST})
     private String selectStudent(String findByName, Model model) throws Exception {
 
@@ -149,7 +194,14 @@ public class AdminController {
 
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<教师操作>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-    // 教师页面显示
+    /**
+     * 教师页面显示
+     *
+     * @param model
+     * @param page
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/showTeacher")
     public String showTeacher(Model model, Integer page) throws Exception {
 
@@ -173,9 +225,14 @@ public class AdminController {
 
     }
 
-    // 添加教师信息
+    /**
+     * 添加教师信息
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/addTeacher", method = {RequestMethod.GET})
-    public String addTeacherUI(Model model){
+    public String addTeacherUI(Model model) {
 
         List<College> list = collegeService.finAll();
 
@@ -184,7 +241,14 @@ public class AdminController {
         return "admin/addTeacher";
     }
 
-    // 添加教师信息处理
+    /**
+     * 添加教师信息处理
+     *
+     * @param teacher
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/addTeacher", method = {RequestMethod.POST})
     public String addTeacher(Teacher teacher, Model model) throws Exception {
 
@@ -206,7 +270,14 @@ public class AdminController {
         return "redirect:/admin/showTeacher";
     }
 
-    // 修改教师信息页面显示
+    /**
+     * 修改教师信息页面显示
+     *
+     * @param id
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/editTeacher", method = {RequestMethod.GET})
     public String editTeacherUI(Integer id, Model model) throws Exception {
         if (id == null) {
@@ -225,9 +296,14 @@ public class AdminController {
         return "admin/editTeacher";
     }
 
-    // 修改教师信息页面处理
+    /**
+     * 修改教师信息页面处理
+     *
+     * @param teacher
+     * @return
+     */
     @RequestMapping(value = "/editTeacher", method = {RequestMethod.POST})
-    public String editTeacher(Teacher teacher){
+    public String editTeacher(Teacher teacher) {
 
         teacherService.updateById(teacher);
 
@@ -235,7 +311,13 @@ public class AdminController {
         return "redirect:/admin/showTeacher";
     }
 
-    //删除教师
+    /**
+     * 删除教师
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/removeTeacher")
     public String removeTeacher(Integer id) throws Exception {
         if (id == null) {
@@ -248,7 +330,14 @@ public class AdminController {
         return "redirect:/admin/showTeacher";
     }
 
-    //搜索教师
+    /**
+     * 搜索教师
+     *
+     * @param findByName
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "selectTeacher", method = {RequestMethod.POST})
     private String selectTeacher(String findByName, Model model) throws Exception {
 
@@ -260,7 +349,14 @@ public class AdminController {
 
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<课程操作>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-    // 课程信息显示
+    /**
+     * 课程信息显示
+     *
+     * @param model
+     * @param page
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/showCourse")
     public String showCourse(Model model, Integer page) throws Exception {
 
@@ -284,7 +380,13 @@ public class AdminController {
 
     }
 
-    //添加课程
+    /**
+     * 添加课程
+     *
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/addCourse", method = {RequestMethod.GET})
     public String addCourseUI(Model model) throws Exception {
 
@@ -297,7 +399,14 @@ public class AdminController {
         return "admin/addCourse";
     }
 
-    // 添加课程信息处理
+    /**
+     * 添加课程信息处理
+     *
+     * @param courseCustom
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/addCourse", method = {RequestMethod.POST})
     public String addCourse(Course courseCustom, Model model) throws Exception {
 
@@ -313,7 +422,14 @@ public class AdminController {
         return "redirect:/admin/showCourse";
     }
 
-    // 修改教师信息页面显示
+    /**
+     * 修改教师信息页面显示
+     *
+     * @param id
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/editCourse", method = {RequestMethod.GET})
     public String editCourseUI(Integer id, Model model) throws Exception {
         if (id == null) {
@@ -334,7 +450,13 @@ public class AdminController {
         return "admin/editCourse";
     }
 
-    // 修改教师信息页面处理
+    /**
+     * 修改教师信息页面处理
+     *
+     * @param course
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/editCourse", method = {RequestMethod.POST})
     public String editCourse(Course course) throws Exception {
 
@@ -344,7 +466,13 @@ public class AdminController {
         return "redirect:/admin/showCourse";
     }
 
-    // 删除课程信息
+    /**
+     * 删除课程信息
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/removeCourse")
     public String removeCourse(Integer id) throws Exception {
         if (id == null) {
@@ -356,7 +484,14 @@ public class AdminController {
         return "redirect:/admin/showCourse";
     }
 
-    //搜索课程
+    /**
+     * 搜索课程
+     *
+     * @param findByName
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "selectCourse", method = {RequestMethod.POST})
     private String selectCourse(String findByName, Model model) throws Exception {
 
@@ -368,21 +503,27 @@ public class AdminController {
 
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<其他操作>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-    // 普通用户账号密码重置
+    /**
+     * 普通用户账号密码重置
+     *
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/userPasswordRest")
     public String userPasswordRestUI() throws Exception {
         return "admin/userPasswordRest";
     }
 
-    // 普通用户账号密码重置处理
+    /**
+     * 普通用户账号密码重置处理
+     *
+     * @param userLogin
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/userPasswordRest", method = {RequestMethod.POST})
     public String userPasswordRest(UserLogin userLogin) throws Exception {
-
-
         UserLogin u = userloginService.findByName(userLogin.getUserName());
-
-
-
         if (u != null) {
             if (u.getRoleId() == 0) {
                 throw new Globalexception("该账户为管理员账户，没法修改");
@@ -396,7 +537,12 @@ public class AdminController {
         return "admin/userPasswordRest";
     }
 
-    // 本账户密码重置
+    /**
+     * 本账户密码重置
+     *
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/passwordRest")
     public String passwordRestUI() throws Exception {
         return "admin/passwordRest";
