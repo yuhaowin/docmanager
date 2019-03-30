@@ -1,8 +1,5 @@
 package com.chzu.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -27,6 +24,8 @@ public class CourseDoc {
     @Column(name = "last_time")
     private Date lastTime;
     private Integer bak;
+    @Column(name = "is_delete")
+    private Integer delete;
 
     public Integer getFileId() {
         return fileId;
@@ -90,5 +89,13 @@ public class CourseDoc {
 
     public void setBak(Integer bak) {
         this.bak = bak;
+    }
+
+    public Integer getDelete() {
+        return delete;
+    }
+
+    public void setDelete(Integer delete) {
+        this.delete = delete;
     }
 }

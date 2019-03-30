@@ -27,6 +27,8 @@ public class FileDao {
      * @param courseDoc
      */
     public void saveCourseDoc(CourseDoc courseDoc) {
+        courseDoc.setBak(0);
+        courseDoc.setDelete(0);
         Session session = sessionFactory.openSession();
         session.save(courseDoc);
         session.close();
@@ -38,7 +40,7 @@ public class FileDao {
      * @param courseDoc
      * @return
      */
-    public List<CourseDoc> getCourseDoc(CourseDoc courseDoc) {
+    public List<CourseDoc> getCourseDoc(CourseDoc courseDoc, Boolean isAdmin) {
         Session session = sessionFactory.openSession();
         DetachedCriteria dc = DetachedCriteria.forClass(CourseDoc.class);
         if (courseDoc.getStudentId() != null) {
@@ -50,6 +52,13 @@ public class FileDao {
         if (courseDoc.getSubjectId() != null) {
             dc.add(Restrictions.eq("subjectId", courseDoc.getSubjectId()));
         }
+
+        if(isAdmin){
+            dc.add(Restrictions.or(Restrictions.eq("bak", 1),Restrictions.eq("delete", 0)));
+        }else{
+            dc.add(Restrictions.eq("delete", 0));
+        }
+
         // 开启事务
         session.beginTransaction();
         Criteria c = dc.getExecutableCriteria(session);
@@ -77,10 +86,11 @@ public class FileDao {
      * @param courseDoc
      */
     public void deleteCourseDoc(CourseDoc courseDoc){
+        String hql = "update course_doc set is_delete =1 where file_id = ?";
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.delete(courseDoc);
-        session.getTransaction().commit();
+        Query query = session.createSQLQuery(hql);
+        query.setParameter(0, courseDoc.getFileId());
+        query.executeUpdate();
         session.close();
     }
 
@@ -91,6 +101,8 @@ public class FileDao {
      * @param classSubject
      */
     public void saveSubject(ClassSubject classSubject) {
+        classSubject.setDelete(0);
+        classSubject.setBak(0);
         Session session = sessionFactory.openSession();
         session.save(classSubject);
         session.close();
@@ -102,7 +114,7 @@ public class FileDao {
      * @param classSubject
      * @return
      */
-    public List<ClassSubject> getSubject(ClassSubject classSubject) {
+    public List<ClassSubject> getSubject(ClassSubject classSubject, Boolean isAdmin) {
         Session session = sessionFactory.openSession();
         DetachedCriteria dc = DetachedCriteria.forClass(ClassSubject.class);
         if (classSubject.getTeacherId() != null) {
@@ -113,6 +125,11 @@ public class FileDao {
         }
         if (classSubject.getSubjectName() != null) {
             dc.add(Restrictions.like("subjectName", "%" + classSubject.getSubjectName() + "%"));
+        }
+        if(isAdmin){
+            dc.add(Restrictions.or(Restrictions.eq("delete", 0),Restrictions.eq("bak", 1)));
+        }else {
+            dc.add(Restrictions.eq("delete", 0));
         }
         // 开启事务
         session.beginTransaction();
@@ -137,10 +154,11 @@ public class FileDao {
     }
 
     public void deleteSubject(ClassSubject classSubject){
+        String hql = "update subject set delete =1 where subject_id = ?";
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.delete(classSubject);
-        session.getTransaction().commit();
+        Query query = session.createSQLQuery(hql);
+        query.setParameter(0, classSubject.getSubjectId());
+        query.executeUpdate();
         session.close();
     }
 

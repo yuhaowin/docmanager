@@ -514,7 +514,7 @@ public class AdminController {
     public String showSubject(Integer courseId, Model model){
         ClassSubject classSubject = new ClassSubject();
         classSubject.setCourseId(courseId);
-        List<ClassSubject> classSubjectList = fileService.getSubject(classSubject);
+        List<ClassSubject> classSubjectList = fileService.getSubject(classSubject,true);
         model.addAttribute("classSubjectList", classSubjectList);
         model.addAttribute("courseId", courseId);
         return "admin/showSubject";
@@ -530,7 +530,7 @@ public class AdminController {
     public String showCourseDoc(Integer subjectId, Model model){
         CourseDoc courseDoc = new CourseDoc();
         courseDoc.setSubjectId(subjectId);
-        List<CourseDoc> courseDocList = fileService.getCourseDoc(courseDoc);
+        List<CourseDoc> courseDocList = fileService.getCourseDoc(courseDoc,true);
         model.addAttribute("subjectId", subjectId);
         model.addAttribute("courseDocList", courseDocList);
         return "admin/showCourseDoc";

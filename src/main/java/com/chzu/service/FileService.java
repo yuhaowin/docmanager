@@ -30,7 +30,7 @@ public class FileService {
      * @return
      */
     public List<ClassSubject> getSubject(ClassSubject classSubject){
-        return fileDao.getSubject(classSubject);
+        return fileDao.getSubject(classSubject, false);
     }
 
     /**
@@ -39,7 +39,25 @@ public class FileService {
      * @return
      */
     public List<CourseDoc> getCourseDoc(CourseDoc courseDoc){
-        return fileDao.getCourseDoc(courseDoc);
+        return fileDao.getCourseDoc(courseDoc, false);
+    }
+
+    /**
+     * 获取课程
+     * @param classSubject
+     * @return
+     */
+    public List<ClassSubject> getSubject(ClassSubject classSubject,Boolean isAdmin){
+        return fileDao.getSubject(classSubject, isAdmin);
+    }
+
+    /**
+     * 获取我的文档
+     * @param courseDoc
+     * @return
+     */
+    public List<CourseDoc> getCourseDoc(CourseDoc courseDoc,Boolean isAdmin){
+        return fileDao.getCourseDoc(courseDoc, isAdmin);
     }
 
     /**

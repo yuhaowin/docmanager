@@ -25,7 +25,10 @@ public class ClassSubject {
     private String fileUrl;
     @Column(name = "last_time")
     private Date lastTime;
+
     private Integer bak;
+    @Column(name = "is_delete")
+    private Integer delete;
 
     public Integer getSubjectId() {
         return subjectId;
@@ -97,5 +100,13 @@ public class ClassSubject {
 
     public void setBak(Integer bak) {
         this.bak = bak;
+    }
+
+    public Integer getDelete() {
+        return delete;
+    }
+
+    public void setDelete(Integer delete) {
+        this.delete = delete;
     }
 }
