@@ -2,7 +2,7 @@ package com.chzu.dao;
 
 import com.chzu.entity.Course;
 import com.chzu.entity.CourseDoc;
-import com.chzu.entity.CourseWare;
+import com.chzu.entity.Subject;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -74,47 +74,50 @@ public class FileDao {
     /**
      * 教师保存课件
      *
-     * @param courseWare
+     * @param subject
      */
-    public void saveCourseWare(CourseWare courseWare) {
+    public void saveSubject(Subject subject) {
         Session session = sessionFactory.openSession();
-        session.save(courseWare);
+        session.save(subject);
         session.close();
     }
 
     /**
      * 教师获取课件
      *
-     * @param courseWare
+     * @param subject
      * @return
      */
-    public List<CourseWare> getCourseWare(CourseWare courseWare) {
+    public List<Subject> getSubject(Subject subject) {
         Session session = sessionFactory.openSession();
         DetachedCriteria dc = DetachedCriteria.forClass(Course.class);
-        if (courseWare.getTeacherId() != null) {
-            dc.add(Restrictions.eq("teacherId", courseWare.getTeacherId()));
+        if (subject.getTeacherId() != null) {
+            dc.add(Restrictions.eq("teacherId", subject.getTeacherId()));
         }
-        if (courseWare.getCourseId() != null) {
-            dc.add(Restrictions.eq("courseId", courseWare.getCourseId()));
+        if (subject.getCourseId() != null) {
+            dc.add(Restrictions.eq("courseId", subject.getCourseId()));
+        }
+        if (subject.getSubjectName() != null) {
+            dc.add(Restrictions.like("subjectName", "%" + subject.getSubjectName() + "%"));
         }
         // 开启事务
         session.beginTransaction();
         Criteria c = dc.getExecutableCriteria(session);
-        List<CourseWare> courseWares = c.list();
+        List<Subject> subjects = c.list();
         session.getTransaction().commit();
         session.close();
-        return courseWares;
+        return subjects;
     }
 
     /**
      * 教师更新课件
      *
-     * @param courseWare
+     * @param subject
      */
-    public void updateCourseWare(CourseWare courseWare) {
+    public void updateSubject(Subject subject) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.update(courseWare);
+        session.update(subject);
         session.getTransaction().commit();
         session.close();
     }

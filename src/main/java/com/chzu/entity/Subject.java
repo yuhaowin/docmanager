@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "course_ware")
-public class CourseWare {
+@Table(name = "subject")
+public class Subject {
 
     @Id
     @Column(name = "subject_id")
