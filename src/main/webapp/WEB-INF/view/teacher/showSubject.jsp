@@ -60,7 +60,7 @@
                                         onClick="location.href='/teacher/getCourseDoc?id=${item.subjectId}'">提交信息
                                 </button>
                                 <a target="_blank" class="btn btn-default btn-xs btn-info"
-                                   href="/files/index?path=${item.fileUrl}">预览</a>
+                                   href="/files/preview?path=${item.fileUrl}">预览</a>
                                 <button class="btn btn-default btn-xs btn-danger btn-primary"
                                         onClick="location.href='/teacher/removeSubject?id=${item.subjectId}&courseId=${courseId}'">
                                     删除
