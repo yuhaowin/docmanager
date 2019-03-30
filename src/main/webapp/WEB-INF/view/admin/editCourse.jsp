@@ -84,7 +84,9 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label" name="grade">所属院系</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="collegeId">
+                                <%--隐藏域--%>
+                                <input type="hidden" id ="selectedcollegeId" value="${course.collegeId}"/>
+                                <select class="form-control" name="collegeId" id="collegeList-select">
                                     <c:forEach items="${collegeList}" var="item">
                                         <option value="${item.collegeId}">${item.collegeName}</option>
                                     </c:forEach>
@@ -117,28 +119,15 @@
 </div>
 </body>
 <script type="text/javascript">
-    $("#nav li:nth-child(1)").addClass("active")
-
-    var collegeSelect = $("#college option");
-    for (var i = 0; i < collegeSelect.length; i++) {
-        if (collegeSelect[i].value == '${course.collegeId}') {
-            collegeSelect[i].selected = true;
-        }
-    }
-
-    var degreeSelect = $("#courseType option");
-    for (var i = 0; i < coursetypeSelect.length; i++) {
-        if (coursetypeSelect[i].value == '${course.courseType}') {
-            coursetypeSelect[i].selected = true;
-        }
-    }
-
-    var teacheridSelect = $("#teacherId option");
-    for (var i = 0; i < teacheridSelect.length; i++) {
-        if (teacheridSelect[i].value == '${course.teacherId}') {
-            teacheridSelect[i].selected = true;
-        }
-    }
-
+    $("#nav li:nth-child(1)").addClass("active");
+    $(document).ready(function(){
+        var key1=$("#selectedcollegeId").val();
+        //根据值让option选中
+        $("#collegeList-select option[value='"+key1+"']").attr("selected","selected");
+        var key2 = '${course.courseType}';
+        $("#courseType option[value='"+key2+"']").attr("selected","selected");
+        var key3 = '${course.teacherId}';
+        $("#teacherId option[value='"+key3+"']").attr("selected","selected");
+    });
 </script>
 </html>

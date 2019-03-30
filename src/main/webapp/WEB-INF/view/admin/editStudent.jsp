@@ -49,7 +49,7 @@
                             <label for="inputPassword3" class="col-sm-2 control-label">性别</label>
                             <div class="col-sm-10">
                                 <label class="checkbox-inline">
-                                    <input type="radio" name="sex" value="男" checked>男
+                                    <input type="radio" name="sex" value="男" >男
                                 </label>
                                 <label class="checkbox-inline">
                                     <input type="radio" name="sex" value="女">女
@@ -102,12 +102,11 @@
 </body>
 <script type="text/javascript">
     $("#nav li:nth-child(2)").addClass("active")
-
-    var collegeSelect = $("#college option");
-    for (var i = 0; i < collegeSelect.length; i++) {
-        if (collegeSelect[i].value == '${student.collegeId}') {
-            collegeSelect[i].selected = true;
-        }
-    }
+    $(document).ready(function () {
+        var key = '${student.collegeId}';
+        $("#college option[value='" + key + "']").attr("selected", "selected");
+        var sex = '${student.sex}'
+        $("input[name='sex'][value=" + sex + "]").prop("checked", true);
+    });
 </script>
 </html>
