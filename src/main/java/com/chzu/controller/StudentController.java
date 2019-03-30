@@ -177,4 +177,31 @@ public class StudentController {
         return profile(model);
     }
 
+    /**
+     * 显示文件列表
+     * @return
+     */
+    @RequestMapping("/showFile")
+    public String showFile(){
+        return "student/showFile";
+    }
+
+    /**
+     * 添加文件
+     * @return
+     */
+    @RequestMapping("/addFile")
+    public String addFile(){
+        return "student/addFile";
+    }
+
+    /**
+     * 添加文件
+     * @return
+     */
+    @RequestMapping("/editFile")
+    public String editFile(){
+        return "student/editFile";
+    }
+
 }
