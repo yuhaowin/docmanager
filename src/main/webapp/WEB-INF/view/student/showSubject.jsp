@@ -1,21 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>课程信息显示</title>
-
+    <title>选题信息显示</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 引入bootstrap -->
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <!-- 引入JQuery  bootstrap.min.js-->
-    <script src="/js/jquery-3.2.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-
-    <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
-
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 </head>
 <body>
 <!-- 顶栏 -->
@@ -28,33 +21,27 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <h1 class="col-md-5">我的文档</h1>
-
-                        <button class="btn btn-default col-md-2" style="margin-top: 20px"
-                                onClick="location.href='/student/addFile?courseId=${courseId}&subjectId=${subjectId}'">
-                            添加文档
-                            <sapn class="glyphicon glyphicon-plus"/>
-                        </button>
-
+                        <h1 class="col-md-5">课题列表</h1>
                     </div>
                 </div>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>文件名</th>
-                        <th>上传时间</th>
+                        <th>名称</th>
+                        <th>描述</th>
+                        <th>文档</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${courseDocList}" var="item">
+                    <c:forEach items="${subjectList}" var="item">
                         <tr>
+                            <td>${item.subjectName}</td>
+                            <td>${item.describe}</td>
                             <td>${item.fileName}</td>
-                            <td> <fmt:formatDate value="${item.lastTime}" pattern="yyyy年MM月dd日HH点mm分ss秒" /></td>
-
                             <td>
-                                <button class="btn btn-default btn-xs btn-danger btn-primary"
-                                        onClick="location.href='/student/deleteFile?fileId=${item.fileId}&courseId=${courseId}&subjectId=${subjectId}'">删除
+                                <button class="btn btn-default btn-xs btn-info"
+                                        onClick="location.href='/student/showFile?subjectId=${item.subjectId}&courseId=${item.courseId}'">我的文档
                                 </button>
                                 <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}" download="${item.fileName}">下载</a>
                             </td>
@@ -63,6 +50,7 @@
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
 </div>
@@ -73,8 +61,22 @@
 </div>
 </body>
 <script type="text/javascript">
-    <%--设置菜单中--%>
-    $("#nav li:nth-child(2)").addClass("active")
+    $("#nav li:nth-child(2)").addClass("active");
+
+    function confirmd() {
+        var msg = "您真的确定要删除吗？！";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    ;
+
+    $("#sub").click(function () {
+        $("#form1").submit();
+    });
+
     <c:if test="${pagingVO != null}">
     if (${pagingVO.curentPageNo} == ${pagingVO.totalCount}) {
         $(".pagination li:last-child").addClass("disabled")
@@ -86,18 +88,5 @@
     }
     ;
     </c:if>
-
-    function confirmd() {
-        var msg = "您真的确定要删除吗？！";
-        if (confirm(msg) == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    $("#sub").click(function () {
-        $("#form1").submit();
-    });
 </script>
 </html>

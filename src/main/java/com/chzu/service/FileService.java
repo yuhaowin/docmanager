@@ -2,10 +2,10 @@ package com.chzu.service;
 
 import com.chzu.dao.FileDao;
 import com.chzu.entity.ClassSubject;
+import com.chzu.entity.CourseDoc;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +31,31 @@ public class FileService {
      */
     public List<ClassSubject> getSubject(ClassSubject classSubject){
         return fileDao.getSubject(classSubject);
+    }
+
+    /**
+     * 获取我的文档
+     * @param courseDoc
+     * @return
+     */
+    public List<CourseDoc> getCourseDoc(CourseDoc courseDoc){
+        return fileDao.getCourseDoc(courseDoc);
+    }
+
+    /**
+     * 学生保存文件
+     * @param courseDoc
+     */
+    public void saveCourseDoc(CourseDoc courseDoc){
+        fileDao.saveCourseDoc(courseDoc);
+    }
+
+    /**
+     * 学生删除文件
+     * @param courseDoc
+     */
+    public void deleteCourdeDoc(CourseDoc courseDoc){
+        fileDao.deleteCourseDoc(courseDoc);
     }
 
     public void removeSubject(Integer id){

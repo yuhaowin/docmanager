@@ -70,6 +70,18 @@ public class FileDao {
         session.close();
     }
 
+    /**
+     * 学生删除课程文件
+     * @param courseDoc
+     */
+    public void deleteCourseDoc(CourseDoc courseDoc){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.delete(courseDoc);
+        session.getTransaction().commit();
+        session.close();
+    }
+
 
     /**
      * 教师保存课件
