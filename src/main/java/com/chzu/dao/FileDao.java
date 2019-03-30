@@ -154,7 +154,7 @@ public class FileDao {
     }
 
     public void deleteSubject(ClassSubject classSubject){
-        String hql = "update subject set delete =1 where subject_id = ?";
+        String hql = "update subject set is_delete =1 where subject_id = ?";
         Session session = sessionFactory.openSession();
         Query query = session.createSQLQuery(hql);
         query.setParameter(0, classSubject.getSubjectId());
