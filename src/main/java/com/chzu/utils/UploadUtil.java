@@ -1,16 +1,34 @@
 package com.chzu.utils;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 
 public class UploadUtil {
+
+    private static final ObjectMapper MAPPER = new ObjectMapper();
+
+    private static final String CONVERT_URL = "http://dcs.yozosoft.com:80/upload";
 
     /**
      * 上传文件
@@ -26,8 +44,8 @@ public class UploadUtil {
         String newName = genFileName();
         try {
             newName += oldName.substring(oldName.lastIndexOf("."));
-        }catch (Exception e){
-            newName  += oldName;
+        } catch (Exception e) {
+            newName += oldName;
         }
 
         //图片上传
@@ -92,6 +110,46 @@ public class UploadUtil {
         //如果不足四位前面补0
         String imageName = millis + String.format("%04d", end4);
         return imageName;
+    }
+
+
+    /**
+     * 向指定 URL 上传文件POST方法的请求
+     *
+     * @param filepath 文件路径
+     * @return 所代表远程资源的响应结果, json数据
+     */
+    public static String convertFile2Html(String filepath) {
+        String url = "";
+        String requestJson = "";
+        HttpClient httpclient = new DefaultHttpClient();
+        try {
+            HttpPost httppost = new HttpPost(CONVERT_URL);
+            FileBody file = new FileBody(new File(filepath));
+            MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE, null,
+                    Charset.forName("UTF-8"));
+            // file为请求后台的File upload;属性
+            reqEntity.addPart("file", file);
+            reqEntity.addPart("convertType", new StringBody("1", Charset.forName("UTF-8")));
+            httppost.setEntity(reqEntity);
+            HttpResponse response = httpclient.execute(httppost);
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == HttpStatus.SC_OK) {
+                HttpEntity resEntity = response.getEntity();
+                requestJson = EntityUtils.toString(resEntity);
+                EntityUtils.consume(resEntity);
+                JsonNode jsonNode = MAPPER.readTree(requestJson);
+                url = jsonNode.get("data").get(0).asText();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                httpclient.getConnectionManager().shutdown();
+            } catch (Exception ignore) {
+            }
+        }
+        return url;
     }
 
     /**
