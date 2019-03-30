@@ -17,7 +17,7 @@ public class ClassSubject {
     private Integer courseId;
     @Column(name = "subject_name")
     private String subjectName;
-    @Column(name = "desc")
+    @Column(name = "subject_desc")
     private String describe;
     @Column(name = "file_name")
     private String fileName;
