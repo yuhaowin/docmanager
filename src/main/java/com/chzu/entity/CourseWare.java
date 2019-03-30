@@ -8,9 +8,9 @@ import java.util.Date;
 public class CourseWare {
 
     @Id
-    @Column(name = "file_id")
+    @Column(name = "subject_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer fileId;
+    private Integer subjectId;
     @Column(name = "teacher_id")
     private Integer teacherId;
     @Column(name = "course_id")
@@ -24,12 +24,12 @@ public class CourseWare {
     @Column(name = "last_time")
     private Date lastTime;
 
-    public Integer getFileId() {
-        return fileId;
+    public Integer getSubjectId() {
+        return subjectId;
     }
 
-    public void setFileId(Integer fileId) {
-        this.fileId = fileId;
+    public void setSubjectId(Integer subjectId) {
+        this.subjectId = subjectId;
     }
 
     public Integer getTeacherId() {

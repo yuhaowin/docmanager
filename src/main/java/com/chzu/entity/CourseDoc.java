@@ -15,6 +15,8 @@ public class CourseDoc {
     private Integer studentId;
     @Column(name = "course_id")
     private Integer courseId;
+    @Column(name = "subject_id")
+    private Integer subjectId;
     @Column(name = "file_name")
     private String fileName;
     @Column(name = "file_url")
@@ -44,6 +46,14 @@ public class CourseDoc {
 
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
+    }
+
+    public Integer getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Integer subjectId) {
+        this.subjectId = subjectId;
     }
 
     public String getFileName() {

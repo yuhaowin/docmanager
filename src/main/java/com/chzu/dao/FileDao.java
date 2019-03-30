@@ -45,6 +45,9 @@ public class FileDao {
         if (courseDoc.getCourseId() != null) {
             dc.add(Restrictions.eq("courseId", courseDoc.getCourseId()));
         }
+        if (courseDoc.getCourseId() != null) {
+            dc.add(Restrictions.eq("subjectId", courseDoc.getCourseId()));
+        }
         // 开启事务
         session.beginTransaction();
         Criteria c = dc.getExecutableCriteria(session);
