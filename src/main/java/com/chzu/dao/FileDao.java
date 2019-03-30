@@ -3,7 +3,9 @@ package com.chzu.dao;
 import com.chzu.entity.Course;
 import com.chzu.entity.CourseDoc;
 import com.chzu.entity.ClassSubject;
+import com.chzu.entity.SelectedCourse;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
@@ -139,6 +141,25 @@ public class FileDao {
         session.beginTransaction();
         session.delete(classSubject);
         session.getTransaction().commit();
+        session.close();
+    }
+
+
+    public void subjectBak(Integer subjectId) {
+        String hql = "update subject set bak = 1  where subject_id =?";
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery(hql);
+        query.setParameter(0, subjectId);
+        query.executeUpdate();
+        session.close();
+    }
+
+    public void courseDocBak(Integer fileId) {
+        String hql = "update course_doc set bak = 1  where file_id =?";
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery(hql);
+        query.setParameter(0, fileId);
+        query.executeUpdate();
         session.close();
     }
 }

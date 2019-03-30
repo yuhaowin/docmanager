@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
+import javax.security.auth.Subject;
 import java.util.List;
 
 
@@ -34,6 +35,9 @@ public class AdminController {
 
     @Resource(name = "userLoginService")
     private UserLoginService userloginService;
+
+    @Resource
+    private FileService fileService;
 
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<学生操作>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
@@ -498,6 +502,44 @@ public class AdminController {
 
         model.addAttribute("courseList", list);
         return "admin/showCourse";
+    }
+
+    /**
+     * 展示课题
+     * @param courseId
+     * @param model
+     * @return
+     */
+    @RequestMapping("showSubject")
+    public String showSubject(Integer courseId, Model model){
+        ClassSubject classSubject = new ClassSubject();
+        classSubject.setCourseId(courseId);
+        List<ClassSubject> classSubjectList = fileService.getSubject(classSubject);
+        model.addAttribute("classSubjectList", classSubjectList);
+        model.addAttribute("courseId", courseId);
+        return "admin/showSubject";
+    }
+
+    @RequestMapping("subjectBak")
+    public String subjectBak(Integer subjectId,Integer courseId){
+        fileService.subjectBak(subjectId);
+        return "redirect:/admin/showSubject?courseId=" + courseId;
+    }
+
+    @RequestMapping("showCourseDoc")
+    public String showCourseDoc(Integer subjectId, Model model){
+        CourseDoc courseDoc = new CourseDoc();
+        courseDoc.setSubjectId(subjectId);
+        List<CourseDoc> courseDocList = fileService.getCourseDoc(courseDoc);
+        model.addAttribute("subjectId", subjectId);
+        model.addAttribute("courseDocList", courseDocList);
+        return "admin/showCourseDoc";
+    }
+
+    @RequestMapping("courseDocBak")
+    public String courseDocBak(Integer subjectId,Integer fileId){
+        fileService.courseDocBak(fileId);
+        return "redirect:/admin/showCourseDoc?subjectId=" + subjectId;
     }
 
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<其他操作>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/

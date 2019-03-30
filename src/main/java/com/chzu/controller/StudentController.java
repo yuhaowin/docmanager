@@ -290,7 +290,7 @@ public class StudentController {
         courseDoc.setCourseId(courseId);
         courseDoc.setLastTime(new Date());
         fileService.saveCourseDoc(courseDoc);
-        return "redirect:/student/showFile?id=" + subjectId;
+        return "redirect:/student/showFile?subjectId=" + subjectId + "&courseId="  + courseId;
     }
 
 

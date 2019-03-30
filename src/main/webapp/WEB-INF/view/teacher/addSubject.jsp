@@ -12,6 +12,11 @@
     <script src="/js/fileinput.js" type="text/javascript"></script>
     <script src="/js/fileinput_locale_zh.js" type="text/javascript"></script>
 </head>
+<style>
+    .fileinput-upload{
+        display: none !important;
+    }
+</style>
 <body>
 <!-- 顶栏 -->
 <jsp:include page="top.jsp"></jsp:include>

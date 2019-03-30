@@ -63,4 +63,12 @@ public class FileService {
         classSubject.setSubjectId(id);
         fileDao.deleteSubject(classSubject);
     }
+
+    public void subjectBak(Integer subjectId){
+        fileDao.subjectBak(subjectId);
+    }
+
+    public void courseDocBak(Integer fileId){
+        fileDao.courseDocBak(fileId);
+    }
 }

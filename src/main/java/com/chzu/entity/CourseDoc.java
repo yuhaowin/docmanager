@@ -26,6 +26,7 @@ public class CourseDoc {
     private String fileUrl;
     @Column(name = "last_time")
     private Date lastTime;
+    private Integer bak;
 
     public Integer getFileId() {
         return fileId;
@@ -81,5 +82,13 @@ public class CourseDoc {
 
     public void setLastTime(Date lastTime) {
         this.lastTime = lastTime;
+    }
+
+    public Integer getBak() {
+        return bak;
+    }
+
+    public void setBak(Integer bak) {
+        this.bak = bak;
     }
 }

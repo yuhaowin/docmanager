@@ -68,6 +68,9 @@
                                 <button class="btn btn-default btn-xs btn-info"
                                         onClick="location.href='/admin/editCourse?id=${item.courseId}'">修改
                                 </button>
+                                <button class="btn btn-default btn-xs btn-info"
+                                        onClick="location.href='/admin/showSubject?courseId=${item.courseId}'">课题
+                                </button>
                                 <button class="btn btn-default btn-xs btn-danger btn-primary"
                                         onClick="location.href='/admin/removeCourse?id=${item.courseId}'">删除
                                 </button>
