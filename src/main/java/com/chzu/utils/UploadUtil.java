@@ -32,7 +32,7 @@ public class UploadUtil {
         String relativePath = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
         String absolutePath = basePath + relativePath;
         uploadPicture(uploadFile, absolutePath, newName);
-        return relativePath + "/" + newName;
+        return "/" + relativePath + "/" + newName;
     }
 
 

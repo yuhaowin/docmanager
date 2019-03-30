@@ -32,7 +32,7 @@
                             <label for="inputEmail3" class="col-sm-2 control-label">选题名称</label>
                             <div class="col-sm-10">
                                 <input type="hidden" name="courseId" value='${courseId}'/>
-                                <input type="number" class="form-control" id="inputEmail3" name="subjectName"
+                                <input type="text" class="form-control" id="inputEmail3" name="subjectName"
                                        placeholder="请输入选题名称">
                             </div>
                         </div>
