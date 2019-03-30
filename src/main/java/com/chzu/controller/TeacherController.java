@@ -177,7 +177,7 @@ public class TeacherController {
      */
     @RequestMapping(value = "/addSubject", method = RequestMethod.POST)
     public String saveSubject(HttpServletRequest request, Integer courseId, String subjectName,
-                              String describe, MultipartFile file,Model model) {
+                              String describe, MultipartFile file) {
         String basePath = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/files/";
         // 上传文件的文件名
         String oldName = file.getOriginalFilename();
@@ -222,8 +222,9 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/removeSubject")
-    public String removeSubject(Integer id,Integer courseId, Model model){
+    public String removeSubject(Integer id,Integer courseId){
         // todo 删除选课信息
+        fileService.removeSubject(id);
         return "redirect:/teacher/showsubject?id="+courseId;
     }
 }

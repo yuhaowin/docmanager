@@ -122,4 +122,11 @@ public class FileDao {
         session.close();
     }
 
+    public void deleteSubject(ClassSubject classSubject){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.delete(classSubject);
+        session.getTransaction().commit();
+        session.close();
+    }
 }

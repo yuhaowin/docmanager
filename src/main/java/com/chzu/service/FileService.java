@@ -5,6 +5,7 @@ import com.chzu.entity.ClassSubject;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
 import java.util.List;
 
@@ -30,5 +31,11 @@ public class FileService {
      */
     public List<ClassSubject> getSubject(ClassSubject classSubject){
         return fileDao.getSubject(classSubject);
+    }
+
+    public void removeSubject(Integer id){
+        ClassSubject classSubject = new ClassSubject();
+        classSubject.setSubjectId(id);
+        fileDao.deleteSubject(classSubject);
     }
 }
