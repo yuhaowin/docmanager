@@ -193,7 +193,7 @@ public class TeacherController {
         classSubject.setTeacherId(Integer.parseInt(userid));
         classSubject.setSubjectName(subjectName);
         fileService.addSubject(classSubject);
-        return "redirect:/teacher/showsubject?id="+courseId;
+        return "redirect:/teacher/showsubject?id=" + courseId;
     }
 
 
@@ -221,10 +221,16 @@ public class TeacherController {
         return "teacher/showSubject";
     }
 
+    /**
+     * 删除选题
+     *
+     * @param id
+     * @param courseId
+     * @return
+     */
     @RequestMapping(value = "/removeSubject")
-    public String removeSubject(Integer id,Integer courseId){
-        // todo 删除选课信息
+    public String removeSubject(Integer id, Integer courseId) {
         fileService.removeSubject(id);
-        return "redirect:/teacher/showsubject?id="+courseId;
+        return "redirect:/teacher/showsubject?id=" + courseId;
     }
 }
