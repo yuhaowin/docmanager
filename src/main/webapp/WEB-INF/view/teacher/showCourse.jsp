@@ -75,6 +75,16 @@
                         <nav style="text-align: center">
                             <ul class="pagination">
                                 <li><a href="/student/showCourse?page=${pagingVO.upPageNo}">&laquo;上一页</a></li>
+                                <c:if test="${pagingVO.curentPageNo-2 > 0}">
+                                    <li>
+                                        <a href="/student/showCourse?page=${pagingVO.curentPageNo-2}">${pagingVO.curentPageNo-2}</a>
+                                    </li>
+                                </c:if>
+                                <c:if test="${pagingVO.curentPageNo-1 > 0}">
+                                    <li>
+                                        <a href="/student/showCourse?page=${pagingVO.curentPageNo-1}">${pagingVO.curentPageNo-1}</a>
+                                    </li>
+                                </c:if>
                                 <li class="active"><a href="">${pagingVO.curentPageNo}</a></li>
                                 <c:if test="${pagingVO.curentPageNo+1 <= pagingVO.totalCount}">
                                     <li>
@@ -86,16 +96,7 @@
                                         <a href="/student/showCourse?page=${pagingVO.curentPageNo+2}">${pagingVO.curentPageNo+2}</a>
                                     </li>
                                 </c:if>
-                                <c:if test="${pagingVO.curentPageNo+3 <= pagingVO.totalCount}">
-                                    <li>
-                                        <a href="/student/showCourse?page=${pagingVO.curentPageNo+3}">${pagingVO.curentPageNo+3}</a>
-                                    </li>
-                                </c:if>
-                                <c:if test="${pagingVO.curentPageNo+4 <= pagingVO.totalCount}">
-                                    <li>
-                                        <a href="/student/showCourse?page=${pagingVO.curentPageNo+4}">${pagingVO.curentPageNo+4}</a>
-                                    </li>
-                                </c:if>
+
                                 <li><a href="/student/showCourse?page=${pagingVO.totalCount}">最后一页&raquo;</a></li>
                             </ul>
                         </nav>
