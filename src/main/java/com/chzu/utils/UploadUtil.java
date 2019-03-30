@@ -6,13 +6,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -114,24 +115,26 @@ public class UploadUtil {
 
 
     /**
-     * 向指定 URL 上传文件POST方法的请求
+     * 将本地文件转化为可预览的html链接
      *
      * @param filepath 文件路径
-     * @return 所代表远程资源的响应结果, json数据
+     * @return 预览链接
      */
     public static String convertFile2Html(String filepath) {
         String previewUrl = "";
         String requestJson = "";
-        HttpClient httpclient = new DefaultHttpClient();
+        CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
             HttpPost httppost = new HttpPost(CONVERT_URL);
             FileBody file = new FileBody(new File(filepath));
-            MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE, null,
-                    Charset.forName("UTF-8"));
-            // file为请求后台的File upload;属性
-            reqEntity.addPart("file", file);
-            reqEntity.addPart("convertType", new StringBody("1", Charset.forName("UTF-8")));
-            httppost.setEntity(reqEntity);
+            MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
+            HttpEntity httpEntity = entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
+                    .setCharset(Charset.forName("UTF-8"))
+                    .addPart("file", file)
+                    //自定义 convertType为 1 文档格式到html的转换
+                    .addPart("convertType", new StringBody("1", ContentType.TEXT_PLAIN))
+                    .build();
+            httppost.setEntity(httpEntity);
             HttpResponse response = httpclient.execute(httppost);
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == HttpStatus.SC_OK) {
@@ -145,7 +148,7 @@ public class UploadUtil {
             e.printStackTrace();
         } finally {
             try {
-                httpclient.getConnectionManager().shutdown();
+                httpclient.close();
             } catch (Exception ignore) {
             }
         }
@@ -158,9 +161,7 @@ public class UploadUtil {
      * @param args
      */
     public static void main(String[] args) {
-        for (int i = 0; i < 100; i++) {
-            System.out.println(genFileName());
-        }
+        String convertByFile = convertFile2Html("/Users/yuhao/Desktop/123.docx");
+        System.out.println(convertByFile);
     }
-
 }
