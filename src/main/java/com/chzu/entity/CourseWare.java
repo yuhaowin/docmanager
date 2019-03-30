@@ -15,6 +15,8 @@ public class CourseWare {
     private Integer teacherId;
     @Column(name = "course_id")
     private Integer courseId;
+    @Column(name = "subject_name")
+    private String subjectName;
     @Column(name = "file_name")
     private String fileName;
     @Column(name = "file_url")
@@ -44,6 +46,14 @@ public class CourseWare {
 
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
     public String getFileName() {
