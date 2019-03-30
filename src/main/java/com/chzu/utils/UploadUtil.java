@@ -24,7 +24,12 @@ public class UploadUtil {
         String oldName = uploadFile.getOriginalFilename();
         //生成新的文件名
         String newName = genFileName();
-        newName += oldName.substring(oldName.lastIndexOf("."));
+        try {
+            newName += oldName.substring(oldName.lastIndexOf("."));
+        }catch (Exception e){
+            newName  += oldName;
+        }
+
         //图片上传
         if (!basePath.endsWith("/")) {
             basePath += "/";

@@ -57,6 +57,9 @@
                                 <button class="btn btn-default btn-xs btn-info"
                                         onClick="location.href='/student/outCourse?id=${item.courseId}'">退课
                                 </button>
+                                <button class="btn btn-default btn-xs btn-info"
+                                        onClick="location.href='/student/showMark?id=${item.courseId}'">成绩
+                                </button>
                                 <!--弹出框-->
                                 <button class="btn btn-default btn-xs btn-info"
                                         onClick="location.href='/student/classSubject?id=${item.courseId}'">课题
