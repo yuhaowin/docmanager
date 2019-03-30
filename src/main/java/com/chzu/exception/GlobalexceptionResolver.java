@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class GlobalexceptionResolver implements HandlerExceptionResolver {
 
+    @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object o, Exception e) {
 
         ModelAndView modelAndView = new ModelAndView();
