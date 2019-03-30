@@ -62,7 +62,6 @@
                                 <button class="btn btn-default btn-xs btn-info"
                                         onClick="location.href='/teacher/gradeCourse?id=${item.courseId}'">成绩
                                 </button>
-                                <%--todo--%>
                                 <button class="btn btn-default btn-xs btn-info"
                                         onClick="location.href='/teacher/showsubject?id=${item.courseId}'">选题
                                 </button>

@@ -233,4 +233,14 @@ public class TeacherController {
         fileService.removeSubject(id);
         return "redirect:/teacher/showsubject?id=" + courseId;
     }
+
+    @RequestMapping(value = "/getCourseDoc")
+    public String getCourseDoc(Integer id, Model model) {
+        CourseDoc courseDoc = new CourseDoc();
+        courseDoc.setSubjectId(id);
+        List<CourseDoc> courseDocList = fileService.getCourseDoc(courseDoc);
+        model.addAttribute("courseDocList", courseDocList);
+        return "teacher/showCourseDoc";
+    }
+
 }

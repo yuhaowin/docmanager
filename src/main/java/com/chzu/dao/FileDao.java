@@ -45,8 +45,8 @@ public class FileDao {
         if (courseDoc.getCourseId() != null) {
             dc.add(Restrictions.eq("courseId", courseDoc.getCourseId()));
         }
-        if (courseDoc.getCourseId() != null) {
-            dc.add(Restrictions.eq("subjectId", courseDoc.getCourseId()));
+        if (courseDoc.getSubjectId() != null) {
+            dc.add(Restrictions.eq("subjectId", courseDoc.getSubjectId()));
         }
         // 开启事务
         session.beginTransaction();
