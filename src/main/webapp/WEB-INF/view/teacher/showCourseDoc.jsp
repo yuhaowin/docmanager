@@ -48,6 +48,7 @@
                             <td> <fmt:formatDate value="${item.lastTime}" pattern="yyyy年MM月dd日HH点mm分ss秒" /></td>
                             <td>
                                 <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}" download="${item.fileName}">下载</a>
+                                <a  target="_blank" class="btn btn-default btn-xs btn-info" href="/files/index?path=${item.fileUrl}">预览</a>
                             </td>
                         </tr>
                     </c:forEach>

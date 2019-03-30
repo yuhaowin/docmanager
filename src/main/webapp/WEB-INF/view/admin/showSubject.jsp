@@ -48,6 +48,7 @@
                                 <button class="btn btn-default btn-xs btn-info"
                                         onClick="location.href='/admin/showCourseDoc?subjectId=${item.subjectId}'">提交信息
                                 </button>
+                                <a  target="_blank" class="btn btn-default btn-xs btn-info" href="/files/index?path=${item.fileUrl}">预览</a>
                                 <button class="btn btn-default btn-xs btn-info"
                                     <c:choose>
                                         <c:when test="${item.bak == 0}">
