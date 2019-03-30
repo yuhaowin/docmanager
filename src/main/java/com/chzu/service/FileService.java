@@ -1,7 +1,7 @@
 package com.chzu.service;
 
 import com.chzu.dao.FileDao;
-import com.chzu.entity.Subject;
+import com.chzu.entity.ClassSubject;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,19 +16,19 @@ public class FileService {
 
     /**
      * 老师新增课程
-     * @param subject
+     * @param classSubject
      */
-    public void addSubject(Subject subject){
-        subject.setLastTime(new Date());
-        fileDao.saveSubject(subject);
+    public void addSubject(ClassSubject classSubject){
+        classSubject.setLastTime(new Date());
+        fileDao.saveSubject(classSubject);
     }
 
     /**
      * 获取课程
-     * @param subject
+     * @param classSubject
      * @return
      */
-    public List<Subject> getSubject(Subject subject){
-        return fileDao.getSubject(subject);
+    public List<ClassSubject> getSubject(ClassSubject classSubject){
+        return fileDao.getSubject(classSubject);
     }
 }

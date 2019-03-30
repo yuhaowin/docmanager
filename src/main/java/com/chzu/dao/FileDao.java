@@ -2,7 +2,7 @@ package com.chzu.dao;
 
 import com.chzu.entity.Course;
 import com.chzu.entity.CourseDoc;
-import com.chzu.entity.Subject;
+import com.chzu.entity.ClassSubject;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -74,50 +74,50 @@ public class FileDao {
     /**
      * 教师保存课件
      *
-     * @param subject
+     * @param classSubject
      */
-    public void saveSubject(Subject subject) {
+    public void saveSubject(ClassSubject classSubject) {
         Session session = sessionFactory.openSession();
-        session.save(subject);
+        session.save(classSubject);
         session.close();
     }
 
     /**
      * 教师获取课件
      *
-     * @param subject
+     * @param classSubject
      * @return
      */
-    public List<Subject> getSubject(Subject subject) {
+    public List<ClassSubject> getSubject(ClassSubject classSubject) {
         Session session = sessionFactory.openSession();
         DetachedCriteria dc = DetachedCriteria.forClass(Course.class);
-        if (subject.getTeacherId() != null) {
-            dc.add(Restrictions.eq("teacherId", subject.getTeacherId()));
+        if (classSubject.getTeacherId() != null) {
+            dc.add(Restrictions.eq("teacherId", classSubject.getTeacherId()));
         }
-        if (subject.getCourseId() != null) {
-            dc.add(Restrictions.eq("courseId", subject.getCourseId()));
+        if (classSubject.getCourseId() != null) {
+            dc.add(Restrictions.eq("courseId", classSubject.getCourseId()));
         }
-        if (subject.getSubjectName() != null) {
-            dc.add(Restrictions.like("subjectName", "%" + subject.getSubjectName() + "%"));
+        if (classSubject.getSubjectName() != null) {
+            dc.add(Restrictions.like("subjectName", "%" + classSubject.getSubjectName() + "%"));
         }
         // 开启事务
         session.beginTransaction();
         Criteria c = dc.getExecutableCriteria(session);
-        List<Subject> subjects = c.list();
+        List<ClassSubject> classSubjects = c.list();
         session.getTransaction().commit();
         session.close();
-        return subjects;
+        return classSubjects;
     }
 
     /**
      * 教师更新课件
      *
-     * @param subject
+     * @param classSubject
      */
-    public void updateSubject(Subject subject) {
+    public void updateSubject(ClassSubject classSubject) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.update(subject);
+        session.update(classSubject);
         session.getTransaction().commit();
         session.close();
     }
