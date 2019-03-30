@@ -40,6 +40,7 @@ public class StudentController {
     @Resource
     private FileService fileService;
 
+
     /**
      * 查看课程
      *
@@ -150,6 +151,25 @@ public class StudentController {
     @RequestMapping(value = "/passwordRest")
     public String passwordRest() throws Exception {
         return "student/passwordRest";
+    }
+
+    /**
+     * 查看课程成绩
+     * @param id
+     */
+    @RequestMapping(value = "/showMark")
+    public String showMark(Integer id, Model model) throws  Exception{
+        Subject subject = SecurityUtils.getSubject();
+        Integer userId = Integer.parseInt(subject.getPrincipal().toString());
+        SelectedCourse selectedCourse = new SelectedCourse();
+        selectedCourse.setCourseId(id);
+        selectedCourse.setStudentId(userId);
+        SelectedCourseCustom mark = selectedCourseService.findOne(selectedCourse);
+        model.addAttribute("mark", mark.getMark());
+        CourseCustom courseCustom = courseService.findById(id);
+        model.addAttribute("courseName", courseCustom.getCourseName());
+        return "student/showMark";
+
     }
 
     /**

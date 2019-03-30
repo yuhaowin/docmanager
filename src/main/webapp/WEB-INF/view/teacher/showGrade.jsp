@@ -49,7 +49,12 @@
                             </c:if>
                             <c:if test="${item.over}">
                                 <td>${item.mark}</td>
-                                <td>已打分</td>
+                                <td>
+                                    <button class="btn btn-default btn-xs btn-info"
+                                            onClick="location.href='/teacher/mark?studentId=${item.studentId}&courseId=${item.courseId}'">
+                                        修改
+                                    </button>
+                                </td>
                             </c:if>
                         </tr>
                     </c:forEach>

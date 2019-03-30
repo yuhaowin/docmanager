@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +51,7 @@
                             <label for="inputPassword3" class="col-sm-2 control-label">成绩</label>
                             <div class="col-sm-10">
                                 <input type="number" name="mark" class="form-control" id="inputPassword3"
-                                       placeholder="请输入成绩">
+                                       placeholder="请输入成绩" <c:if test="${selectedCourse.mark != null}"> value="${selectedCourse.mark}" </c:if> >
                             </div>
                         </div>
                         <div class="form-group" style="text-align: center">

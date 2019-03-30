@@ -105,6 +105,8 @@ public class TeacherController {
         return "redirect:/teacher/gradeCourse?id=" + scc.getCourseId();
     }
 
+
+
     /**
      * 修改密码
      *
