@@ -1,15 +1,15 @@
 package com.chzu.controller;
 
 
-import com.chzu.entity.CourseCustom;
-import com.chzu.entity.SelectedCourse;
-import com.chzu.entity.SelectedCourseCustom;
-import com.chzu.entity.Teacher;
+import com.chzu.entity.*;
 import com.chzu.service.CourseService;
+import com.chzu.service.FileService;
 import com.chzu.service.SelectedCourseService;
 import com.chzu.service.TeacherService;
+import com.chzu.utils.UploadUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -31,6 +32,9 @@ public class TeacherController {
 
     @Resource(name = "selectedCourseService")
     private SelectedCourseService selectedCourseService;
+
+    @Autowired
+    private FileService fileService;
 
     /**
      * 显示我的课程
@@ -172,9 +176,27 @@ public class TeacherController {
      * @return
      */
     @RequestMapping(value = "/addSubject", method = RequestMethod.POST)
-    public String saveSubject(Integer courseId, String subjectName, String describe, MultipartFile file) {
+    public String saveSubject(HttpServletRequest request, Integer courseId, String subjectName, String describe, MultipartFile file) {
+        String basePath = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/files/";
+        System.out.println("当前项目路径: " + basePath);
+        //上传文件的文件名
+        String oldName = file.getOriginalFilename();
+        System.out.println(oldName);
+        // 文件所在项目的相对路径
+        String path = UploadUtil.uploadFile(file, basePath);
+
+        System.out.println(path);
+
         Subject subject = SecurityUtils.getSubject();
         String userid = (String) subject.getPrincipal();
+        ClassSubject classSubject = new ClassSubject();
+        classSubject.setCourseId(courseId);
+        classSubject.setDescribe(describe);
+        classSubject.setFileName(oldName);
+        classSubject.setFileUrl(path);
+        classSubject.setTeacherId(Integer.parseInt(userid));
+        classSubject.setSubjectName(subjectName);
+        fileService.addSubject(classSubject);
 
         return "teacher/showSubject";
     }
