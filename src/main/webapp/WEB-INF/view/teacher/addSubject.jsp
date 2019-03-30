@@ -13,7 +13,7 @@
     <script src="/js/fileinput_locale_zh.js" type="text/javascript"></script>
 </head>
 <style>
-    .fileinput-upload{
+    .fileinput-upload {
         display: none !important;
     }
 </style>
@@ -32,7 +32,8 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" action="/teacher/addSubject" id="editfrom" method="post" enctype="multipart/form-data" >
+                    <form class="form-horizontal" role="form" action="/teacher/addSubject" id="editfrom" method="post"
+                          enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">选题名称</label>
                             <div class="col-sm-10">
@@ -52,7 +53,8 @@
                             <label for="inputPassword3" class="col-sm-2 control-label">文档</label>
                             <div class="col-sm-10">
                                 <div class="form-group">
-                                    <input name="file" id="file-1" type="file" data-overwrite-initial="false" data-min-file-count="1">
+                                    <input name="file" id="file-1" type="file" data-overwrite-initial="false"
+                                           data-min-file-count="1">
                                 </div>
                             </div>
                         </div>

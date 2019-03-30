@@ -35,8 +35,10 @@
 
     $.fn.fileinputLocales = {};
 
-    var isIE, isEdge, handler, previewCache, getNum, hasFileAPISupport, hasDragDropSupport, hasFileUploadSupport, addCss,
-        STYLE_SETTING, OBJECT_PARAMS, DEFAULT_PREVIEW, defaultFileActionSettings, tMain1, tMain2, tPreview, tIcon, tClose,
+    var isIE, isEdge, handler, previewCache, getNum, hasFileAPISupport, hasDragDropSupport, hasFileUploadSupport,
+        addCss,
+        STYLE_SETTING, OBJECT_PARAMS, DEFAULT_PREVIEW, defaultFileActionSettings, tMain1, tMain2, tPreview, tIcon,
+        tClose,
         tCaption, tBtnDefault, tBtnLink, tBtnBrowse, tModal, tProgress, tFooter, tActions, tActionDelete, tActionUpload,
         tZoom, tGeneric, tHtml, tImage, tText, tVideo, tAudio, tFlash, tObject, tOther, defaultLayoutTemplates,
         defaultPreviewTemplates, defaultPreviewTypes, defaultPreviewSettings, defaultFileTypeSettings, isEmpty, isArray,
@@ -1817,7 +1819,8 @@
                                 }
                             });
                         }
-                        var filestack = self.getFileStack(true), len = filestack.length, chk = previewCache.count(self.id),
+                        var filestack = self.getFileStack(true), len = filestack.length,
+                            chk = previewCache.count(self.id),
                             hasThumb = self.showPreview && self.$preview.find('.file-preview-frame').length;
                         self.clearFileInput();
                         if (len === 0 && chk === 0 && !hasThumb) {
@@ -1956,15 +1959,15 @@
             }
             self.clearDefaultPreview();
             self.$preview.append("\n" + previewOtherTemplate
-                    .replace(/\{previewId}/g, previewId)
-                    .replace(/\{frameClass}/g, frameClass)
-                    .replace(/\{fileindex}/g, ind)
-                    .replace(/\{caption}/g, self.slug(file.name))
-                    .replace(/\{width}/g, config.width)
-                    .replace(/\{height}/g, config.height)
-                    .replace(/\{type}/g, file.type)
-                    .replace(/\{data}/g, data)
-                    .replace(/\{footer}/g, footer));
+                .replace(/\{previewId}/g, previewId)
+                .replace(/\{frameClass}/g, frameClass)
+                .replace(/\{fileindex}/g, ind)
+                .replace(/\{caption}/g, self.slug(file.name))
+                .replace(/\{width}/g, config.width)
+                .replace(/\{height}/g, config.height)
+                .replace(/\{type}/g, file.type)
+                .replace(/\{data}/g, data)
+                .replace(/\{footer}/g, footer));
             if (isDisabled === true && self.isUploadable) {
                 self.setThumbStatus($('#' + previewId), 'Error');
             }
@@ -1990,12 +1993,12 @@
                         .replace(/\{title}/g, caption)
                         .replace(/\{body}/g, strText).replace(/\{heading}/g, self.msgZoomModalHeading);
                     content = content.replace(/\{previewId}/g, previewId).replace(/\{caption}/g, caption)
-                            .replace(/\{width}/g, config.width).replace(/\{height}/g, config.height)
-                            .replace(/\{frameClass}/g, '').replace(/\{zoomInd}/g, self.zoomIndicator)
-                            .replace(/\{footer}/g, footer).replace(/\{fileindex}/g, ind)
-                            .replace(/\{type}/g, file.type).replace(/\{zoomTitle}/g, self.msgZoomTitle)
-                            .replace(/\{dialog}/g, "$('#" + id + "').modal('show')")
-                            .replace(/\{data}/g, strText) + modal;
+                        .replace(/\{width}/g, config.width).replace(/\{height}/g, config.height)
+                        .replace(/\{frameClass}/g, '').replace(/\{zoomInd}/g, self.zoomIndicator)
+                        .replace(/\{footer}/g, footer).replace(/\{fileindex}/g, ind)
+                        .replace(/\{type}/g, file.type).replace(/\{zoomTitle}/g, self.msgZoomTitle)
+                        .replace(/\{dialog}/g, "$('#" + id + "').modal('show')")
+                        .replace(/\{data}/g, strText) + modal;
                 } else {
                     content = tmplt.replace(/\{previewId}/g, previewId).replace(/\{caption}/g, caption)
                         .replace(/\{frameClass}/g, '').replace(/\{type}/g, file.type).replace(/\{fileindex}/g, ind)
@@ -2458,7 +2461,8 @@
             self.initBrowse($container);
         },
         renderMain: function () {
-            var self = this, dropCss = (self.isUploadable && self.dropZoneEnabled) ? ' file-drop-zone' : 'file-drop-disabled',
+            var self = this,
+                dropCss = (self.isUploadable && self.dropZoneEnabled) ? ' file-drop-zone' : 'file-drop-disabled',
                 close = !self.showClose ? '' : self.getLayoutTemplate('close'),
                 preview = !self.showPreview ? '' : self.getLayoutTemplate('preview')
                     .replace(/\{class}/g, self.previewClass)

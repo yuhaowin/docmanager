@@ -8,19 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/files")
-public class FileConvertController {
+public class FilePreviewController {
 
     /**
-     * 预览文件
+     * 预览文档
      *
      * @param path
      * @param request
      * @return
      */
-    @RequestMapping("/index")
+    @RequestMapping("/preview")
     public String convert(String path, HttpServletRequest request) {
         String basePath = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/files/";
-        String url = UploadUtil.convertFile2Html(basePath + path);
-        return "redirect:" + url;
+        String previewUrl = UploadUtil.convertFile2Html(basePath + path);
+        // 跳转预览页面
+        return "redirect:" + previewUrl;
     }
 }

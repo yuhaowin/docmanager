@@ -10,17 +10,14 @@ import com.chzu.service.StudentService;
 import com.chzu.utils.UploadUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.ws.soap.Addressing;
 import java.util.Date;
 import java.util.List;
 
@@ -155,10 +152,11 @@ public class StudentController {
 
     /**
      * 查看课程成绩
+     *
      * @param id
      */
     @RequestMapping(value = "/showMark")
-    public String showMark(Integer id, Model model) throws  Exception{
+    public String showMark(Integer id, Model model) throws Exception {
         Subject subject = SecurityUtils.getSubject();
         Integer userId = Integer.parseInt(subject.getPrincipal().toString());
         SelectedCourse selectedCourse = new SelectedCourse();
@@ -211,12 +209,13 @@ public class StudentController {
 
     /**
      * 课题列表
+     *
      * @param id
      * @param model
      * @return
      */
     @RequestMapping(value = "/classSubject")
-    public String classSubject(Integer id, Model model){
+    public String classSubject(Integer id, Model model) {
         ClassSubject subject = new ClassSubject();
         subject.setCourseId(id);
         List<ClassSubject> subjectList = fileService.getSubject(subject);
@@ -226,10 +225,11 @@ public class StudentController {
 
     /**
      * 我的文档
+     *
      * @return
      */
     @RequestMapping("/showFile")
-    public String showFile(Integer subjectId, Integer courseId, Model model){
+    public String showFile(Integer subjectId, Integer courseId, Model model) {
         Subject subject = SecurityUtils.getSubject();
         Integer userId = Integer.parseInt(subject.getPrincipal().toString());
         CourseDoc courseDoc = new CourseDoc();
@@ -243,33 +243,35 @@ public class StudentController {
     }
 
     @RequestMapping("deleteFile")
-    public String deleteFile(Integer fileId,Integer subjectId, Integer courseId, Model model){
+    public String deleteFile(Integer fileId, Integer subjectId, Integer courseId, Model model) {
         Subject subject = SecurityUtils.getSubject();
         Integer userId = Integer.parseInt(subject.getPrincipal().toString());
         CourseDoc courseDoc = new CourseDoc();
         courseDoc.setStudentId(userId);
         courseDoc.setFileId(fileId);
         fileService.deleteCourdeDoc(courseDoc);
-        return "redirect:/student/showFile?subjectId="+subjectId +"&courseId=" + courseId;
+        return "redirect:/student/showFile?subjectId=" + subjectId + "&courseId=" + courseId;
     }
 
     /**
      * 添加文件
+     *
      * @return
      */
     @RequestMapping(value = "/addFile", method = RequestMethod.GET)
-    public String addFile(Integer courseId, Integer subjectId, Model model){
-        model.addAttribute("courseId",courseId);
+    public String addFile(Integer courseId, Integer subjectId, Model model) {
+        model.addAttribute("courseId", courseId);
         model.addAttribute("subjectId", subjectId);
         return "student/addFile";
     }
 
     /**
      * 添加文件
+     *
      * @return
      */
     @RequestMapping(value = "/addFile", method = RequestMethod.POST)
-    public String saveFile(HttpServletRequest request, Integer courseId, Integer subjectId, MultipartFile file){
+    public String saveFile(HttpServletRequest request, Integer courseId, Integer subjectId, MultipartFile file) {
         String basePath = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/files/";
         System.out.println("当前项目路径: " + basePath);
         //上传文件的文件名
@@ -290,7 +292,7 @@ public class StudentController {
         courseDoc.setCourseId(courseId);
         courseDoc.setLastTime(new Date());
         fileService.saveCourseDoc(courseDoc);
-        return "redirect:/student/showFile?subjectId=" + subjectId + "&courseId="  + courseId;
+        return "redirect:/student/showFile?subjectId=" + subjectId + "&courseId=" + courseId;
     }
 
 

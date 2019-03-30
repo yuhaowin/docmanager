@@ -52,7 +52,7 @@
                 </prop>
                 <!--关闭根据entity创建及更新数据库表-->
                 <!--<prop key="hibernate.hbm2ddl.auto">-->
-                    <!--update-->
+                <!--update-->
                 <!--</prop>-->
                 <prop key="format_sql">true</prop>
             </props>
@@ -68,7 +68,7 @@
 
     <!-- 用spring管理事务 -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <!-- 开启事务注解 -->

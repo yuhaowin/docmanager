@@ -13,10 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring/applicationContext-dao.xml"})
@@ -29,7 +26,7 @@ public class StudentCustomDaoTest {
     private SessionFactory sessionFactory;
 
     @Test
-    public void  test(){
+    public void test() {
         String sql = "select role_id, role_name, permissions from role";
 
         String hql = "from Role";

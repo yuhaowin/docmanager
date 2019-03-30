@@ -1,9 +1,7 @@
 package com.chzu.dao;
 
-import com.chzu.entity.Course;
-import com.chzu.entity.CourseDoc;
 import com.chzu.entity.ClassSubject;
-import com.chzu.entity.SelectedCourse;
+import com.chzu.entity.CourseDoc;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -53,9 +51,9 @@ public class FileDao {
             dc.add(Restrictions.eq("subjectId", courseDoc.getSubjectId()));
         }
 
-        if(isAdmin){
-            dc.add(Restrictions.or(Restrictions.eq("bak", 1),Restrictions.eq("delete", 0)));
-        }else{
+        if (isAdmin) {
+            dc.add(Restrictions.or(Restrictions.eq("bak", 1), Restrictions.eq("delete", 0)));
+        } else {
             dc.add(Restrictions.eq("delete", 0));
         }
 
@@ -83,9 +81,10 @@ public class FileDao {
 
     /**
      * 学生删除课程文件
+     *
      * @param courseDoc
      */
-    public void deleteCourseDoc(CourseDoc courseDoc){
+    public void deleteCourseDoc(CourseDoc courseDoc) {
         String hql = "update course_doc set is_delete =1 where file_id = ?";
         Session session = sessionFactory.openSession();
         Query query = session.createSQLQuery(hql);
@@ -126,9 +125,9 @@ public class FileDao {
         if (classSubject.getSubjectName() != null) {
             dc.add(Restrictions.like("subjectName", "%" + classSubject.getSubjectName() + "%"));
         }
-        if(isAdmin){
-            dc.add(Restrictions.or(Restrictions.eq("delete", 0),Restrictions.eq("bak", 1)));
-        }else {
+        if (isAdmin) {
+            dc.add(Restrictions.or(Restrictions.eq("delete", 0), Restrictions.eq("bak", 1)));
+        } else {
             dc.add(Restrictions.eq("delete", 0));
         }
         // 开启事务
@@ -153,7 +152,7 @@ public class FileDao {
         session.close();
     }
 
-    public void deleteSubject(ClassSubject classSubject){
+    public void deleteSubject(ClassSubject classSubject) {
         String hql = "update subject set is_delete =1 where subject_id = ?";
         Session session = sessionFactory.openSession();
         Query query = session.createSQLQuery(hql);

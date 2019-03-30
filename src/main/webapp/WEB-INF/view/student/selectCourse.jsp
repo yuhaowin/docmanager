@@ -23,8 +23,6 @@
                 <div class="panel-heading">
                     <div class="row">
                         <h1 class="col-md-5">已选课程</h1>
-
-
                     </div>
                 </div>
                 <table class="table table-bordered">
@@ -43,7 +41,6 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${selectedCourseList}" var="item">
-
                         <tr>
                             <td>${item.courseId}</td>
                             <td>${item.courseName}</td>
@@ -66,7 +63,6 @@
                                 </button>
                             </td>
                         </tr>
-
                     </c:forEach>
                     </tbody>
                 </table>

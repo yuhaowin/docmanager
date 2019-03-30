@@ -120,7 +120,7 @@ public class UploadUtil {
      * @return 所代表远程资源的响应结果, json数据
      */
     public static String convertFile2Html(String filepath) {
-        String url = "";
+        String previewUrl = "";
         String requestJson = "";
         HttpClient httpclient = new DefaultHttpClient();
         try {
@@ -139,7 +139,7 @@ public class UploadUtil {
                 requestJson = EntityUtils.toString(resEntity);
                 EntityUtils.consume(resEntity);
                 JsonNode jsonNode = MAPPER.readTree(requestJson);
-                url = jsonNode.get("data").get(0).asText();
+                previewUrl = jsonNode.get("data").get(0).asText();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -149,7 +149,7 @@ public class UploadUtil {
             } catch (Exception ignore) {
             }
         }
-        return url;
+        return previewUrl;
     }
 
     /**

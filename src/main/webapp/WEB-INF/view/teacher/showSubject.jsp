@@ -54,13 +54,16 @@
                             <td>${item.describe}</td>
                             <td>${item.fileName}</td>
                             <td>
-                                <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}" download="${item.fileName}">下载</a>
+                                <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}"
+                                   download="${item.fileName}">下载</a>
                                 <button class="btn btn-default btn-xs btn-info"
                                         onClick="location.href='/teacher/getCourseDoc?id=${item.subjectId}'">提交信息
                                 </button>
-                                <a  target="_blank" class="btn btn-default btn-xs btn-info" href="/files/index?path=${item.fileUrl}">预览</a>
+                                <a target="_blank" class="btn btn-default btn-xs btn-info"
+                                   href="/files/index?path=${item.fileUrl}">预览</a>
                                 <button class="btn btn-default btn-xs btn-danger btn-primary"
-                                        onClick="location.href='/teacher/removeSubject?id=${item.subjectId}&courseId=${courseId}'">删除
+                                        onClick="location.href='/teacher/removeSubject?id=${item.subjectId}&courseId=${courseId}'">
+                                    删除
                                 </button>
 
                             </td>

@@ -48,7 +48,7 @@ public class SelectedCourseDaoTest {
     }
 
     @Test
-    public void getByStudentId(){
+    public void getByStudentId() {
         List<Integer> list = selectedCourseDao.getByStudentId(10006);
         System.out.println(list.size());
     }

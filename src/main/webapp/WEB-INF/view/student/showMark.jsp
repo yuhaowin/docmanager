@@ -37,15 +37,15 @@
                         <div class="col-sm-10">
                             <input readonly="readonly" type="text" name="name" class="form-control"
                                    id="inputPassword3"
-                                   <c:choose>
-                                    <c:when test="${mark != null}">
-                                    value="${mark}"
-                                    </c:when>
-                                    <c:when test="${mark == null}">
+                            <c:choose>
+                            <c:when test="${mark != null}">
+                                   value="${mark}"
+                            </c:when>
+                            <c:when test="${mark == null}">
                                    value="暂无成绩"
-                                    </c:when>
-                                    </c:choose>
-                                    >
+                            </c:when>
+                            </c:choose>
+                            >
                         </div>
                     </div>
                 </div>

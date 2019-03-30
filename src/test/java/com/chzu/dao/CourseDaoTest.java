@@ -33,7 +33,7 @@ public class CourseDaoTest {
 
     @Test
     public void insert() {
-        Course course = new  Course();
+        Course course = new Course();
         course.setCourseId(12);
         course.setCourseName("测试课程1");
         course.setTeacherId(11);
@@ -48,7 +48,7 @@ public class CourseDaoTest {
 
     @Test
     public void selectByExample() {
-        Course course = new  Course();
+        Course course = new Course();
         course.setCourseId(12);
         //course.setCourseName("测试课程1");
         course.setTeacherId(11);
@@ -70,7 +70,7 @@ public class CourseDaoTest {
 
     @Test
     public void updateByPrimaryKey() {
-        Course course = new  Course();
+        Course course = new Course();
         course.setCourseId(9);
         course.setCourseName("测试课程333");
         course.setTeacherId(11);
@@ -94,7 +94,7 @@ public class CourseDaoTest {
     }
 
     @Test
-    public void getByList(){
+    public void getByList() {
         List<Integer> list = Arrays.asList(1, 2);
         List<Course> byList = courseDao.getByList(list);
         System.out.println(byList.size());

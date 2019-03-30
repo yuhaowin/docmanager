@@ -49,7 +49,7 @@
                             <label for="inputPassword3" class="col-sm-2 control-label">性别</label>
                             <div class="col-sm-10">
                                 <label class="checkbox-inline">
-                                    <input type="radio" name="sex" value="男" >男
+                                    <input type="radio" name="sex" value="男">男
                                 </label>
                                 <label class="checkbox-inline">
                                     <input type="radio" name="sex" value="女">女

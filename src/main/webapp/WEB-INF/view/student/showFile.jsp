@@ -50,14 +50,17 @@
                     <c:forEach items="${courseDocList}" var="item">
                         <tr>
                             <td>${item.fileName}</td>
-                            <td> <fmt:formatDate value="${item.lastTime}" pattern="yyyy年MM月dd日HH点mm分ss秒" /></td>
+                            <td><fmt:formatDate value="${item.lastTime}" pattern="yyyy年MM月dd日HH点mm分ss秒"/></td>
 
                             <td>
                                 <button class="btn btn-default btn-xs btn-danger btn-primary"
-                                        onClick="location.href='/student/deleteFile?fileId=${item.fileId}&courseId=${courseId}&subjectId=${subjectId}'">删除
+                                        onClick="location.href='/student/deleteFile?fileId=${item.fileId}&courseId=${courseId}&subjectId=${subjectId}'">
+                                    删除
                                 </button>
-                                <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}" download="${item.fileName}">下载</a>
-                                <a  target="_blank" class="btn btn-default btn-xs btn-info" href="/files/index?path=${item.fileUrl}">预览</a>
+                                <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}"
+                                   download="${item.fileName}">下载</a>
+                                <a target="_blank" class="btn btn-default btn-xs btn-info"
+                                   href="/files/preview?path=${item.fileUrl}">预览</a>
                             </td>
                         </tr>
                     </c:forEach>

@@ -42,22 +42,24 @@
                             <td>${item.subjectName}</td>
                             <td>${item.describe}</td>
                             <td>${item.fileName}</td>
-                            <td><fmt:formatDate value="${item.lastTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                            <td><fmt:formatDate value="${item.lastTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             <td>
-                                <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}" download="${item.fileName}">下载</a>
+                                <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}"
+                                   download="${item.fileName}">下载</a>
                                 <button class="btn btn-default btn-xs btn-info"
                                         onClick="location.href='/admin/showCourseDoc?subjectId=${item.subjectId}'">提交信息
                                 </button>
-                                <a  target="_blank" class="btn btn-default btn-xs btn-info" href="/files/index?path=${item.fileUrl}">预览</a>
+                                <a target="_blank" class="btn btn-default btn-xs btn-info"
+                                   href="/files/preview?path=${item.fileUrl}">预览</a>
                                 <button class="btn btn-default btn-xs btn-info"
-                                    <c:choose>
-                                        <c:when test="${item.bak == 0}">
-                                            onClick="location.href='/admin/subjectBak?subjectId=${item.subjectId}&courseId=${courseId}'">归档
-                                        </c:when>
-                                        <c:when test="${item.bak != 0}">
-                                            >已归档
-                                        </c:when>
-                                    </c:choose>
+                                        <c:choose>
+                                            <c:when test="${item.bak == 0}">
+                                                onClick="location.href='/admin/subjectBak?subjectId=${item.subjectId}&courseId=${courseId}'">归档
+                                            </c:when>
+                                            <c:when test="${item.bak != 0}">
+                                                >已归档
+                                            </c:when>
+                                        </c:choose>
 
                                 </button>
 

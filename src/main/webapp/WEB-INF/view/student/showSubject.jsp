@@ -41,10 +41,13 @@
                             <td>${item.fileName}</td>
                             <td>
                                 <button class="btn btn-default btn-xs btn-info"
-                                        onClick="location.href='/student/showFile?subjectId=${item.subjectId}&courseId=${item.courseId}'">我的文档
+                                        onClick="location.href='/student/showFile?subjectId=${item.subjectId}&courseId=${item.courseId}'">
+                                    我的文档
                                 </button>
-                                <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}" download="${item.fileName}">下载</a>
-                                <a  target="_blank" class="btn btn-default btn-xs btn-info" href="/files/index?path=${item.fileUrl}">预览</a>
+                                <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}"
+                                   download="${item.fileName}">下载</a>
+                                <a target="_blank" class="btn btn-default btn-xs btn-info"
+                                   href="/files/preview?path=${item.fileUrl}">预览</a>
                             </td>
                         </tr>
                     </c:forEach>

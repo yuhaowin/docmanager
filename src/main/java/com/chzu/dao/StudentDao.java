@@ -1,7 +1,6 @@
 package com.chzu.dao;
 
 import com.chzu.entity.Student;
-import com.chzu.entity.Teacher;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
