@@ -5,7 +5,6 @@ import com.chzu.dao.CollegeDao;
 import com.chzu.dao.CourseDao;
 import com.chzu.dao.SelectedCourseDao;
 import com.chzu.entity.*;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,7 +70,7 @@ public class CourseService {
         CourseCustom courseCustom = null;
         if (course != null) {
             courseCustom = new CourseCustom();
-            BeanUtils.copyProperties(courseCustom, course);
+            BeanUtils.copyProperties(course, courseCustom);
         }
 
         return courseCustom;
@@ -114,7 +113,7 @@ public class CourseService {
             for (Course c : list) {
                 CourseCustom courseCustom = new CourseCustom();
                 //类拷贝
-                BeanUtils.copyProperties(courseCustom, c);
+                BeanUtils.copyProperties(c, courseCustom);
                 //获取课程名
                 College college = collegeDao.selectByPrimaryKey(c.getCollegeId());
                 courseCustom.setCollegeName(college.getCollegeName());
