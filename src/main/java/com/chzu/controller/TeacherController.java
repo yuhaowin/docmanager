@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -145,6 +146,61 @@ public class TeacherController {
         int result = teacherService.profileUpdate(teacher);
         System.out.println(result);
         return profile(model);
+    }
+
+    /**
+     * 新增选题
+     *
+     * @param id    课程ID
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/addSubject", method = RequestMethod.GET)
+    public String addSubject(Integer id, Model model) {
+        model.addAttribute("courseId", id);
+        return "teacher/addSubject";
+    }
+
+    /**
+     * 保存选题信息
+     *
+     * @param courseId
+     * @param subjectName
+     * @param describe
+     * @param file
+     * @return
+     */
+    @RequestMapping(value = "/addSubject", method = RequestMethod.POST)
+    public String saveSubject(Integer courseId, String subjectName, String describe, MultipartFile file) {
+        Subject subject = SecurityUtils.getSubject();
+        String userid = (String) subject.getPrincipal();
+
+        return "teacher/showSubject";
+    }
+
+
+    /**
+     * 展示选题信息
+     *
+     * @param id    课程id
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/showsubject")
+    public String showSubject(Integer id, Model model) throws Exception {
+        Subject subject = SecurityUtils.getSubject();
+        String userid = (String) subject.getPrincipal();
+        if (id == null) {
+            return "";
+        }
+        List<SelectedCourseCustom> list = selectedCourseService.findByCourseID(id);
+        // 返回课程ID 用于新增选题使用
+        model.addAttribute("courseId", id);
+        model.addAttribute("selectedCourseList", list);
+
+        return "teacher/showSubject";
     }
 
 }

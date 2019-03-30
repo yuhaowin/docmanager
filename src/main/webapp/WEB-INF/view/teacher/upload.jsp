@@ -27,7 +27,6 @@
     $("#file-1").fileinput({
         language: 'zh',
         uploadUrl: '/files/upload', // you must set a valid URL here else you will get an error
-        //allowedFileExtensions: ['jpg', 'png', 'gif','java','doc','docx'],
         overwriteInitial: false,
         maxFileSize: 10000,
         maxFilesNum: 10,
