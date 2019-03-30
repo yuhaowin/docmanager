@@ -176,17 +176,13 @@ public class TeacherController {
      * @return
      */
     @RequestMapping(value = "/addSubject", method = RequestMethod.POST)
-    public String saveSubject(HttpServletRequest request, Integer courseId, String subjectName, String describe, MultipartFile file) {
+    public String saveSubject(HttpServletRequest request, Integer courseId, String subjectName,
+                              String describe, MultipartFile file,Model model) {
         String basePath = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/files/";
-        System.out.println("当前项目路径: " + basePath);
-        //上传文件的文件名
+        // 上传文件的文件名
         String oldName = file.getOriginalFilename();
-        System.out.println(oldName);
         // 文件所在项目的相对路径
         String path = UploadUtil.uploadFile(file, basePath);
-
-        System.out.println(path);
-
         Subject subject = SecurityUtils.getSubject();
         String userid = (String) subject.getPrincipal();
         ClassSubject classSubject = new ClassSubject();
@@ -198,6 +194,12 @@ public class TeacherController {
         classSubject.setSubjectName(subjectName);
         fileService.addSubject(classSubject);
 
+        ClassSubject search = new ClassSubject();
+        search.setCourseId(courseId);
+        List<ClassSubject> subjectList = fileService.getSubject(search);
+        // 返回课程ID 用于新增选题使用
+        model.addAttribute("courseId", courseId);
+        model.addAttribute("subjectList", subjectList);
         return "teacher/showSubject";
     }
 
@@ -217,12 +219,25 @@ public class TeacherController {
         if (id == null) {
             return "";
         }
-        List<SelectedCourseCustom> list = selectedCourseService.findByCourseID(id);
+        ClassSubject classSubject = new ClassSubject();
+        classSubject.setCourseId(id);
+        List<ClassSubject> subjectList = fileService.getSubject(classSubject);
         // 返回课程ID 用于新增选题使用
         model.addAttribute("courseId", id);
-        model.addAttribute("selectedCourseList", list);
-
+        model.addAttribute("subjectList", subjectList);
         return "teacher/showSubject";
     }
 
+    @RequestMapping(value = "/removeSubject")
+    public String removeSubject(Integer id,Integer courseId, Model model){
+        // todo 删除选课信息
+
+        ClassSubject classSubject = new ClassSubject();
+        classSubject.setCourseId(courseId);
+        List<ClassSubject> subjectList = fileService.getSubject(classSubject);
+        // 返回课程ID 用于新增选题使用
+        model.addAttribute("courseId", id);
+        model.addAttribute("subjectList", subjectList);
+        return "teacher/showSubject";
+    }
 }

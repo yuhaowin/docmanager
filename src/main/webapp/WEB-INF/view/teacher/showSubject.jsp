@@ -34,12 +34,12 @@
                             添加选题
                             <sapn class="glyphicon glyphicon-plus"/>
                         </button>
-
                     </div>
                 </div>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
+                        <th>ID</th>
                         <th>名称</th>
                         <th>描述</th>
                         <th>文档</th>
@@ -47,23 +47,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${studentList}" var="item">
+                    <c:forEach items="${subjectList}" var="item">
                         <tr>
-                            <%--<td>${item.userId}</td>--%>
-                            <%--<td>${item.userName}</td>--%>
-                            <%--<td>${item.sex}</td>--%>
-                            <%--<td><fmt:formatDate value="${item.birthYear}" dateStyle="medium"/></td>--%>
-                            <%--<td><fmt:formatDate value="${item.grade}" dateStyle="medium"/></td>--%>
-                            <%--<td>${item.collegeName}</td>--%>
-                            <%--<td>--%>
-                                <%--<button class="btn btn-default btn-xs btn-info"--%>
-                                        <%--onClick="location.href='/admin/editStudent?id=${item.userId}'">修改--%>
-                                <%--</button>--%>
-                                <%--<button class="btn btn-default btn-xs btn-danger btn-primary"--%>
-                                        <%--onClick="location.href='/admin/removeStudent?id=${item.userId}'">删除--%>
-                                <%--</button>--%>
-                                <%--<!--弹出框-->--%>
-                            <%--</td>--%>
+                            <td>${item.subjectId}</td>
+                            <td>${item.subjectName}</td>
+                            <td>${item.describe}</td>
+                            <td>${item.fileName}</td>
+                            <td>
+                                <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}" download="${item.fileName}">下载</a>
+                                <button class="btn btn-default btn-xs btn-danger btn-primary"
+                                        onClick="location.href='/teacher/removeSubject?id=${item.subjectId}&courseId=${courseId}'">删除
+                                </button>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -100,7 +95,6 @@
                     </c:if>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
