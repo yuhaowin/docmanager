@@ -38,7 +38,7 @@ public class FileDao {
      */
     public List<CourseDoc> getCourseDoc(CourseDoc courseDoc) {
         Session session = sessionFactory.openSession();
-        DetachedCriteria dc = DetachedCriteria.forClass(Course.class);
+        DetachedCriteria dc = DetachedCriteria.forClass(CourseDoc.class);
         if (courseDoc.getStudentId() != null) {
             dc.add(Restrictions.eq("studentId", courseDoc.getStudentId()));
         }
@@ -90,7 +90,7 @@ public class FileDao {
      */
     public List<ClassSubject> getSubject(ClassSubject classSubject) {
         Session session = sessionFactory.openSession();
-        DetachedCriteria dc = DetachedCriteria.forClass(Course.class);
+        DetachedCriteria dc = DetachedCriteria.forClass(ClassSubject.class);
         if (classSubject.getTeacherId() != null) {
             dc.add(Restrictions.eq("teacherId", classSubject.getTeacherId()));
         }
