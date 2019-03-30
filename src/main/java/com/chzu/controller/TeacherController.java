@@ -193,14 +193,7 @@ public class TeacherController {
         classSubject.setTeacherId(Integer.parseInt(userid));
         classSubject.setSubjectName(subjectName);
         fileService.addSubject(classSubject);
-
-        ClassSubject search = new ClassSubject();
-        search.setCourseId(courseId);
-        List<ClassSubject> subjectList = fileService.getSubject(search);
-        // 返回课程ID 用于新增选题使用
-        model.addAttribute("courseId", courseId);
-        model.addAttribute("subjectList", subjectList);
-        return "teacher/showSubject";
+        return "redirect:/teacher/showsubject?id="+courseId;
     }
 
 
@@ -231,13 +224,6 @@ public class TeacherController {
     @RequestMapping(value = "/removeSubject")
     public String removeSubject(Integer id,Integer courseId, Model model){
         // todo 删除选课信息
-
-        ClassSubject classSubject = new ClassSubject();
-        classSubject.setCourseId(courseId);
-        List<ClassSubject> subjectList = fileService.getSubject(classSubject);
-        // 返回课程ID 用于新增选题使用
-        model.addAttribute("courseId", id);
-        model.addAttribute("subjectList", subjectList);
-        return "teacher/showSubject";
+        return "redirect:/teacher/showsubject?id="+courseId;
     }
 }
