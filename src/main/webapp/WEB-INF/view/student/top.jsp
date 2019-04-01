@@ -2,12 +2,13 @@
 <%--shiro标签--%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!-- 顶栏 -->
+
+
 <div class="container" id="top">
     <div class="row">
         <div class="col-md-12">
             <!--加入导航条标题-->
-            <div class="navbar navbar-default" role="navigation">
-                　
+            <div class="nav navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     　 <a href="##" class="navbar-brand">实践教学材料提交系统(学生端)</a>
                     　
@@ -40,7 +41,6 @@
 
                 </form>
             </div>
-
         </div>
     </div>
 </div>

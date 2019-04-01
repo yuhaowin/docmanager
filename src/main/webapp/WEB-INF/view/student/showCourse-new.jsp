@@ -13,6 +13,7 @@
     <script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <div id="wrapper" class="toggled">
     <!-- 顶栏 -->
     <jsp:include page="top.jsp"></jsp:include>
@@ -26,7 +27,7 @@
                 <div class="col-md-12 column">
                     <div class="panel-heading">
                         <div class="row">
-                            <h1 class="col-md-5">已选课程</h1>
+                            <h1 class="col-md-5">课程列表</h1>
                         </div>
                     </div>
                     <table class="table table-bordered table-condensed">
@@ -44,7 +45,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${selectedCourseList}" var="item">
+                        <c:forEach items="${courseList}" var="item">
                             <tr>
                                 <td>${item.courseId}</td>
                                 <td>${item.courseName}</td>
@@ -56,15 +57,9 @@
                                 <td>${item.score}</td>
                                 <td>
                                     <button class="btn btn-default btn-xs btn-info"
-                                            onClick="location.href='/student/outCourse?id=${item.courseId}'">退课
-                                    </button>
-                                    <button class="btn btn-default btn-xs btn-info"
-                                            onClick="location.href='/student/showMark?id=${item.courseId}'">成绩
+                                            onClick="location.href='/student/stuSelectedCourse?id=${item.courseId}'">选课
                                     </button>
                                     <!--弹出框-->
-                                    <button class="btn btn-default btn-xs btn-info"
-                                            onClick="location.href='/student/classSubject?id=${item.courseId}'">课题
-                                    </button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -121,7 +116,7 @@
 </body>
 <script type="text/javascript">
     <%--设置菜单中--%>
-    $("#nav li:nth-child(2)").addClass("active")
+    $("#nav li:nth-child(1)").addClass("active")
     <c:if test="${pagingVO != null}">
     if (${pagingVO.curentPageNo} == ${pagingVO.totalCount}) {
         $(".pagination li:last-child").addClass("disabled")
