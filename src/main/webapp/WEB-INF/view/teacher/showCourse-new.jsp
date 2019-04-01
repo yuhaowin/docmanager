@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
-<title>卖家后端管理系统</title>
+<title>管理系统</title>
 <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css" media="all"/>
 <script src="/js/jquery-3.2.1.min.js"></script>
@@ -11,9 +11,9 @@
 <body>
 <div id="wrapper" class="toggled">
     <jsp:include page="top.jsp"></jsp:include>
-<%--边栏sidebar--%>
+    <%--边栏sidebar--%>
     <jsp:include page="sidebar.jsp"></jsp:include>
-        <%--主要内容content--%>
+    <%--主要内容content--%>
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
@@ -25,7 +25,8 @@
                                   action="/admin/selectCourse" id="form1" method="post">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="请输入课程名" name="findByName">
-                                    <span class="input-group-addon btn" onclick="document.getElementById('form1').submit"
+                                    <span class="input-group-addon btn"
+                                          onclick="document.getElementById('form1').submit"
                                           id="sub">搜索</span>
                                 </div>
                             </form>
@@ -69,9 +70,59 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="col-md-12 column">
+                    <ul class="pagination pull-right">
+                        <c:choose>
+                            <c:when test="${pagingVO.curentPageNo <= 1}">
+                                <!--如果 -->
+                                <li class="disabled"><a href="#">上一页</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <!--否则 -->
+                                <li>
+                                    <a href="/teacher/showCourse?page=${pagingVO.curentPageNo-1}">上一页</a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                        <!--循环遍历 -->
+                        <c:forEach var="index" begin="1" end="${pagingVO.totalCount}" step="1">
+                            <c:choose>
+                                <c:when test="${pagingVO.curentPageNo == index}">
+                                    <!--如果 -->
+                                    <li class="disabled"><a href="#">${index}</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <!--否则 -->
+                                    <li>
+                                        <a href="/teacher/showCourse?page=${index}">${index}</a>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${pagingVO.curentPageNo >= pagingVO.totalCount}">
+                                <!--如果 -->
+                                <li class="disabled"><a href="#">下一页</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <!--否则 -->
+                                <li>
+                                    <a href="/teacher/showCourse?page=${pagingVO.curentPageNo+1}">下一页</a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </body>
+<script type="text/javascript">
+    <%--设置菜单中--%>
+    $("#nav li:nth-child(1)").addClass("active")
+    $("#sub").click(function () {
+        $("#form1").submit();
+    });
+</script>
 </html>
