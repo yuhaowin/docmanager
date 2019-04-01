@@ -64,7 +64,7 @@ public class TeacherController {
         List<CourseCustom> list = courseService.findByTeacherID(Integer.parseInt(username));
         model.addAttribute("courseList", list);
         model.addAttribute("pagingVO", pagingVO);
-        return "teacher/showCourse-new";
+        return "teacher/showCourse";
     }
 
     /**

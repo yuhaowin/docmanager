@@ -3,11 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
-<title>管理系统</title>
-<link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/css/style.css" media="all"/>
-<script src="/js/jquery-3.2.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<head>
+    <title>管理系统</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" media="all"/>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
 <body>
 <div id="wrapper" class="toggled">
     <jsp:include page="top.jsp"></jsp:include>
@@ -17,6 +19,7 @@
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
+
                 <div class="col-md-12 column">
                     <div class="panel-heading">
                         <div class="row">
@@ -70,6 +73,7 @@
                         </tbody>
                     </table>
                 </div>
+
                 <div class="col-md-12 column">
                     <ul class="pagination pull-right">
                         <c:choose>
