@@ -51,7 +51,7 @@ public class TeacherController {
 
         List<CourseCustom> list = courseService.findByTeacherID(Integer.parseInt(username));
         model.addAttribute("courseList", list);
-        return "teacher/showCourse";
+        return "teacher/showCourse-new";
     }
 
     /**

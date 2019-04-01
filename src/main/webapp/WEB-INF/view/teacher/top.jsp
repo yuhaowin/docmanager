@@ -6,11 +6,9 @@
     <div class="row">
         <div class="col-md-12">
             <!--加入导航条标题-->
-            <div class="navbar navbar-default" role="navigation">
-                　
+            <div class="nav navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     　 <a href="##" class="navbar-brand">实践教学材料提交系统(教师端)</a>
-                    　
                 </div>
                 <form action="##" class="navbar-form navbar-right" rol="search">
                     <div class="dropdown">
@@ -37,10 +35,8 @@
                             </li>
                         </ul>
                     </div>
-
                 </form>
             </div>
-
         </div>
     </div>
 </div>
