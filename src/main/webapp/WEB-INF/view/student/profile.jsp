@@ -16,8 +16,6 @@
     <jsp:include page="top.jsp"></jsp:include>
     <%--边栏sidebar--%>
     <jsp:include page="sidebar.jsp"></jsp:include>
-
-
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
@@ -95,8 +93,6 @@
 </div>
 </body>
 <script>
-    $("#nav li:nth-child(4)").addClass("active")
-
     function check() {
         if (reset.oldPassword.value == "" || reset.oldPassword.value == null) {
             alert("请输入旧账户密码");

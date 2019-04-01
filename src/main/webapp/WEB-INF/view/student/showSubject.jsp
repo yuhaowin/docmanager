@@ -12,14 +12,11 @@
     <script src="../js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <div id="wrapper" class="toggled">
     <!-- 顶栏 -->
     <jsp:include page="top.jsp"></jsp:include>
     <%--边栏sidebar--%>
     <jsp:include page="sidebar.jsp"></jsp:include>
-
-
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
@@ -65,33 +62,10 @@
         </div>
     </div>
 </div>
+</body>
 <script type="text/javascript">
-    $("#nav li:nth-child(2)").addClass("active");
-
-    function confirmd() {
-        var msg = "您真的确定要删除吗？！";
-        if (confirm(msg) == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    ;
-
     $("#sub").click(function () {
         $("#form1").submit();
     });
-
-    <c:if test="${pagingVO != null}">
-    if (${pagingVO.curentPageNo} == ${pagingVO.totalCount}) {
-        $(".pagination li:last-child").addClass("disabled")
-    }
-    ;
-
-    if (${pagingVO.curentPageNo} == ${1}) {
-        $(".pagination li:nth-child(1)").addClass("disabled")
-    }
-    ;
-    </c:if>
 </script>
 </html>

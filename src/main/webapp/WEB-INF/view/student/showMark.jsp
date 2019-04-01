@@ -12,14 +12,11 @@
     <script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <div id="wrapper" class="toggled">
     <!-- 顶栏 -->
     <jsp:include page="top.jsp"></jsp:include>
     <%--边栏sidebar--%>
     <jsp:include page="sidebar.jsp"></jsp:include>
-
-
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
@@ -64,6 +61,5 @@
 </div>
 </body>
 <script>
-    $("#nav li:nth-child(2)").addClass("active")
 </script>
 </html>

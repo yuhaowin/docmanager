@@ -6,17 +6,10 @@
 <html>
 <head>
     <title>课程信息显示</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 引入bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/style.css" media="all"/>
-    <!-- 引入JQuery  bootstrap.min.js-->
     <script src="/js/jquery-3.2.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-
-    <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
-
 </head>
 <body>
 
@@ -25,8 +18,6 @@
     <jsp:include page="top.jsp"></jsp:include>
     <%--边栏sidebar--%>
     <jsp:include page="sidebar.jsp"></jsp:include>
-
-
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
@@ -35,13 +26,11 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <h1 class="col-md-5">我的文档</h1>
-
                                 <button class="btn btn-default col-md-2" style="margin-top: 20px"
                                         onClick="location.href='/student/addFile?courseId=${courseId}&subjectId=${subjectId}'">
                                     添加文档
                                     <sapn class="glyphicon glyphicon-plus"/>
                                 </button>
-
                             </div>
                         </div>
                         <table class="table table-bordered">
@@ -80,29 +69,6 @@
 </div>
 </body>
 <script type="text/javascript">
-    <%--设置菜单中--%>
-    $("#nav li:nth-child(2)").addClass("active")
-    <c:if test="${pagingVO != null}">
-    if (${pagingVO.curentPageNo} == ${pagingVO.totalCount}) {
-        $(".pagination li:last-child").addClass("disabled")
-    }
-    ;
-
-    if (${pagingVO.curentPageNo} == ${1}) {
-        $(".pagination li:nth-child(1)").addClass("disabled")
-    }
-    ;
-    </c:if>
-
-    function confirmd() {
-        var msg = "您真的确定要删除吗？！";
-        if (confirm(msg) == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     $("#sub").click(function () {
         $("#form1").submit();
     });

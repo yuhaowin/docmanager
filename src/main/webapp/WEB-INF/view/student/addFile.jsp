@@ -25,8 +25,6 @@
     <jsp:include page="top.jsp"></jsp:include>
     <%--边栏sidebar--%>
     <jsp:include page="sidebar.jsp"></jsp:include>
-
-
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
@@ -63,8 +61,6 @@
         </div>
     </div>
 </div>
-
-
 </body>
 <script type="text/javascript">
     $("#nav li:nth-child(2)").addClass("active")
@@ -74,7 +70,6 @@
         overwriteInitial: false,
         maxFileSize: 10000,
         maxFilesNum: 10,
-        //allowedFileTypes: ['image', 'video', 'flash'],
         slugCallback: function (filename) {
             return filename.replace('(', '_').replace(']', '_');
         }
