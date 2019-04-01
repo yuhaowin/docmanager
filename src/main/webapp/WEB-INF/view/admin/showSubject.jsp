@@ -81,7 +81,7 @@
                             <c:otherwise>
                                 <!--否则 -->
                                 <li>
-                                    <a href="/admin/showStudent?page=${pagingVO.curentPageNo-1}">上一页</a>
+                                    <a href="/admin/showSubject?page=${pagingVO.curentPageNo-1}">上一页</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -95,7 +95,7 @@
                                 <c:otherwise>
                                     <!--否则 -->
                                     <li>
-                                        <a href="/admin/showStudent?page=${index}">${index}</a>
+                                        <a href="/admin/showSubject?page=${index}">${index}</a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>
@@ -108,7 +108,7 @@
                             <c:otherwise>
                                 <!--否则 -->
                                 <li>
-                                    <a href="/admin/showStudent?page=${pagingVO.curentPageNo+1}">下一页</a>
+                                    <a href="/admin/showSubject?page=${pagingVO.curentPageNo+1}">下一页</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
