@@ -3,26 +3,25 @@
 <html>
 <head>
     <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <script src="/js/jquery-3.2.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <jsp:include page="head.jsp"></jsp:include>
 </head>
 <body>
-<!-- 顶栏 -->
-<jsp:include page="top.jsp"></jsp:include>
-<!-- 中间主体 -->
-<div class="container" id="content">
-    <div class="row">
-        <jsp:include page="menu.jsp"></jsp:include>
-        <div class="col-md-10">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="row">
-                        <h1 style="text-align: center;">重置其他用户密码</h1>
+<div id="wrapper" class="toggled">
+    <!-- 顶栏 -->
+    <jsp:include page="top.jsp"></jsp:include>
+    <%--边栏sidebar--%>
+    <jsp:include page="sidebar.jsp"></jsp:include>
+    <%--主要内容content--%>
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <%--主体--%>
+                <div class="col-md-12 column">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <h1 style="text-align: center;">重置其他用户密码</h1>
+                        </div>
                     </div>
-                </div>
-                <div class="panel-body">
                     <form class="form-horizontal" name="reset" role="form" action="/admin/userPasswordRest"
                           id="editfrom" method="post" onsubmit="return check()">
                         <div class="form-group">
@@ -52,21 +51,12 @@
                         </div>
                     </form>
                 </div>
-
             </div>
-
         </div>
-    </div>
-</div>
-<div class="container" id="footer">
-    <div class="row">
-        <div class="col-md-12"></div>
     </div>
 </div>
 </body>
 <script>
-    $("#nav li:nth-child(4)").addClass("active")
-
     function check() {
         if (reset.username.value == "" || reset.username.value == null) {
             alert("请输入账户名称");
