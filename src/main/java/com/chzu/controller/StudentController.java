@@ -65,7 +65,7 @@ public class StudentController {
         model.addAttribute("courseList", list);
         model.addAttribute("pagingVO", pagingVO);
 
-        return "student/showCourse-new";
+        return "student/showCourse";
     }
 
     /**
