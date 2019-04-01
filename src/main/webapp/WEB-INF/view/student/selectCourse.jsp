@@ -71,49 +71,6 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-md-12 column">
-                    <ul class="pagination pull-right">
-                        <c:choose>
-                            <c:when test="${pagingVO.curentPageNo <= 1}">
-                                <!--如果 -->
-                                <li class="disabled"><a href="#">上一页</a></li>
-                            </c:when>
-                            <c:otherwise>
-                                <!--否则 -->
-                                <li>
-                                    <a href="/student/showCourse?page=${pagingVO.curentPageNo-1}">上一页</a>
-                                </li>
-                            </c:otherwise>
-                        </c:choose>
-                        <!--循环遍历 -->
-                        <c:forEach var="index" begin="1" end="${pagingVO.totalCount}" step="1">
-                            <c:choose>
-                                <c:when test="${pagingVO.curentPageNo == index}">
-                                    <!--如果 -->
-                                    <li class="disabled"><a href="#">${index}</a></li>
-                                </c:when>
-                                <c:otherwise>
-                                    <!--否则 -->
-                                    <li>
-                                        <a href="/student/showCourse?page=${index}">${index}</a>
-                                    </li>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                        <c:choose>
-                            <c:when test="${pagingVO.curentPageNo >= pagingVO.totalCount}">
-                                <!--如果 -->
-                                <li class="disabled"><a href="#">下一页</a></li>
-                            </c:when>
-                            <c:otherwise>
-                                <!--否则 -->
-                                <li>
-                                    <a href="/student/showCourse?page=${pagingVO.curentPageNo+1}">下一页</a>
-                                </li>
-                            </c:otherwise>
-                        </c:choose>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
