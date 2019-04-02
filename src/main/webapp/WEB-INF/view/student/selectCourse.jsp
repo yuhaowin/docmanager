@@ -38,7 +38,7 @@
                             <th>周数</th>
                             <th>课程类型</th>
                             <th>学分</th>
-                            <th>操作</th>
+                            <th style="text-align: center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -52,7 +52,7 @@
                                 <td>${item.courseWeek}</td>
                                 <td>${item.courseType}</td>
                                 <td>${item.score}</td>
-                                <td>
+                                <td style="text-align: center">
                                     <button class="btn btn-default btn-xs btn-info"
                                             onClick="location.href='/student/outCourse?id=${item.courseId}'">退课
                                     </button>
@@ -68,6 +68,49 @@
                         </c:forEach>
                         </tbody>
                     </table>
+                </div>
+                <div class="col-md-12 column">
+                    <ul class="pagination pull-right">
+                        <c:choose>
+                            <c:when test="${pagingVO.curentPageNo <= 1}">
+                                <!--如果 -->
+                                <li class="disabled"><a href="#">上一页</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <!--否则 -->
+                                <li>
+                                    <a href="/student/selectedCourse?page=${pagingVO.curentPageNo-1}">上一页</a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                        <!--循环遍历 -->
+                        <c:forEach var="index" begin="1" end="${pagingVO.totalCount}" step="1">
+                            <c:choose>
+                                <c:when test="${pagingVO.curentPageNo == index}">
+                                    <!--如果 -->
+                                    <li class="disabled"><a href="#">${index}</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <!--否则 -->
+                                    <li>
+                                        <a href="/student/selectedCourse?page=${index}">${index}</a>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${pagingVO.curentPageNo >= pagingVO.totalCount}">
+                                <!--如果 -->
+                                <li class="disabled"><a href="#">下一页</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <!--否则 -->
+                                <li>
+                                    <a href="/student/selectedCourse?page=${pagingVO.curentPageNo+1}">下一页</a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                    </ul>
                 </div>
             </div>
         </div>

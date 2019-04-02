@@ -73,7 +73,7 @@ public class StudentService {
     }
 
     //模糊查询
-    public List<StudentCustom> findByName(String name){
+    public List<StudentCustom> findByName(String name) {
         List<Student> list = studentDao.selectByName(name);
         List<StudentCustom> studentCustomList = null;
         if (list != null) {
@@ -114,10 +114,16 @@ public class StudentService {
         return studentDao.update(student);
     }
 
-    public List<Course> studentCourseList(Integer studentId) {
+    public Integer studentCourseListCount (Integer studentId){
         List<Integer> list = selectedCourseDao.getByStudentId(studentId);
-        List<Course> courses = courseDao.getByList(list);
-        return courses;
+        return courseDao.getByListCount(list);
+    }
 
+    public List<Course> studentCourseListByPaging(Integer toPageNo, Integer studentId) {
+        PagingVO pagingVO = new PagingVO();
+        pagingVO.setToPageNo(toPageNo);
+        List<Integer> list = selectedCourseDao.getByStudentId(studentId);
+        List<Course> courses = courseDao.getByList(pagingVO, list);
+        return courses;
     }
 }
