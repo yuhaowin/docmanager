@@ -144,20 +144,26 @@ public class CourseDao {
 
     public Integer getByListCount(List<Integer> courseIds){
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from Course where courseId in (:ids)")
-                .setParameterList("ids", courseIds);
-        List<Course> list = query.list();
+        List<Course> list = new ArrayList<>();
+        if (courseIds.size() >0 ){
+            Query query = session.createQuery("from Course where courseId in (:ids)")
+                    .setParameterList("ids", courseIds);
+            list = query.list();
+        }
         session.close();
         return list.size();
     }
 
     public List<Course> getByList(PagingVO pagingVO,List<Integer> courseIds) {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from Course where courseId in (:ids)")
-                .setParameterList("ids", courseIds)
-                .setFirstResult(pagingVO.getTopageNo())
-                .setMaxResults(pagingVO.getPageSize());
-        List<Course> list = query.list();
+        List<Course> list = new ArrayList<>();
+        if (courseIds.size() >0){
+            Query query = session.createQuery("from Course where courseId in (:ids)")
+                    .setParameterList("ids", courseIds)
+                    .setFirstResult(pagingVO.getTopageNo())
+                    .setMaxResults(pagingVO.getPageSize());
+            list = query.list();
+        }
         session.close();
         return list;
     }
