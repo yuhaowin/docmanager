@@ -14,7 +14,7 @@
             <a href="/admin/showTeacher"><i class="fa fa-fw fa-list-alt"></i>教师管理</a>
         </li>
         <li>
-            <a href="/admin/userPasswordRest"><i class="fa fa-fw fa-list-alt"></i>账号密码重置</a>
+            <a href="/admin/userPasswordRest"><i class="fa fa-fw fa-list-alt"></i>账号管理</a>
         </li>
         <li>
             <a href="/admin/passwordRest"><i class="fa fa-fw fa-list-alt"></i>修改密码</a>

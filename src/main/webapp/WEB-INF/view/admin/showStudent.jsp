@@ -46,7 +46,7 @@
                             <th>出生年份</th>
                             <th>入学时间</th>
                             <th>学院</th>
-                            <th>操作</th>
+                            <th style="text-align: center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -58,14 +58,13 @@
                                 <td><fmt:formatDate value="${item.birthYear}" dateStyle="medium"/></td>
                                 <td><fmt:formatDate value="${item.grade}" dateStyle="medium"/></td>
                                 <td>${item.collegeName}</td>
-                                <td>
+                                <td style="text-align: center">
                                     <button class="btn btn-default btn-xs btn-info"
                                             onClick="location.href='/admin/editStudent?id=${item.userId}'">修改
                                     </button>
                                     <button class="btn btn-default btn-xs btn-danger btn-primary"
                                             onClick="location.href='/admin/removeStudent?id=${item.userId}'">删除
                                     </button>
-                                    <!--弹出框-->
                                 </td>
                             </tr>
                         </c:forEach>

@@ -50,7 +50,7 @@
                             <th>职称</th>
                             <th>入职年份</th>
                             <th>学院</th>
-                            <th>操作</th>
+                            <th style="text-align: center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -64,14 +64,13 @@
                                 <td>${item.title}</td>
                                 <td><fmt:formatDate value="${item.grade}" dateStyle="medium"/></td>
                                 <td>${item.collegeName}</td>
-                                <td>
+                                <td style="text-align: center">
                                     <button class="btn btn-default btn-xs btn-info"
                                             onClick="location.href='/admin/editTeacher?id=${item.userId}'">修改
                                     </button>
                                     <button class="btn btn-default btn-xs btn-danger btn-primary"
                                             onClick="location.href='/admin/removeTeacher?id=${item.userId}'">删除
                                     </button>
-                                    <!--弹出框-->
                                 </td>
                             </tr>
                         </c:forEach>

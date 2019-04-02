@@ -32,7 +32,7 @@
                             <th>描述</th>
                             <th>文档</th>
                             <th>创建时间</th>
-                            <th>操作</th>
+                            <th style="text-align: center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -43,7 +43,7 @@
                                 <td>${item.describe}</td>
                                 <td>${item.fileName}</td>
                                 <td><fmt:formatDate value="${item.lastTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                                <td>
+                                <td style="text-align: center">
                                     <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}"
                                        download="${item.fileName}">下载</a>
                                     <button class="btn btn-default btn-xs btn-info"
@@ -52,18 +52,19 @@
                                     </button>
                                     <a target="_blank" class="btn btn-default btn-xs btn-info"
                                        href="/files/preview?path=${item.fileUrl}">预览</a>
-                                    <button class="btn btn-default btn-xs btn-info"
-                                            <c:choose>
-                                                <c:when test="${item.bak == 0}">
-                                                    onClick="location.href='/admin/subjectBak?subjectId=${item.subjectId}&courseId=${courseId}'">归档
-                                                </c:when>
-                                                <c:when test="${item.bak != 0}">
-                                                    >已归档
-                                                </c:when>
-                                            </c:choose>
-
-                                    </button>
-
+                                    <c:choose>
+                                        <c:when test="${item.bak == 0}">
+                                            <button class="btn btn-default btn-xs btn-info"
+                                                    onClick="location.href='/admin/subjectBak?subjectId=${item.subjectId}&courseId=${courseId}'">
+                                                未归档
+                                            </button>
+                                        </c:when>
+                                        <c:when test="${item.bak != 0}">
+                                            <button class="btn btn-default btn-xs btn-danger">
+                                                已归档
+                                            </button>
+                                        </c:when>
+                                    </c:choose>
                                 </td>
                             </tr>
                         </c:forEach>
