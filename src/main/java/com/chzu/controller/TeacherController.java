@@ -52,7 +52,7 @@ public class TeacherController {
         //页码对象
         PagingVO pagingVO = new PagingVO();
         //设置总页数
-        pagingVO.setTotalCount(30);
+        pagingVO.setTotalCount(courseService.findByTeacherID(Integer.parseInt(username), null).size());
         if (page == null || page == 0) {
             pagingVO.setToPageNo(1);
             //list = courseService.findByPaging(1);
@@ -61,7 +61,7 @@ public class TeacherController {
             //list = courseService.findByPaging(page);
         }
 
-        List<CourseCustom> list = courseService.findByTeacherID(Integer.parseInt(username));
+        List<CourseCustom> list = courseService.findByTeacherID(Integer.parseInt(username), pagingVO);
         model.addAttribute("courseList", list);
         model.addAttribute("pagingVO", pagingVO);
         return "teacher/showCourse";
@@ -255,6 +255,22 @@ public class TeacherController {
         List<CourseDoc> courseDocList = fileService.getCourseDoc(courseDoc);
         model.addAttribute("courseDocList", courseDocList);
         return "teacher/showCourseDoc";
+    }
+
+
+    /**
+     * 我的课程搜索
+     * @param findByName
+     * @return
+     */
+    @RequestMapping(value = "/selectCourse", method = RequestMethod.POST)
+    public String selectCourse(String findByName, Model model){
+        Subject subject = SecurityUtils.getSubject();
+        String username = (String) subject.getPrincipal();
+        List<CourseCustom> list = courseService.findCourseCustom(findByName,Integer.parseInt(username));
+        model.addAttribute("courseList", list);
+        return "teacher/showCourse";
+
     }
 
 }

@@ -12,7 +12,6 @@
         <li class="dropdown open">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i>个人管理<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">ACTIVE</li>
                 <li><a href="/teacher/passwordRest">修改密码</a></li>
                 <li><a href="/teacher/profile">个人信息</a></li>
             </ul>

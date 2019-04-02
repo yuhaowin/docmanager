@@ -77,8 +77,13 @@ public class CourseService {
     }
 
     public List<CourseCustom> findByName(String name){
+       return findCourseCustom(name, null);
+    }
+
+    public List<CourseCustom> findCourseCustom(String name, Integer teacherId){
         Course course = new Course();
         course.setCourseName(name);
+        course.setTeacherId(teacherId);
         List<Course> list = courseDao.selectByExample(course);
         List<CourseCustom> courseCustomList = null;
         if (list != null) {
@@ -96,10 +101,10 @@ public class CourseService {
         return courseCustomList;
     }
 
-    public List<CourseCustom> findByTeacherID(Integer id) throws Exception {
+    public List<CourseCustom> findByTeacherID(Integer id, PagingVO pagingVO) throws Exception {
         Course course = new Course();
         course.setTeacherId(id);
-        List<Course> list = courseDao.selectByExample(course);
+        List<Course> list = courseDao.selectByExample(course, pagingVO);
         List<CourseCustom> courseCustomList = null;
 
         if (list.size() > 0) {

@@ -58,13 +58,18 @@ public class CourseDao {
         session.close();
     }
 
+
+    public List<Course> selectByExample(Course course){
+        return selectByExample(course, null);
+    }
+
     /**
      * 根据条件查询
      *
      * @param course
      * @return
      */
-    public List<Course> selectByExample(Course course) {
+    public List<Course> selectByExample(Course course, PagingVO pagingVO) {
         Session session = sessionFactory.openSession();
         DetachedCriteria dc = DetachedCriteria.forClass(Course.class);
         if (course.getTeacherId() != null) {
@@ -76,6 +81,12 @@ public class CourseDao {
         // 开启事务
         Transaction txn = session.beginTransaction();
         Criteria c = dc.getExecutableCriteria(session);
+        if(pagingVO != null){
+            c.setProjection(null);
+            c.setResultTransformer(Criteria.ROOT_ENTITY);
+            c.setFirstResult(pagingVO.getTopageNo());
+            c.setMaxResults(pagingVO.getPageSize());
+        }
         List<Course> courses = c.list();
         txn.commit();
         session.close();
