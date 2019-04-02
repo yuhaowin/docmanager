@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -142,10 +143,13 @@ public class CourseDao {
     }
 
     public List<Course> getByList(List<Integer> courseIds) {
-        Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from Course where courseId in (:ids)").setParameterList("ids", courseIds);
-        List<Course> list = query.list();
-        session.close();
+        List<Course> list = new ArrayList<>();
+        if(courseIds.size() > 0){
+            Session session = sessionFactory.openSession();
+            Query query = session.createQuery("from Course where courseId in (:ids)").setParameterList("ids", courseIds);
+            list = query.list();
+            session.close();
+        }
         return list;
     }
 }
