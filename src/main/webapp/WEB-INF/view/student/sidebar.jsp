@@ -19,7 +19,10 @@
             <a href="/student/profile"><i class="fa fa-fw fa-list-alt"></i>个人信息</a>
         </li>
         <li>
-            <a href="/logout"><i class="fa fa-fw fa-list-alt"></i> 登出</a>
+            <a href="/logout"><i class="fa fa-fw fa-list-alt"></i>退出系统</a>
+        </li>
+        <li class="disabled">
+            <a href="##">实践教学材料提交系统</a>
         </li>
     </ul>
 </nav>

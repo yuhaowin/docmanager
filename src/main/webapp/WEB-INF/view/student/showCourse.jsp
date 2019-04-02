@@ -39,7 +39,7 @@
                             <th>周数</th>
                             <th>课程类型</th>
                             <th>学分</th>
-                            <th>操作</th>
+                            <th style="text-align: center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,11 +53,10 @@
                                 <td>${item.courseWeek}</td>
                                 <td>${item.courseType}</td>
                                 <td>${item.score}</td>
-                                <td>
+                                <td style="text-align: center">
                                     <button class="btn btn-default btn-xs btn-info"
                                             onClick="location.href='/student/stuSelectedCourse?id=${item.courseId}'">选课
                                     </button>
-                                    <!--弹出框-->
                                 </td>
                             </tr>
                         </c:forEach>
