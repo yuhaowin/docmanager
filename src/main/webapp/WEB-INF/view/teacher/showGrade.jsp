@@ -75,7 +75,7 @@
                             <c:otherwise>
                                 <!--否则 -->
                                 <li>
-                                    <a href="/teacher/gradeCourse?page=${pagingVO.curentPageNo-1}">上一页</a>
+                                    <a href="/teacher/gradeCourse?id=${id}&page=${pagingVO.curentPageNo-1}">上一页</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -89,7 +89,7 @@
                                 <c:otherwise>
                                     <!--否则 -->
                                     <li>
-                                        <a href="/teacher/gradeCourse?page=${index}">${index}</a>
+                                        <a href="/teacher/gradeCourse?id=${id}&page=${index}">${index}</a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>
@@ -102,7 +102,7 @@
                             <c:otherwise>
                                 <!--否则 -->
                                 <li>
-                                    <a href="/teacher/gradeCourse?page=${pagingVO.curentPageNo+1}">下一页</a>
+                                    <a href="/teacher/gradeCourse?id=${id}&page=${pagingVO.curentPageNo+1}">下一页</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>

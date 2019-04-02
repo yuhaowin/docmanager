@@ -3,10 +3,7 @@ package com.chzu.service;
 
 import com.chzu.dao.SelectedCourseDao;
 import com.chzu.dao.StudentDao;
-import com.chzu.entity.SelectedCourse;
-import com.chzu.entity.SelectedCourseCustom;
-import com.chzu.entity.Student;
-import com.chzu.entity.StudentCustom;
+import com.chzu.entity.*;
 import com.chzu.exception.Globalexception;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +21,10 @@ public class SelectedCourseService {
     @Autowired
     private StudentDao studentDao;
 
-    public List<SelectedCourseCustom> findByCourseID(Integer id) throws Exception {
+    public List<SelectedCourseCustom> findByCourseID(Integer id, PagingVO pagingVO) throws Exception {
         SelectedCourse selectedCourse = new SelectedCourse();
         selectedCourse.setCourseId(id);
-        List<SelectedCourse> list = selectedCourseDao.selectByExample(selectedCourse);
+        List<SelectedCourse> list = selectedCourseDao.selectByExample(selectedCourse, pagingVO);
 
         if (list == null && list.size() < 1) {
             throw new Globalexception("暂未学生选该课程");

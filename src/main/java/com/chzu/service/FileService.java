@@ -37,6 +37,16 @@ public class FileService {
     }
 
     /**
+     * 获取课程
+     *
+     * @param classSubject
+     * @return
+     */
+    public List<ClassSubject> getSubject(ClassSubject classSubject,PagingVO pagingVO) {
+        return fileDao.getSubject(classSubject, false, pagingVO);
+    }
+
+    /**
      * 获取我的文档
      *
      * @param courseDoc
