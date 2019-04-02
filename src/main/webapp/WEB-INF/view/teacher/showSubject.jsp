@@ -80,6 +80,7 @@
                 <%--分页--%>
                 <div class="col-md-12 column">
                     <ul class="pagination pull-right">
+                        <c:if test="${pagingVO != null}">
                         <c:choose>
                             <c:when test="${pagingVO.curentPageNo <= 1}">
                                 <!--如果 -->
@@ -119,6 +120,7 @@
                                 </li>
                             </c:otherwise>
                         </c:choose>
+                        </c:if>
                     </ul>
                 </div>
             </div>

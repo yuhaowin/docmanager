@@ -228,9 +228,32 @@ public class TeacherController {
         }
         ClassSubject classSubject = new ClassSubject();
         classSubject.setCourseId(id);
+        classSubject.setTeacherId(Integer.parseInt(userid));
         List<ClassSubject> subjectList = fileService.getSubject(classSubject);
         // 返回课程ID 用于新增选题使用
         model.addAttribute("courseId", id);
+        model.addAttribute("subjectList", subjectList);
+        return "teacher/showSubject";
+    }
+
+    /**
+     * 搜索选题
+     *
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/selectSubject", method = RequestMethod.POST)
+    public String selectSubject(String findByName, Integer courseId, Model model){
+        Subject subject = SecurityUtils.getSubject();
+        String userid = (String) subject.getPrincipal();
+        ClassSubject classSubject = new ClassSubject();
+        classSubject.setCourseId(courseId);
+        classSubject.setSubjectName(findByName);
+        classSubject.setTeacherId(Integer.parseInt(userid));
+        List<ClassSubject> subjectList = fileService.getSubject(classSubject);
+        // 返回课程ID 用于新增选题使用
+        model.addAttribute("courseId", courseId);
         model.addAttribute("subjectList", subjectList);
         return "teacher/showSubject";
     }
