@@ -73,10 +73,9 @@ public class StudentService {
     }
 
     //模糊查询
-    public List<StudentCustom> findByName(String name) throws Exception {
+    public List<StudentCustom> findByName(String name){
         List<Student> list = studentDao.selectByName(name);
         List<StudentCustom> studentCustomList = null;
-
         if (list != null) {
             studentCustomList = new ArrayList<StudentCustom>();
             for (Student s : list) {
@@ -89,7 +88,6 @@ public class StudentService {
                 studentCustomList.add(studentCustom);
             }
         }
-
         return studentCustomList;
     }
 

@@ -341,7 +341,7 @@ public class AdminController {
      * @throws Exception
      */
     @RequestMapping(value = "selectTeacher", method = {RequestMethod.POST})
-    private String selectTeacher(String findByName, Model model) throws Exception {
+    private String selectTeacher(String findByName, Model model) {
 
         List<TeacherCustom> list = teacherService.findByName(findByName);
 

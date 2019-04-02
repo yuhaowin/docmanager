@@ -29,13 +29,13 @@ public class CourseService {
         courseDao.updateByPrimaryKey(course);
     }
 
-    public Boolean removeById(Integer id) throws Exception {
+    public Boolean removeById(Integer id){
         //自定义查询条件
         SelectedCourse selectedCourse = new SelectedCourse();
         selectedCourse.setCourseId(id);
         List<SelectedCourse> list = selectedCourseDao.selectByExample(selectedCourse);
 
-        if (list.size() != 0) {
+        if (list.size() == 0) {
             courseDao.deleteByPrimaryKey(id);
             return true;
         }
@@ -76,15 +76,11 @@ public class CourseService {
         return courseCustom;
     }
 
-    public List<CourseCustom> findByName(String name) throws Exception {
-
+    public List<CourseCustom> findByName(String name){
         Course course = new Course();
         course.setCourseName(name);
-
         List<Course> list = courseDao.selectByExample(course);
-
         List<CourseCustom> courseCustomList = null;
-
         if (list != null) {
             courseCustomList = new ArrayList<CourseCustom>();
             for (Course c : list) {
@@ -94,11 +90,9 @@ public class CourseService {
                 //获取课程名
                 College college = collegeDao.selectByPrimaryKey(c.getCollegeId());
                 courseCustom.setCollegeName(college.getCollegeName());
-
                 courseCustomList.add(courseCustom);
             }
         }
-
         return courseCustomList;
     }
 

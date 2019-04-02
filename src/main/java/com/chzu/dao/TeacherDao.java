@@ -66,8 +66,8 @@ public class TeacherDao {
      */
     public List<Teacher> selectByName(String name) {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from Teacher where userName = ?");
-        query.setParameter(0, name);
+        Query query = session.createQuery("from Teacher where userName like :param");
+        query.setString("param", "%" + name + "%");
         List<Teacher> list = query.list();
         session.close();
         return list;

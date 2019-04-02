@@ -1,9 +1,10 @@
 package com.chzu.dao;
 
 import com.chzu.entity.Student;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.*;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -73,9 +74,15 @@ public class StudentDao {
      */
     public List<Student> selectByName(String name) {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from Student where user_name = ?");
-        query.setParameter(0, name);
-        List<Student> list = query.list();
+        DetachedCriteria dc = DetachedCriteria.forClass(Student.class);
+        if (StringUtils.isNoneBlank(name)) {
+            dc.add(Restrictions.like("userName", "%" + name + "%"));
+        }
+        // 开启事务
+        Transaction txn = session.beginTransaction();
+        Criteria c = dc.getExecutableCriteria(session);
+        List<Student> list = c.list();
+        txn.commit();
         session.close();
         return list;
     }
