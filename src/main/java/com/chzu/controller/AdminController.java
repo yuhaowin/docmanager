@@ -507,16 +507,28 @@ public class AdminController {
      * 展示课题
      *
      * @param courseId
+     * @param page
      * @param model
      * @return
      */
     @RequestMapping("showSubject")
-    public String showSubject(Integer courseId, Model model) {
-        ClassSubject classSubject = new ClassSubject();
-        classSubject.setCourseId(courseId);
-        List<ClassSubject> classSubjectList = fileService.getSubject(classSubject, true);
-        model.addAttribute("classSubjectList", classSubjectList);
+    public String showSubject(Integer courseId, Integer page, Model model) {
+        //分页
+        List<ClassSubject> list;
+        //页码对象
+        PagingVO pagingVO = new PagingVO();
+        //设置总页数
+        pagingVO.setTotalCount(fileService.classSubjectCount(courseId,true));
+        if (page == null || page == 0) {
+            pagingVO.setToPageNo(1);
+            list = fileService.findByPaging(1,courseId,true);
+        } else {
+            pagingVO.setToPageNo(page);
+            list = fileService.findByPaging(page,courseId,true);
+        }
+        model.addAttribute("classSubjectList", list);
         model.addAttribute("courseId", courseId);
+        model.addAttribute("pagingVO", pagingVO);
         return "admin/showSubject";
     }
 

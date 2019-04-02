@@ -220,7 +220,7 @@ public class TeacherController {
      * @throws Exception
      */
     @RequestMapping(value = "/showsubject")
-    public String showSubject(Integer id, Model model) throws Exception {
+    public String showSubject(Integer id, Model model){
         Subject subject = SecurityUtils.getSubject();
         String userid = (String) subject.getPrincipal();
         if (id == null) {

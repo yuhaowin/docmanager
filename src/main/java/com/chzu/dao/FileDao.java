@@ -2,6 +2,7 @@ package com.chzu.dao;
 
 import com.chzu.entity.ClassSubject;
 import com.chzu.entity.CourseDoc;
+import com.chzu.entity.PagingVO;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -105,6 +106,46 @@ public class FileDao {
         Session session = sessionFactory.openSession();
         session.save(classSubject);
         session.close();
+    }
+
+    /**
+     * 获取课件总数
+     *
+     * @return
+     */
+    public Integer classSubjectCount(Integer courseId, Boolean isAdmin) {
+        Session session = sessionFactory.openSession();
+        String sql = "select count(*) from subject where is_delete = 0 and course_id = ?";
+        if (isAdmin) {
+            sql = "select count(*) from subject where (is_delete = 0 or bak = 1) and course_id = ?";
+        }
+        Query query = session.createSQLQuery(sql);
+        query.setParameter(0, courseId);
+        String count = query.list().get(0).toString();
+        session.close();
+        return Integer.parseInt(count);
+    }
+
+    /**
+     * 教师获取课件 （分页）
+     *
+     * @param pagingVO
+     * @param isAdmin
+     * @return
+     */
+    public List<ClassSubject> findByPaging(PagingVO pagingVO, Integer courseId, Boolean isAdmin) {
+        String sql = "select * from subject where is_delete = 0 and course_id = ? limit ?, ?";
+        if (isAdmin) {
+            sql = "select * from subject where (is_delete = 0 or bak = 1) and course_id = ? limit ?, ?";
+        }
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery(sql).addEntity(ClassSubject.class);
+        query.setParameter(0, courseId);
+        query.setParameter(1, pagingVO.getTopageNo());
+        query.setParameter(2, pagingVO.getPageSize());
+        List<ClassSubject> classSubjects = query.list();
+        session.close();
+        return classSubjects;
     }
 
     /**

@@ -3,6 +3,7 @@ package com.chzu.service;
 import com.chzu.dao.FileDao;
 import com.chzu.entity.ClassSubject;
 import com.chzu.entity.CourseDoc;
+import com.chzu.entity.PagingVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -44,6 +45,25 @@ public class FileService {
     public List<CourseDoc> getCourseDoc(CourseDoc courseDoc) {
         return fileDao.getCourseDoc(courseDoc, false);
     }
+
+
+    /**
+     * 获取课件总数
+     *
+     * @param isAdmin
+     * @return
+     */
+    public Integer classSubjectCount(Integer courseId, Boolean isAdmin) {
+        return fileDao.classSubjectCount(courseId, isAdmin);
+    }
+
+    public List<ClassSubject> findByPaging(Integer toPageNo, Integer courseId, Boolean isAdmin) {
+        PagingVO pagingVO = new PagingVO();
+        pagingVO.setToPageNo(toPageNo);
+        List<ClassSubject> list = fileDao.findByPaging(pagingVO, courseId, isAdmin);
+        return list;
+    }
+
 
     /**
      * 获取课程
