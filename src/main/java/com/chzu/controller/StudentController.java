@@ -191,7 +191,7 @@ public class StudentController {
      * @throws Exception
      */
     @RequestMapping(value = "/profile")
-    public String profile(Model model) throws Exception {
+    public String profile(Model model){
         Subject subject = SecurityUtils.getSubject();
         String username = (String) subject.getPrincipal();
         Student student = studentService.profile(Integer.parseInt(username));
@@ -216,8 +216,8 @@ public class StudentController {
         student.setBirthYear(studentOld.getBirthYear());
         student.setGrade(studentOld.getGrade());
         student.setCollegeId(studentOld.getCollegeId());
-        int result = studentService.profileUpdate(student);
-        return profile(model);
+        studentService.profileUpdate(student);
+        return "redirect:/student/profile";
     }
 
     /**

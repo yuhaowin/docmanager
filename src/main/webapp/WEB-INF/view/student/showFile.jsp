@@ -38,7 +38,7 @@
                             <tr>
                                 <th>文件名</th>
                                 <th>上传时间</th>
-                                <th>操作</th>
+                                <th style="text-align: center">操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -47,7 +47,7 @@
                                     <td>${item.fileName}</td>
                                     <td><fmt:formatDate value="${item.lastTime}" pattern="yyyy年MM月dd日HH点mm分ss秒"/></td>
 
-                                    <td>
+                                    <td style="text-align: center">
                                         <button class="btn btn-default btn-xs btn-danger btn-primary"
                                                 onClick="location.href='/student/deleteFile?fileId=${item.fileId}&courseId=${courseId}&subjectId=${subjectId}'">
                                             删除

@@ -33,7 +33,7 @@
                             <th>学号</th>
                             <th>姓名</th>
                             <th>分数</th>
-                            <th>操作</th>
+                            <th style="text-align: center">操作</th>
                         </tr>
                         </thead>
                         <tbody>

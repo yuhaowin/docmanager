@@ -47,7 +47,7 @@
                             <th>名称</th>
                             <th>描述</th>
                             <th>文档</th>
-                            <th>操作</th>
+                            <th style="text-align: center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -57,7 +57,7 @@
                                 <td>${item.subjectName}</td>
                                 <td>${item.describe}</td>
                                 <td>${item.fileName}</td>
-                                <td>
+                                <td style="text-align: center">
                                     <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}"
                                        download="${item.fileName}">下载</a>
                                     <button class="btn btn-default btn-xs btn-info"
