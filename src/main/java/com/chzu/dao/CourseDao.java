@@ -153,14 +153,29 @@ public class CourseDao {
         return courseCustoms;
     }
 
-    public List<Course> getByList(List<Integer> courseIds) {
+    public Integer getByListCount(List<Integer> courseIds){
+        Session session = sessionFactory.openSession();
         List<Course> list = new ArrayList<>();
-        if(courseIds.size() > 0){
-            Session session = sessionFactory.openSession();
-            Query query = session.createQuery("from Course where courseId in (:ids)").setParameterList("ids", courseIds);
+        if (courseIds.size() >0 ){
+            Query query = session.createQuery("from Course where courseId in (:ids)")
+                    .setParameterList("ids", courseIds);
             list = query.list();
-            session.close();
         }
+        session.close();
+        return list.size();
+    }
+
+    public List<Course> getByList(PagingVO pagingVO,List<Integer> courseIds) {
+        Session session = sessionFactory.openSession();
+        List<Course> list = new ArrayList<>();
+        if (courseIds.size() >0){
+            Query query = session.createQuery("from Course where courseId in (:ids)")
+                    .setParameterList("ids", courseIds)
+                    .setFirstResult(pagingVO.getTopageNo())
+                    .setMaxResults(pagingVO.getPageSize());
+            list = query.list();
+        }
+        session.close();
         return list;
     }
 }

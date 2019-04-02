@@ -129,12 +129,25 @@ public class StudentController {
      * @throws Exception
      */
     @RequestMapping(value = "/selectedCourse")
-    public String selectedCourse(Model model) throws Exception {
+    public String selectedCourse(Model model,Integer page){
         //获取当前用户名
         Subject subject = SecurityUtils.getSubject();
         String username = (String) subject.getPrincipal();
-        List<Course> list = studentService.studentCourseList(Integer.parseInt(username));
+        //分页
+        List<Course> list;
+        //页码对象
+        PagingVO pagingVO = new PagingVO();
+        //设置总页数
+        pagingVO.setTotalCount(studentService.studentCourseListCount(Integer.parseInt(username)));
+        if (page == null || page == 0) {
+            pagingVO.setToPageNo(1);
+            list = studentService.studentCourseListByPaging(1,Integer.parseInt(username));
+        } else {
+            pagingVO.setToPageNo(page);
+            list = studentService.studentCourseListByPaging(page,Integer.parseInt(username));
+        }
         model.addAttribute("selectedCourseList", list);
+        model.addAttribute("pagingVO", pagingVO);
         return "student/selectCourse";
     }
 

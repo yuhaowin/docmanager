@@ -96,7 +96,7 @@ public class CourseDaoTest {
     @Test
     public void getByList() {
         List<Integer> list = Arrays.asList(1, 2);
-        List<Course> byList = courseDao.getByList(list);
-        System.out.println(byList.size());
+        //List<Course> byList = courseDao.getByList(list);
+        //System.out.println(byList.size());
     }
 }
