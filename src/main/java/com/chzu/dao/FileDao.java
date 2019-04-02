@@ -148,13 +148,17 @@ public class FileDao {
         return classSubjects;
     }
 
+    public List<ClassSubject> getSubject(ClassSubject classSubject, Boolean isAdmin){
+        return  getSubject(classSubject, isAdmin, null);
+    }
+
     /**
      * 教师获取课件
      *
      * @param classSubject
      * @return
      */
-    public List<ClassSubject> getSubject(ClassSubject classSubject, Boolean isAdmin) {
+    public List<ClassSubject> getSubject(ClassSubject classSubject, Boolean isAdmin, PagingVO pagingVO) {
         Session session = sessionFactory.openSession();
         DetachedCriteria dc = DetachedCriteria.forClass(ClassSubject.class);
         if (classSubject.getTeacherId() != null) {
@@ -174,6 +178,12 @@ public class FileDao {
         // 开启事务
         session.beginTransaction();
         Criteria c = dc.getExecutableCriteria(session);
+        if(pagingVO != null){
+            c.setProjection(null);
+            c.setResultTransformer(Criteria.ROOT_ENTITY);
+            c.setFirstResult(pagingVO.getTopageNo());
+            c.setMaxResults(pagingVO.getPageSize());
+        }
         List<ClassSubject> classSubjects = c.list();
         session.getTransaction().commit();
         session.close();

@@ -1,5 +1,6 @@
 package com.chzu.dao;
 
+import com.chzu.entity.PagingVO;
 import com.chzu.entity.SelectedCourse;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -61,13 +62,17 @@ public class SelectedCourseDao {
         session.close();
     }
 
+    public List<SelectedCourse> selectByExample(SelectedCourse selectedCourse){
+        return selectByExample(selectedCourse, null);
+    }
+
     /**
      * 查询
      *
      * @param selectedCourse
      * @return
      */
-    public List<SelectedCourse> selectByExample(SelectedCourse selectedCourse) {
+    public List<SelectedCourse> selectByExample(SelectedCourse selectedCourse, PagingVO pagingVO) {
         Session session = sessionFactory.openSession();
         DetachedCriteria dc = DetachedCriteria.forClass(SelectedCourse.class);
         if (selectedCourse.getCourseId() != null) {
@@ -77,6 +82,12 @@ public class SelectedCourseDao {
             dc.add(Restrictions.eq("studentId", selectedCourse.getStudentId()));
         }
         Criteria c = dc.getExecutableCriteria(session);
+        if(pagingVO != null){
+            c.setProjection(null);
+            c.setResultTransformer(Criteria.ROOT_ENTITY);
+            c.setFirstResult(pagingVO.getTopageNo());
+            c.setMaxResults(pagingVO.getPageSize());
+        }
         List<SelectedCourse> selectedCourses = c.list();
         session.close();
         return selectedCourses;

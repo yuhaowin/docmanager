@@ -76,12 +76,26 @@ public class TeacherController {
      * @throws Exception
      */
     @RequestMapping(value = "/gradeCourse")
-    public String gradeCourse(Integer id, Model model) throws Exception {
+    public String gradeCourse(Integer id, Integer page, Model model) throws Exception {
         if (id == null) {
             return "";
         }
-        List<SelectedCourseCustom> list = selectedCourseService.findByCourseID(id);
+        //页码对象
+        PagingVO pagingVO = new PagingVO();
+        //设置总页数
+        pagingVO.setTotalCount(selectedCourseService.findByCourseID(id, null).size());
+        if (page == null || page == 0) {
+            pagingVO.setToPageNo(1);
+            //list = courseService.findByPaging(1);
+        } else {
+            pagingVO.setToPageNo(page);
+            //list = courseService.findByPaging(page);
+        }
+
+        List<SelectedCourseCustom> list = selectedCourseService.findByCourseID(id, pagingVO);
+        model.addAttribute("pagingVO", pagingVO);
         model.addAttribute("selectedCourseList", list);
+        model.addAttribute("id", id);
         return "teacher/showGrade";
     }
 
@@ -220,19 +234,25 @@ public class TeacherController {
      * @throws Exception
      */
     @RequestMapping(value = "/showsubject")
-    public String showSubject(Integer id, Model model){
+    public String showSubject(Integer id, Integer page, Model model) throws  Exception{
         Subject subject = SecurityUtils.getSubject();
         String userid = (String) subject.getPrincipal();
-        if (id == null) {
-            return "";
-        }
+        PagingVO pagingVO = new PagingVO();
         ClassSubject classSubject = new ClassSubject();
         classSubject.setCourseId(id);
         classSubject.setTeacherId(Integer.parseInt(userid));
         List<ClassSubject> subjectList = fileService.getSubject(classSubject);
+        pagingVO.setTotalCount(subjectList.size());
+        if (page == null || page == 0) {
+            pagingVO.setToPageNo(1);
+        }else {
+            pagingVO.setToPageNo(page);
+        }
+        subjectList = fileService.getSubject(classSubject, pagingVO);
         // 返回课程ID 用于新增选题使用
         model.addAttribute("courseId", id);
         model.addAttribute("subjectList", subjectList);
+        model.addAttribute("pagingVO", pagingVO);
         return "teacher/showSubject";
     }
 
