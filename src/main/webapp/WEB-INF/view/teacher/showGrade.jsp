@@ -32,7 +32,7 @@
                         <tr>
                             <th>学号</th>
                             <th>姓名</th>
-                            <th>分数</th>
+                            <th style="text-align: center">分数</th>
                             <th style="text-align: center">操作</th>
                         </tr>
                         </thead>
@@ -42,17 +42,17 @@
                                 <td>${item.studentCustom.userId}</td>
                                 <td>${item.studentCustom.userName}</td>
                                 <c:if test="${!item.over}">
-                                    <td>未打分</td>
-                                    <td>
+                                    <td style="text-align: center">未打分</td>
+                                    <td style="text-align: center">
                                         <button class="btn btn-default btn-xs btn-info"
                                                 onClick="location.href='/teacher/mark?studentId=${item.studentId}&courseId=${item.courseId}'">
-                                            打分
+                                            已打分
                                         </button>
                                     </td>
                                 </c:if>
                                 <c:if test="${item.over}">
-                                    <td>${item.mark}</td>
-                                    <td>
+                                    <td style="text-align: center">${item.mark}</td>
+                                    <td style="text-align: center">
                                         <button class="btn btn-default btn-xs btn-info"
                                                 onClick="location.href='/teacher/mark?studentId=${item.studentId}&courseId=${item.courseId}'">
                                             修改
