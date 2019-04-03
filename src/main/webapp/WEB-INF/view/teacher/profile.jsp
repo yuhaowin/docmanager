@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +58,9 @@
                             <label for="birthYear" class="col-sm-2 control-label">出生日期</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="birthYear" id="birthYear"
-                                       placeholder="请输入出生日期" value="${teacher.birthYear}" readonly>
+                                       placeholder="请输入出生日期"
+                                value=<fmt:formatDate value="${teacher.birthYear}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                       readonly>
                             </div>
                         </div>
 
@@ -81,15 +84,18 @@
                             <label for="grade" class="col-sm-2 control-label">入职时间</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="grade" id="grade"
-                                       placeholder="请输入入职时间" value="${teacher.grade}" readonly>
+                                       placeholder="请输入入职时间" value=<fmt:formatDate value="${teacher.grade}" pattern="yyyy-MM-dd HH:mm:ss"/> readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="collegeID" class="col-sm-2 control-label">所属学院代码</label>
+                            <label for="inputPassword3" class="col-sm-2 control-label" name="grade">所属院系</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="collegeId" id="collegeID"
-                                       placeholder="请输入所属学院代码" value="${teacher.collegeId}">
+                                <select class="form-control" name="collegeId" id = "college" disabled>
+                                    <c:forEach items="${collegeList}" var="item">
+                                        <option value="${item.collegeId}">${item.collegeName}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
 
@@ -121,6 +127,12 @@
         if (reset.password1.value != reset.password2.value) {
             alert("两次密码不正确");
             return false;
+        }
+    }
+    var collegeSelect = $("#college option");
+    for (var i = 0; i < collegeSelect.length; i++) {
+        if (collegeSelect[i].value == '${student.collegeId}') {
+            collegeSelect[i].selected = true;
         }
     }
 </script>

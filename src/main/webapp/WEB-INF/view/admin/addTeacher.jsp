@@ -37,7 +37,7 @@
                                     <label for="inputEmail3" class="col-sm-2 control-label">工号</label>
                                     <div class="col-sm-10">
                                         <input type="number" class="form-control" id="inputEmail3" name="userId"
-                                               placeholder="请输入工号">
+                                               placeholder="工号自动生成" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">

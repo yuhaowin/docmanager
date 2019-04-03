@@ -2,10 +2,7 @@ package com.chzu.controller;
 
 
 import com.chzu.entity.*;
-import com.chzu.service.CourseService;
-import com.chzu.service.FileService;
-import com.chzu.service.SelectedCourseService;
-import com.chzu.service.TeacherService;
+import com.chzu.service.*;
 import com.chzu.utils.UploadUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -35,6 +32,9 @@ public class TeacherController {
 
     @Autowired
     private FileService fileService;
+
+    @Autowired
+    private CollegeService collegeService;
 
     /**
      * 显示我的课程
@@ -157,6 +157,9 @@ public class TeacherController {
         String username = (String) subject.getPrincipal();
         Teacher teacher = teacherService.profile(Integer.parseInt(username));
         model.addAttribute("teacher", teacher);
+        List<College> list = collegeService.finAll();
+
+        model.addAttribute("collegeList", list);
         return "teacher/profile";
     }
 
@@ -174,7 +177,8 @@ public class TeacherController {
         String userid = (String) subject.getPrincipal();
 
         teacher.setUserId(Integer.parseInt(userid));
-
+        TeacherCustom teacherCustom = teacherService.findById(Integer.parseInt(userid));
+        teacher.setCollegeId(teacherCustom.getCollegeId());
         int result = teacherService.profileUpdate(teacher);
         System.out.println(result);
         return profile(model);

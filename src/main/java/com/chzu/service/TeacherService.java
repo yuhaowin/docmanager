@@ -54,12 +54,10 @@ public class TeacherService {
 
     public Boolean save(Teacher teacher) {
 
-        Teacher tea = teacherDao.selectById(teacher.getUserId());
-        if (tea == null) {
+
             teacherDao.insert(teacher);
             return true;
-        }
-        return false;
+
     }
 
     public int getCountTeacher() {

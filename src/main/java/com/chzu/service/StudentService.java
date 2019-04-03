@@ -47,12 +47,8 @@ public class StudentService {
     }
 
     public Boolean save(Student student) {
-        Student stu = studentDao.selectById(student.getUserId());
-        if (stu == null) {
-            studentDao.insert(student);
-            return true;
-        }
-        return false;
+        studentDao.insert(student);
+        return true;
     }
 
     //返回学生总数

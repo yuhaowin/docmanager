@@ -34,8 +34,8 @@
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">学号</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="inputEmail3" name="userId"
-                                               placeholder="请输入学号"
+                                        <input type="number" class="form-control" id="inputEmail3" name="userId" readonly
+                                               placeholder="学号自动生成"
                                         <c:if test='${student!=null}'>
                                                value="${student.userId}"
                                         </c:if>>

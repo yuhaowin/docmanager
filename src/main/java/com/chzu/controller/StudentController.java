@@ -3,13 +3,11 @@ package com.chzu.controller;
 
 import com.chzu.entity.*;
 import com.chzu.exception.Globalexception;
-import com.chzu.service.CourseService;
-import com.chzu.service.FileService;
-import com.chzu.service.SelectedCourseService;
-import com.chzu.service.StudentService;
+import com.chzu.service.*;
 import com.chzu.utils.UploadUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +34,9 @@ public class StudentController {
 
     @Resource
     private FileService fileService;
+
+    @Autowired
+    private CollegeService collegeService;
 
 
     /**
@@ -196,6 +197,9 @@ public class StudentController {
         String username = (String) subject.getPrincipal();
         Student student = studentService.profile(Integer.parseInt(username));
         model.addAttribute("student", student);
+        List<College> list = collegeService.finAll();
+
+        model.addAttribute("collegeList", list);
         return "student/profile";
     }
 
