@@ -23,6 +23,7 @@ import java.util.List;
 @RequestMapping(value = "/student")
 public class StudentController {
 
+
     @Resource(name = "courseService")
     private CourseService courseService;
 
