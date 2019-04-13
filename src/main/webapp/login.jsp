@@ -17,15 +17,13 @@
             <form class="form" action="/login" method="post">
                 <input class="form-input" type="text" name="userName" placeholder="请输入用户名">
                 <input class="form-input" type="password" name="passWord" placeholder="请输入密码">
-                <button class="form-button" type="submit" id="login-button">登录</button>
-                <br>
-                <br>
+                <button class="form-button" type="submit" id="login-button">登录</button><br><br>
                 <input type="radio" name="role" value="admin" class="gcs-radio" id="1" checked/>
                 <label for="1"></label>管理员
                 <input type="radio" name="role" value="teacher" class="gcs-radio" id="2" />
                 <label for="2"></label>教师
                 <input type="radio" name="role" value="student" class="gcs-radio" id="3" />
-                <label for="2"></label>学生
+                <label for="3"></label>学生
             </form>
         </div>
     </div>

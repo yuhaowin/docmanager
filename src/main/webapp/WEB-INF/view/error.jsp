@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--开启el表达式--%>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
@@ -94,7 +93,7 @@
         }
 
         .index404 {
-            margin-top: 24px;
+            margin-top: 30px;
             display: inline-block;
             white-space: nowrap;
             cursor: pointer;
@@ -110,7 +109,7 @@
             line-height: 36px;
             text-align: center;
             height: 36px;
-            padding: 0 25px;
+            padding: 0 90px;
             border-radius: 25px;
             background-color: #fff;
             color: #7b8993
