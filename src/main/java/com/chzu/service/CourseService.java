@@ -65,7 +65,7 @@ public class CourseService {
         return courseDao.count();
     }
 
-    public CourseCustom findById(Integer id) throws Exception {
+    public CourseCustom findById(Integer id) {
         Course course = courseDao.selectByPrimaryKey(id);
         CourseCustom courseCustom = null;
         if (course != null) {

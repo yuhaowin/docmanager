@@ -1,10 +1,8 @@
 package com.chzu.service;
 
 import com.chzu.dao.FileDao;
-import com.chzu.entity.BakFile;
-import com.chzu.entity.ClassSubject;
-import com.chzu.entity.CourseDoc;
-import com.chzu.entity.PagingVO;
+import com.chzu.entity.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,6 +14,9 @@ public class FileService {
 
     @Resource
     private FileDao fileDao;
+
+    @Autowired
+    private SelectedSubjectService selectedSubjectService;
 
     /**
      * 老师新增课程
@@ -135,6 +136,8 @@ public class FileService {
     public Integer getSize(ClassSubject classSubject){
         CourseDoc courseDoc = new CourseDoc();
         courseDoc.setSubjectId(classSubject.getSubjectId());
-        return  classSubject.getSize() - getCourseDoc(courseDoc, false).size();
+        SelectedSubject selectedSubject = new SelectedSubject();
+        selectedSubject.setSubjectId(classSubject.getSubjectId());
+        return  classSubject.getSize() - selectedSubjectService.getSelectedSubjectList(selectedSubject,null).size();
     }
 }

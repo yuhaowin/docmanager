@@ -29,12 +29,10 @@ public class LoginController {
 
         if (subject.hasRole("admin") && "admin".equalsIgnoreCase(role)) {
             return "redirect:/admin/showStudent";
-
         } else if (subject.hasRole("teacher") && "teacher".equalsIgnoreCase(role)) {
             return "redirect:/teacher/showCourse";
-
         } else if (subject.hasRole("student") && "student".equalsIgnoreCase(role)) {
-            return "redirect:/student/showCourse";
+            return "redirect:/student/selectedCourse";
         }
         model.addAttribute("message", "暂无该权限");
         return "error";
