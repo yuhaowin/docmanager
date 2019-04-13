@@ -30,6 +30,8 @@ public class ClassSubject {
     @Column(name = "is_delete")
     private Integer delete;
 
+    private Integer size;
+
     public Integer getSubjectId() {
         return subjectId;
     }
@@ -108,5 +110,13 @@ public class ClassSubject {
 
     public void setDelete(Integer delete) {
         this.delete = delete;
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
     }
 }

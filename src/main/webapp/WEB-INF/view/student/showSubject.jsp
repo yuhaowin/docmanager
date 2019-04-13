@@ -33,6 +33,7 @@
                                 <th>名称</th>
                                 <th>描述</th>
                                 <th>文档</th>
+                                <th>剩余人数</th>
                                 <th style="text-align: center">操作</th>
                             </tr>
                             </thead>
@@ -42,6 +43,7 @@
                                     <td>${item.subjectName}</td>
                                     <td>${item.describe}</td>
                                     <td>${item.fileName}</td>
+                                    <td>${item.size}</td>
                                     <td style="text-align: center">
                                         <button class="btn btn-default btn-xs btn-info"
                                                 onClick="location.href='/student/showFile?subjectId=${item.subjectId}&courseId=${item.courseId}'">

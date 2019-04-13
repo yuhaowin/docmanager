@@ -601,5 +601,29 @@ public class AdminController {
         return "admin/passwordRest";
     }
 
+    @RequestMapping("/bakFile")
+    public String bakFile(Model model, Integer page){
+        //页码对象
+        PagingVO pagingVO = new PagingVO();
+        //设置总页数
+        pagingVO.setTotalCount(fileService.getBakFile(null,null).size());
+        if (page == null || page == 0) {
+            pagingVO.setToPageNo(1);
+        } else {
+            pagingVO.setToPageNo(page);
+        }
+        List<BakFile> list = fileService.getBakFile(null, pagingVO);
+        model.addAttribute("list", list);
+        model.addAttribute("pagingVO", pagingVO);
+        return "admin/bakFile";
+    }
+
+    @RequestMapping("/searchBakFile")
+    public String searchBakFile(String fileName,Model model){
+        List<BakFile> list = fileService.getBakFile(fileName, null);
+        model.addAttribute("list", list);
+        return "admin/bakFile";
+    }
+
 
 }
