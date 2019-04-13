@@ -85,7 +85,7 @@ form {
     z-index: 2;
 }
 
-form input {
+.form-input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -105,17 +105,17 @@ form input {
     font-weight: 300;
 }
 
-form input:hover {
+.form-input:hover {
     background-color: rgba(255, 255, 255, 0.4);
 }
 
-form input:focus {
+.form-input:focus {
     background-color: white;
     width: 300px;
     color: #53e3a6;
 }
 
-form button {
+.form-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -132,7 +132,7 @@ form button {
     transition-duration: 0.25s;
 }
 
-form button:hover {
+.form-button:hover {
     background-color: #f5f7f9;
 }
 
@@ -156,4 +156,38 @@ form button:hover {
         -webkit-transform: translateY(-700px) rotate(600deg);
         transform: translateY(-700px) rotate(600deg);
     }
+}
+
+
+/*单选按钮*/
+
+.gcs-radio {
+    display: none;
+}
+
+.gcs-radio + label {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: bottom;
+    border: 1px solid gray;
+    border-radius: 50%;
+}
+
+.gcs-radio + label:hover {
+    border: 1px solid #2783FB;
+    cursor: pointer;
+}
+
+.gcs-radio:checked + label {
+    background: #2783FB;
+    border: 1px solid #2783FB;
+}
+
+.gcs-radio:checked + label:after {
+    content: "\2022";
+    font-size: 35px;
+    color: white;
 }

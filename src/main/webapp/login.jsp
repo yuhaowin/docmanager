@@ -6,18 +6,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录</title>
+    <title>欢迎登录</title>
     <link rel="stylesheet" type="text/css" href="../css/login.css">
 </head>
 <body>
 <div class="htmleaf-container">
     <div class="wrapper">
         <div class="container">
-            <h1>Welcome</h1>
+            <h1>WELCOME</h1>
             <form class="form" action="/login" method="post">
-                <input type="text" name="userName" placeholder="请输入用户名">
-                <input type="password" name="passWord" placeholder="请输入密码">
-                <button type="submit" id="login-button">登陆</button>
+                <input class="form-input" type="text" name="userName" placeholder="请输入用户名">
+                <input class="form-input" type="password" name="passWord" placeholder="请输入密码">
+                <button class="form-button" type="submit" id="login-button">登录</button>
+                <br>
+                <br>
+                <input type="radio" name="role" value="admin" class="gcs-radio" id="1" checked/>
+                <label for="1"></label>管理员
+                <input type="radio" name="role" value="teacher" class="gcs-radio" id="2" />
+                <label for="2"></label>教师
+                <input type="radio" name="role" value="student" class="gcs-radio" id="3" />
+                <label for="2"></label>学生
             </form>
         </div>
     </div>
