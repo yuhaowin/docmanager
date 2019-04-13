@@ -62,6 +62,9 @@
                                 <td>${item.score}</td>
                                 <td style="text-align: center">
                                     <button class="btn btn-default btn-xs btn-info"
+                                            onClick="location.href='/teacher/importStudent?courseId=${item.courseId}'">导入学生
+                                    </button>
+                                    <button class="btn btn-default btn-xs btn-info"
                                             onClick="location.href='/teacher/gradeCourse?id=${item.courseId}'">成绩
                                     </button>
                                     <button class="btn btn-default btn-xs btn-info"
