@@ -209,7 +209,7 @@ public class TeacherController {
      */
     @RequestMapping(value = "/addSubject", method = RequestMethod.POST)
     public String saveSubject(HttpServletRequest request, Integer courseId, String subjectName,
-                              String describe, MultipartFile file) {
+                              String describe, Integer size, MultipartFile file) {
         String basePath = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/files/";
         // 上传文件的文件名
         String oldName = file.getOriginalFilename();
@@ -222,6 +222,9 @@ public class TeacherController {
         classSubject.setDescribe(describe);
         classSubject.setFileName(oldName);
         classSubject.setFileUrl(path);
+        if(size != null){
+            classSubject.setSize(size);
+        }
         classSubject.setTeacherId(Integer.parseInt(userid));
         classSubject.setSubjectName(subjectName);
         fileService.addSubject(classSubject);

@@ -8,6 +8,9 @@
             <a href="/admin/showCourse"><i class="fa fa-fw fa-list-alt"></i>课程管理</a>
         </li>
         <li>
+            <a href="/admin/bakFile"><i class="fa fa-fw fa-list-alt"></i>历史文档</a>
+        </li>
+        <li>
             <a href="/admin/showStudent"><i class="fa fa-fw fa-list-alt"></i>学生管理</a>
         </li>
         <li>

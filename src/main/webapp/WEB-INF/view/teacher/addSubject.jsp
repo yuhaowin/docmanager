@@ -45,6 +45,13 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">选题人数</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail3" name="size"
+                                       placeholder="课程人数 默认20人">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">选题描述</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="inputPassword3" name="describe"

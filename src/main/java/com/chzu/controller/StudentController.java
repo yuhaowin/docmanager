@@ -237,6 +237,9 @@ public class StudentController {
         ClassSubject subject = new ClassSubject();
         subject.setCourseId(id);
         List<ClassSubject> subjectList = fileService.getSubject(subject);
+        for(ClassSubject classSubject : subjectList){
+            classSubject.setSize(fileService.getSize(classSubject));
+        }
         model.addAttribute("subjectList", subjectList);
         return "student/showSubject";
     }

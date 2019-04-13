@@ -1,6 +1,7 @@
 package com.chzu.service;
 
 import com.chzu.dao.FileDao;
+import com.chzu.entity.BakFile;
 import com.chzu.entity.ClassSubject;
 import com.chzu.entity.CourseDoc;
 import com.chzu.entity.PagingVO;
@@ -125,5 +126,15 @@ public class FileService {
 
     public void courseDocBak(Integer fileId) {
         fileDao.courseDocBak(fileId);
+    }
+
+    public List<BakFile> getBakFile(String fileName,PagingVO pagingVO){
+        return fileDao.getBakFile(fileName,pagingVO);
+    }
+
+    public Integer getSize(ClassSubject classSubject){
+        CourseDoc courseDoc = new CourseDoc();
+        courseDoc.setSubjectId(classSubject.getSubjectId());
+        return  classSubject.getSize() - getCourseDoc(courseDoc, false).size();
     }
 }
