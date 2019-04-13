@@ -1,5 +1,6 @@
 package com.chzu.dao;
 
+import com.chzu.entity.BakFile;
 import com.chzu.entity.ClassSubject;
 import com.chzu.entity.CourseDoc;
 import com.chzu.entity.PagingVO;
@@ -230,4 +231,29 @@ public class FileDao {
         query.executeUpdate();
         session.close();
     }
+
+    /**
+     * 查询备份文件
+     * @param fileName
+     * @param pagingVO
+     * @return
+     */
+    public List<BakFile> getBakFile(String fileName,PagingVO pagingVO){
+        String sql = "select * from (select student_id user_id,file_name,file_url,last_time,'学生文档' file_from from " +
+                "course_doc  where bak = 1  union all select teacher_id user_id,file_name,file_url,last_time,'教师文档' " +
+                "file_from from `subject` where bak = 1)  a ";
+        if(fileName != null){
+            sql += "where file_name like '%"+fileName+"%' ";
+        }
+        sql += " ORDER BY last_time desc ";
+        if(pagingVO != null){
+            sql += " limit " + pagingVO.getTopageNo() + "," + pagingVO.getPageSize();
+        }
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery(sql).addEntity(BakFile.class);
+        List<BakFile> bakFileList = query.list();
+        session.close();
+        return bakFileList;
+    }
+
 }
