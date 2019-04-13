@@ -52,5 +52,6 @@ public class ExportExcelController {
         List<ExcelDTO> excelDTOList = selectedCourseService.getExcelDTOList(id);
         ExcelUtils.exportExcelByPojo(workbook, "学生分数表", excelDTOList);
         workbook.write(out);
+        workbook.close();
     }
 }
