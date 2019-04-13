@@ -31,7 +31,7 @@ public class LoginController {
         } else if (subject.hasRole("teacher")) {
             return "redirect:/teacher/showCourse";
         } else if (subject.hasRole("student")) {
-            return "redirect:/student/showCourse";
+            return "redirect:/student/selectedCourse";
         }
         return "error";
     }

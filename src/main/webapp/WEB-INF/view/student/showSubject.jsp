@@ -45,10 +45,12 @@
                                     <td>${item.fileName}</td>
                                     <td>${item.size}</td>
                                     <td style="text-align: center">
-                                        <button class="btn btn-default btn-xs btn-info"
-                                                onClick="location.href='/student/showFile?subjectId=${item.subjectId}&courseId=${item.courseId}'">
-                                            我的文档
-                                        </button>
+                                        <c:if test="${item.size > 0}">
+                                            <button class="btn btn-default btn-xs btn-info"
+                                                    onClick="location.href='/student/selectSubject?subjectId=${item.subjectId}&courseId=${item.courseId}'">
+                                                选题
+                                            </button>
+                                        </c:if>
                                         <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}"
                                            download="${item.fileName}">下载</a>
                                         <a target="_blank" class="btn btn-default btn-xs btn-info"

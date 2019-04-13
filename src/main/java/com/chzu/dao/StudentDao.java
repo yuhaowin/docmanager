@@ -1,5 +1,6 @@
 package com.chzu.dao;
 
+import com.chzu.entity.PagingVO;
 import com.chzu.entity.Student;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.*;
@@ -113,5 +114,28 @@ public class StudentDao {
         session.getTransaction().commit();
         session.close();
         return 1;
+    }
+
+    /**
+     * 根据学院获取学生
+     * @param collegeId
+     * @return
+     */
+    public List<Student> getStudentByCollege(Integer collegeId, PagingVO pagingVO, Integer courseId){
+        Session session = sessionFactory.openSession();
+
+        String sql = "select * from student where college_id = ? and  user_id not in (select student_id from " +
+                "selected_course where course_id =? )";
+
+        Query query = session.createSQLQuery(sql).addEntity(Student.class);
+        query.setParameter(0, collegeId);
+        query.setParameter(1, courseId);
+        if(pagingVO != null){
+            query.setFirstResult(pagingVO.getTopageNo())
+                    .setMaxResults(pagingVO.getPageSize());
+        }
+        List<Student> studentList = query.list();
+        session.close();
+        return studentList;
     }
 }

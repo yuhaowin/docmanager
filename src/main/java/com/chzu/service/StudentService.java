@@ -122,4 +122,8 @@ public class StudentService {
         List<Course> courses = courseDao.getByList(pagingVO, list);
         return courses;
     }
+
+    public List<Student> getStudentByCollege(Integer collegeId, PagingVO pagingVO, Integer courseId){
+        return studentDao.getStudentByCollege(collegeId, pagingVO,courseId);
+    }
 }

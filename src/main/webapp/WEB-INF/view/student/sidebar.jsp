@@ -7,10 +7,10 @@
             </a>
         </li>
         <li>
-            <a href="/student/showCourse"><i class="fa fa-fw fa-list-alt"></i>所有课程</a>
+            <a href="/student/selectedCourse"><i class="fa fa-fw fa-list-alt"></i>我的课程</a>
         </li>
         <li>
-            <a href="/student/selectedCourse"><i class="fa fa-fw fa-list-alt"></i>已选课程</a>
+            <a href="/student/selectedSubject"><i class="fa fa-fw fa-list-alt"></i>已选课题</a>
         </li>
         <li>
             <a href="/student/passwordRest"><i class="fa fa-fw fa-list-alt"></i>修改密码</a>

@@ -74,7 +74,7 @@ public class SelectedCourseService {
      * @return
      * @throws Exception
      */
-    public SelectedCourseCustom findOne(SelectedCourse selectedCourse) throws Exception {
+    public SelectedCourseCustom findOne(SelectedCourse selectedCourse){
         List<SelectedCourse> list = selectedCourseDao.selectByExample(selectedCourse);
         if (list.size() > 0) {
             SelectedCourseCustom sc = new SelectedCourseCustom();
@@ -104,7 +104,7 @@ public class SelectedCourseService {
      * @param selectedCourseCustom
      * @throws Exception
      */
-    public void save(SelectedCourseCustom selectedCourseCustom) throws Exception {
+    public void save(SelectedCourseCustom selectedCourseCustom) {
         SelectedCourse selectedCourse = new SelectedCourse();
         selectedCourse.setCourseId(selectedCourseCustom.getCourseId());
         selectedCourse.setMark(selectedCourseCustom.getMark());

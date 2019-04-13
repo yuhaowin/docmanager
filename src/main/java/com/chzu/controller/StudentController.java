@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,89 +40,11 @@ public class StudentController {
     @Autowired
     private CollegeService collegeService;
 
+    @Autowired
+    private SelectedSubjectService selectedSubjectService;
 
-    /**
-     * 查看课程
-     *
-     * @param model
-     * @param page
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping(value = "/showCourse")
-    public String stuCourseShow(Model model, Integer page) throws Exception {
 
-        List<CourseCustom> list = null;
-        //页码对象
-        PagingVO pagingVO = new PagingVO();
-        //设置总页数
-        pagingVO.setTotalCount(courseService.getCountCouse());
-        if (page == null || page == 0) {
-            pagingVO.setToPageNo(1);
-            list = courseService.findByPaging(1);
-        } else {
-            pagingVO.setToPageNo(page);
-            list = courseService.findByPaging(page);
-        }
 
-        model.addAttribute("courseList", list);
-        model.addAttribute("pagingVO", pagingVO);
-
-        return "student/showCourse";
-    }
-
-    /**
-     * 选课操作
-     *
-     * @param id
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping(value = "/stuSelectedCourse")
-    public String stuSelectedCourse(int id) throws Exception {
-        //获取当前用户名
-        Subject subject = SecurityUtils.getSubject();
-        String username = (String) subject.getPrincipal();
-
-        SelectedCourseCustom selectedCourseCustom = new SelectedCourseCustom();
-        selectedCourseCustom.setCourseId(id);
-        selectedCourseCustom.setStudentId(Integer.parseInt(username));
-
-        SelectedCourse selectedCourse = new SelectedCourse();
-        selectedCourse.setCourseId(id);
-        selectedCourse.setStudentId(selectedCourseCustom.getStudentId());
-
-        SelectedCourseCustom s = selectedCourseService.findOne(selectedCourse);
-
-        if (s == null) {
-            selectedCourseService.save(selectedCourseCustom);
-        } else {
-            throw new Globalexception("该门课程你已经选了，不能再选");
-        }
-
-        return "redirect:/student/selectedCourse";
-    }
-
-    /**
-     * 退课操作
-     *
-     * @param id
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping(value = "/outCourse")
-    public String outCourse(int id) throws Exception {
-        Subject subject = SecurityUtils.getSubject();
-        String username = (String) subject.getPrincipal();
-
-        SelectedCourse selectedCourse = new SelectedCourse();
-        selectedCourse.setCourseId(id);
-        selectedCourse.setStudentId(Integer.parseInt(username));
-
-        selectedCourseService.remove(selectedCourse);
-
-        return "redirect:/student/selectedCourse";
-    }
 
     /**
      * 已选课程
@@ -314,6 +237,50 @@ public class StudentController {
         courseDoc.setLastTime(new Date());
         fileService.saveCourseDoc(courseDoc);
         return "redirect:/student/showFile?subjectId=" + subjectId + "&courseId=" + courseId;
+    }
+
+    /**
+     * 选择课题
+     * @param subjectId
+     * @param courseId
+     * @return
+     */
+    @RequestMapping("selectSubject")
+    public String selectSubject(Integer subjectId, Integer courseId) throws Exception{
+        Subject subject = SecurityUtils.getSubject();
+        Integer userId = Integer.parseInt(subject.getPrincipal().toString());
+        SelectedSubject selectedSubject = new SelectedSubject();
+        selectedSubject.setStudentId(userId);
+        selectedSubject.setSubjectId(subjectId);
+        selectedSubjectService.selectSubject(selectedSubject);
+        return "redirect:/student/classSubject?id="+ courseId;
+    }
+
+    /**
+     * 已选课题
+     * @return
+     */
+    @RequestMapping("selectedSubject")
+    public String selectedSubject(Integer page,Model model){
+        Subject subject = SecurityUtils.getSubject();
+        Integer userId = Integer.parseInt(subject.getPrincipal().toString());
+        SelectedSubject selectedSubject = new SelectedSubject();
+        selectedSubject.setStudentId(userId);
+        PagingVO pagingVO = new PagingVO();
+        //设置总页数
+        List<ClassSubject> list = new ArrayList<>();
+        pagingVO.setTotalCount(selectedSubjectService.getSubjectList(selectedSubject,null).size());
+        if (page == null || page == 0) {
+            pagingVO.setToPageNo(1);
+        } else {
+            pagingVO.setToPageNo(page);
+        }
+
+        list = selectedSubjectService.getSubjectList(selectedSubject,pagingVO);
+        model.addAttribute("list", list);
+        model.addAttribute("pagingVO", pagingVO);
+        return "student/selectedSubject";
+
     }
 
 
