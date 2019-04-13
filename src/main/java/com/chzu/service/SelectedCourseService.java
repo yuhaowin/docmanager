@@ -46,8 +46,6 @@ public class SelectedCourseService {
             } catch (Exception e) {
 
             }
-
-
         }
         return secList;
     }
@@ -125,6 +123,10 @@ public class SelectedCourseService {
      */
     public void remove(SelectedCourse selectedCourse) throws Exception {
         selectedCourseDao.delete(selectedCourse);
+    }
+
+    public List<ExcelDTO> getExcelDTOList(Integer courseId){
+        return selectedCourseDao.getStudentsMark(courseId);
     }
 
 

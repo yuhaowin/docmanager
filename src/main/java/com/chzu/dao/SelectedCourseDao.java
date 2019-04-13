@@ -1,5 +1,6 @@
 package com.chzu.dao;
 
+import com.chzu.entity.ExcelDTO;
 import com.chzu.entity.PagingVO;
 import com.chzu.entity.SelectedCourse;
 import org.hibernate.Criteria;
@@ -114,5 +115,31 @@ public class SelectedCourseDao {
         List<Integer> list = query.list();
         session.close();
         return list;
+    }
+
+
+    /**
+     * 获取某门课程学生的打分
+     *
+     * @param courseId
+     * @return
+     */
+    public List<ExcelDTO> getStudentsMark(Integer courseId) {
+        String sql = "SELECT " +
+                " d.`user_id`, c.`course_name`,d.`user_name`,c.`mark`  " +
+                " FROM " +
+                " (SELECT  " +
+                "  a.*, b.`course_name` " +
+                "  FROM " +
+                "   ( SELECT `course_id`, `student_id`, `mark` FROM selected_course WHERE course_id = ? ) a " +
+                "   LEFT JOIN course b ON a.`course_id` = b.`course_id` " +
+                " ) c " +
+                "LEFT JOIN student d ON c.`student_id` = d.user_id";
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery(sql).addEntity(ExcelDTO.class);
+        query.setParameter(0, courseId);
+        List<ExcelDTO> excelDTOList = query.list();
+        session.close();
+        return excelDTOList;
     }
 }
