@@ -131,4 +131,10 @@ public class FileService {
     public List<BakFile> getBakFile(String fileName,PagingVO pagingVO){
         return fileDao.getBakFile(fileName,pagingVO);
     }
+
+    public Integer getSize(ClassSubject classSubject){
+        CourseDoc courseDoc = new CourseDoc();
+        courseDoc.setSubjectId(classSubject.getSubjectId());
+        return  classSubject.getSize() - getCourseDoc(courseDoc, false).size();
+    }
 }

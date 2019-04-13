@@ -176,6 +176,9 @@ public class FileDao {
         } else {
             dc.add(Restrictions.eq("delete", 0));
         }
+        if(classSubject.getSubjectId() != null){
+            dc.add(Restrictions.eq("subjectId", classSubject.getSubjectId()));
+        }
         // 开启事务
         session.beginTransaction();
         Criteria c = dc.getExecutableCriteria(session);
