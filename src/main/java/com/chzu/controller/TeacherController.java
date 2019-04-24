@@ -2,6 +2,7 @@ package com.chzu.controller;
 
 
 import com.chzu.entity.*;
+import com.chzu.exception.Globalexception;
 import com.chzu.service.*;
 import com.chzu.utils.UploadUtil;
 import org.apache.shiro.SecurityUtils;
@@ -35,6 +36,9 @@ public class TeacherController {
 
     @Autowired
     private CollegeService collegeService;
+
+    @Autowired
+    private StudentService studentService;
 
     /**
      * 显示我的课程
@@ -321,6 +325,44 @@ public class TeacherController {
         model.addAttribute("courseList", list);
         return "teacher/showCourse";
 
+    }
+
+    @RequestMapping(value = "importStudent")
+    public String importStudent(Model model,Integer page,Integer courseId){
+        CourseCustom course = courseService.findById(courseId);
+        Integer collegeId =course.getCollegeId();
+        PagingVO pagingVO = new PagingVO();
+        pagingVO.setTotalCount(studentService.getStudentByCollege(collegeId,null,courseId).size());
+        if (page == null || page == 0) {
+            pagingVO.setToPageNo(1);
+        }else {
+            pagingVO.setToPageNo(page);
+        }
+        List<Student> studentList = studentService.getStudentByCollege(collegeId, pagingVO,courseId);
+        model.addAttribute("studentList", studentList);
+        model.addAttribute("pagingVO", pagingVO);
+        model.addAttribute("courseId" ,courseId);
+        return "teacher/importStudent";
+    }
+
+    @RequestMapping("import")
+    public String importStu(Integer page, Integer studentId, Integer courseId)throws Exception{
+        SelectedCourseCustom selectedCourseCustom = new SelectedCourseCustom();
+        selectedCourseCustom.setCourseId(courseId);
+        selectedCourseCustom.setStudentId(studentId);
+
+        SelectedCourse selectedCourse = new SelectedCourse();
+        selectedCourse.setCourseId(courseId);
+        selectedCourse.setStudentId(selectedCourseCustom.getStudentId());
+
+        SelectedCourseCustom s = selectedCourseService.findOne(selectedCourse);
+
+        if (s == null) {
+            selectedCourseService.save(selectedCourseCustom);
+        } else {
+            throw new Globalexception("该门课程你已经选了，不能再选");
+        }
+        return "redirect:/teacher/importStudent?page=" + page + "&courseId=" + courseId;
     }
 
 }

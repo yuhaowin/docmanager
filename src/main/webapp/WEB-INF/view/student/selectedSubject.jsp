@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>课程信息显示</title>
+    <title>选题信息显示</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/style.css" media="all"/>
     <script src="/js/jquery-3.2.1.min.js"></script>
@@ -16,53 +17,46 @@
     <jsp:include page="top.jsp"></jsp:include>
     <%--边栏sidebar--%>
     <jsp:include page="sidebar.jsp"></jsp:include>
-    <%--主要内容content--%>
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
-                <%--主体--%>
                 <div class="col-md-12 column">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <h1 class="col-md-5">已选该课程学生名单</h1>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <h1 class="col-md-5">已选课题</h1>
+                            </div>
                         </div>
-                    </div>
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>学号</th>
-                            <th>姓名</th>
-                            <th style="text-align: center">分数</th>
-                            <th style="text-align: center">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${selectedCourseList}" var="item">
+                        <table class="table table-bordered">
+                            <thead>
                             <tr>
-                                <td>${item.studentCustom.userId}</td>
-                                <td>${item.studentCustom.userName}</td>
-                                <c:if test="${!item.over}">
-                                    <td style="text-align: center">未打分</td>
-                                    <td style="text-align: center">
-                                        <button class="btn btn-default btn-xs btn-info"
-                                                onClick="location.href='/teacher/mark?studentId=${item.studentId}&courseId=${item.courseId}'">
-                                            打分
-                                        </button>
-                                    </td>
-                                </c:if>
-                                <c:if test="${item.over}">
-                                    <td style="text-align: center">${item.mark}</td>
-                                    <td style="text-align: center">
-                                        <button class="btn btn-default btn-xs btn-info"
-                                                onClick="location.href='/teacher/mark?studentId=${item.studentId}&courseId=${item.courseId}'">
-                                            修改
-                                        </button>
-                                    </td>
-                                </c:if>
+                                <th>名称</th>
+                                <th>描述</th>
+                                <th>文档</th>
+                                <th style="text-align: center">操作</th>
                             </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${list}" var="item">
+                                <tr>
+                                    <td>${item.subjectName}</td>
+                                    <td>${item.describe}</td>
+                                    <td>${item.fileName}</td>
+                                    <td style="text-align: center">
+                                        <button class="btn btn-default btn-xs btn-info"
+                                                onClick="location.href='/student/showFile?subjectId=${item.subjectId}&courseId=${item.courseId}'">
+                                            我的文档
+                                        </button>
+                                        <a class="btn btn-default btn-xs btn-info" href="/files${item.fileUrl}"
+                                           download="${item.fileName}">下载</a>
+                                        <a target="_blank" class="btn btn-default btn-xs btn-info"
+                                           href="/files/preview?path=${item.fileUrl}">预览</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <%--分页--%>
                 <div class="col-md-12 column">
@@ -75,7 +69,7 @@
                             <c:otherwise>
                                 <!--否则 -->
                                 <li>
-                                    <a href="/teacher/gradeCourse?id=${id}&page=${pagingVO.curentPageNo-1}">上一页</a>
+                                    <a href="/student/selectedSubject/?page=${pagingVO.curentPageNo-1}">上一页</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -89,7 +83,7 @@
                                 <c:otherwise>
                                     <!--否则 -->
                                     <li>
-                                        <a href="/teacher/gradeCourse?id=${id}&page=${index}">${index}</a>
+                                        <a href="/student/selectedSubject?page=${index}">${index}</a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>
@@ -102,7 +96,7 @@
                             <c:otherwise>
                                 <!--否则 -->
                                 <li>
-                                    <a href="/teacher/gradeCourse?id=${id}&page=${pagingVO.curentPageNo+1}">下一页</a>
+                                    <a href="/student/selectedSubject?page=${pagingVO.curentPageNo+1}">下一页</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>

@@ -24,7 +24,7 @@
                 <div class="col-md-12 column">
                     <div class="panel-heading">
                         <div class="row">
-                            <h1 class="col-md-5">已选课程</h1>
+                            <h1 class="col-md-5">我的课程</h1>
                         </div>
                     </div>
                     <table class="table table-bordered table-condensed">
@@ -53,9 +53,6 @@
                                 <td>${item.courseType}</td>
                                 <td>${item.score}</td>
                                 <td style="text-align: center">
-                                    <button class="btn btn-default btn-xs btn-info"
-                                            onClick="location.href='/student/outCourse?id=${item.courseId}'">退课
-                                    </button>
                                     <button class="btn btn-default btn-xs btn-info"
                                             onClick="location.href='/student/showMark?id=${item.courseId}'">成绩
                                     </button>
