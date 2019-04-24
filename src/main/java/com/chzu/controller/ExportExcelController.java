@@ -50,7 +50,9 @@ public class ExportExcelController {
         HSSFWorkbook workbook = new HSSFWorkbook();
         //准备导出excel数据；
         List<ExcelDTO> excelDTOList = selectedCourseService.getExcelDTOList(id);
-        ExcelUtils.exportExcelByPojo(workbook, "学生分数表", excelDTOList);
+        if (excelDTOList != null && excelDTOList.size() > 0){
+            ExcelUtils.exportExcelByPojo(workbook, "学生分数表", excelDTOList);
+        }
         workbook.write(out);
         workbook.close();
     }
