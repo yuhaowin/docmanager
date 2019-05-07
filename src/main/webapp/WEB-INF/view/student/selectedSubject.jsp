@@ -51,6 +51,7 @@
                                            download="${item.fileName}">下载</a>
                                         <a target="_blank" class="btn btn-default btn-xs btn-info"
                                            href="/files/preview?path=${item.fileUrl}">预览</a>
+                                        <a class="btn btn-default btn-xs btn-info btn-danger btn-primary" onClick="location.href='/student/deleteSubject?subjectId=${item.subjectId}'">退选课题</a>
                                     </td>
                                 </tr>
                             </c:forEach>

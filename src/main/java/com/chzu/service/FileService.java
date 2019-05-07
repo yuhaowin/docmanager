@@ -140,4 +140,5 @@ public class FileService {
         selectedSubject.setSubjectId(classSubject.getSubjectId());
         return  classSubject.getSize() - selectedSubjectService.getSelectedSubjectList(selectedSubject,null).size();
     }
+
 }

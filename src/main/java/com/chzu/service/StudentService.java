@@ -126,4 +126,5 @@ public class StudentService {
     public List<Student> getStudentByCollege(Integer collegeId, PagingVO pagingVO, Integer courseId){
         return studentDao.getStudentByCollege(collegeId, pagingVO,courseId);
     }
+
 }

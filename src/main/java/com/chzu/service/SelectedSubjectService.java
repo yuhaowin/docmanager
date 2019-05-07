@@ -65,5 +65,14 @@ public class SelectedSubjectService {
         return selectedSubjectDao.getSubject(subjectIds, pagingVO);
     }
 
+    /**
+     * 删除课题
+     * @param studentId
+     * @param subjectId
+     */
+    public void deleteSubject(Integer studentId, Integer subjectId){
+        selectedSubjectDao.deleteSubject(studentId, subjectId);
+    }
+
 
 }

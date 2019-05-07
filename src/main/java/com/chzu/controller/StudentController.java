@@ -283,5 +283,19 @@ public class StudentController {
 
     }
 
+    /**
+     * 退选课题
+     * @param subjectId
+     * @return
+     */
+    @RequestMapping("deleteSubject")
+    public String deleteSubject(Integer subjectId){
+        Subject subject = SecurityUtils.getSubject();
+        Integer userId = Integer.parseInt(subject.getPrincipal().toString());
+        selectedSubjectService.deleteSubject(userId, subjectId);
+        return "redirect:/student/selectedSubject";
+
+    }
+
 
 }

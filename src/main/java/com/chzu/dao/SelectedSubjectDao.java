@@ -81,4 +81,13 @@ public class SelectedSubjectDao {
         session.close();
         return list;
     }
+
+    public void deleteSubject(Integer studentId,Integer subjectId){
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery("delete from selected_subject where  student_id = ? and subject_id = ? ");
+        query.setParameter(0, studentId);
+        query.setParameter(1, subjectId);
+        query.executeUpdate();
+        session.close();
+    }
 }
